@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="32" tileheight="32" nextobjectid="26">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="400" columns="20">
+  <image source="tileset.png" width="640" height="640"/>
+ </tileset>
+ <layer name="first_tiles_layer" width="50" height="30">
+  <properties>
+   <property name="passability" type="bool" value="false"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0UEKwCAMBVGrUHoB7f1vahbdflCxGnAezEYkQQwBAAAAAICzXVa0kpM5o7JVrNfJnN37V71D/bvar+73zplN7fn7fDbP74gdPd+ee/F5S4WIZBWvMxZp
+  </data>
+ </layer>
+ <objectgroup name="obstacles">
+  <properties>
+   <property name="passability" type="bool" value="false"/>
+  </properties>
+  <object id="16" x="0" y="800" width="1600" height="160"/>
+  <object id="20" x="1120" y="608" width="96" height="192"/>
+  <object id="21" x="928" y="704" width="96" height="96"/>
+  <object id="23" x="736" y="704" width="96" height="96"/>
+  <object id="24" x="544" y="608" width="96" height="192"/>
+  <object id="25" x="352" y="704" width="96" height="96"/>
+ </objectgroup>
+</map>
