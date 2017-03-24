@@ -1,19 +1,32 @@
 #pragma once
 
-#include "IController.h"
-#include <iostream>
+#include "cocos_custom.h"
 
-class CPlayerController : public IController
+enum struct PuppetState
+{
+	FIRE,
+	SWITCH_WEAPON,
+
+	JUMP,
+
+	MOVE_RIGHT,
+	MOVE_LEFT,
+
+	NONE,
+};
+
+
+class CPlayerController
 {
 public:
-	bool init() override;
-	void OnKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event) override;
-	void OnKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event) override;
+	bool init();
+	void OnKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+	void OnKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
 
-	PuppetState GetMoveState() override;
-	PuppetState GetJumpState() override;
+	PuppetState GetMoveState();
+	PuppetState GetJumpState();
 
-	void Update(float delta) override;
+	void Update(float delta);
 
 private:
 	bool m_pressedKeySpace = false;

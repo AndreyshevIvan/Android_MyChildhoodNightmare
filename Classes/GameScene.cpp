@@ -33,8 +33,13 @@ bool GameScene::init()
 
 	StartGame();
 
-	//auto follow = Follow::create(m_player);
-	//m_camera->runAction(follow->reverse());
+	m_target = Node::create();
+	m_player->addChild(m_target);
+	auto follow = Follow::createWithOffset(
+		m_target, 0, 0,
+		m_levelFirst->getBoundingBox()
+	);
+	this->runAction(follow->reverse());
 
 	scheduleUpdate();
 
@@ -78,5 +83,5 @@ void GameScene::SpawnItems()
 
 void GameScene::update(float delta)
 {
-	//m_cameraTarget->setPosition(m_playerPuppeteer->GetPuppetPos());
+	m_target->setPosition(m_playerPuppeteer->GetPuppetPos());
 }

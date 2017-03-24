@@ -21,7 +21,7 @@ protected:
 
 private:
 	CPuppetPtr m_hero;
-	std::unique_ptr<IController> m_controller;
+	std::unique_ptr<CPlayerController> m_controller;
 
 };
 

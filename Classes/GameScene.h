@@ -26,5 +26,5 @@ private:
 	CPlayer* m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
 
-	cocos2d::Camera *m_camera;
+	cocos2d::Node *m_target;
 };

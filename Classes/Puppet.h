@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cocos_custom.h"
-#include "IController.h"
+#include "PlayerController.h"
 
 class IPuppeteer;
 

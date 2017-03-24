@@ -4,12 +4,20 @@ USING_NS_CC;
 
 const int FIXED_EVENT_PRIORITY = 100;
 
+namespace
+{
+	cocos2d::EventDispatcher *getEvents()
+	{
+		return cocos2d::Director::getInstance()->getEventDispatcher();
+	}
+}
+
 bool CPlayerController::init()
 {
-	m_keyboard = EventListenerKeyboard::create();
-	m_keyboard->onKeyPressed = CC_CALLBACK_2(CPlayerController::OnKeyPressed, this);
-	m_keyboard->onKeyReleased = CC_CALLBACK_2(CPlayerController::OnKeyReleased, this);
-	getEvents()->addEventListenerWithFixedPriority(m_keyboard, FIXED_EVENT_PRIORITY);
+	auto keyboard = EventListenerKeyboard::create();
+	keyboard->onKeyPressed = CC_CALLBACK_2(CPlayerController::OnKeyPressed, this);
+	keyboard->onKeyReleased = CC_CALLBACK_2(CPlayerController::OnKeyReleased, this);
+	getEvents()->addEventListenerWithFixedPriority(keyboard, FIXED_EVENT_PRIORITY);
 
 	return true;
 }
