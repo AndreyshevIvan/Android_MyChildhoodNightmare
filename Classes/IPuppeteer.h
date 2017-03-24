@@ -14,4 +14,6 @@ public:
 
 	virtual PuppetState GetMoveState() = 0;
 	virtual PuppetState GetJumpState() = 0;
+
+	virtual cocos2d::Vec2 GetPuppetPos() = 0;
 };

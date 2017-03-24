@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-const Vec2 GRAVITY = Vec2(0, -500.0f);
+const Vec2 GRAVITY = Vec2(0, -1500.0f);
 
 const std::string FIRST_LEVEL_NAME = "tmx/level_1.tmx";
 
@@ -13,6 +13,7 @@ Scene* GameScene::createScene()
 	auto scene = Scene::createWithPhysics();
 	scene->getPhysicsWorld()->setGravity(GRAVITY);
 	scene->getPhysicsWorld()->setDebugDrawMask(1);
+	scene->getPhysicsWorld()->setSubsteps(10);
 
 	auto layer = GameScene::create();
 	scene->addChild(layer);
@@ -32,6 +33,11 @@ bool GameScene::init()
 
 	StartGame();
 
+	//auto follow = Follow::create(m_player);
+	//m_camera->runAction(follow->reverse());
+
+	scheduleUpdate();
+
 	return true;
 }
 
@@ -42,7 +48,6 @@ void GameScene::StartGame()
 	SpawnEnemy();
 	SpawnItems();
 }
-
 
 void GameScene::CreateLevel()
 {
@@ -69,4 +74,9 @@ void GameScene::SpawnEnemy()
 void GameScene::SpawnItems()
 {
 
+}
+
+void GameScene::update(float delta)
+{
+	//m_cameraTarget->setPosition(m_playerPuppeteer->GetPuppetPos());
 }

@@ -9,6 +9,8 @@ class CHeroPuppeteer : protected IPuppeteer
 public:
 	void SetPuppet(CPuppet *hero);
 
+	cocos2d::Vec2 GetPuppetPos() override;
+
 protected:
 	void OnEnter() override;
 	void Update(float delta) override;

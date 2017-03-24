@@ -12,7 +12,7 @@ namespace
 	const char C_HERO_TYPE_KEY[] = "hero";
 	const char C_NPC_TYPE_KEY[] = "npc";
 
-	const PhysicsMaterial obstacleMaterial = PhysicsMaterial(0, 1, 1);
+	const PhysicsMaterial obstacleMaterial = PhysicsMaterial(1000, 0, 0.5f);
 
 #if 0
 	void DumpObjectGroup(TMXObjectGroup *group)
@@ -101,6 +101,7 @@ void CCustomMap::CreateObstacleBody(const Value &object)
 	Rect rect = AsRect(object.asValueMap());
 	PhysicsBody* body = PhysicsBody::createBox(rect.size, obstacleMaterial);
 	body->setDynamic(false);
+	body->setMass(10000);
 	body->setPositionOffset(Vec2(rect.getMidX(), rect.getMidY()));
 
 	obstacle->addComponent(body);

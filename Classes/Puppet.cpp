@@ -68,6 +68,16 @@ Vec2 CPuppet::GetCenterInWorld() const
 	return convertToWorldSpace(localCenter);
 }
 
+Vec2 CPuppet::GetPosition() const
+{
+	if (m_body)
+	{
+		return m_body->getPosition();
+	}
+
+	return Vec2::ZERO;
+}
+
 void CPuppet::SetPuppeteer(IPuppeteer *puppeteer)
 {
 	if (m_puppeteer && isRunning())

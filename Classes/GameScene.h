@@ -9,6 +9,7 @@ class GameScene : public cocos2d::Layer
 public:
 	static cocos2d::Scene* createScene();
 	virtual bool init();
+	void update(float delta) override;
 
 	CREATE_FUNC(GameScene);
 
@@ -24,4 +25,6 @@ private:
 
 	CPlayer* m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
+
+	cocos2d::Camera *m_camera;
 };

@@ -6,7 +6,7 @@
 class IPuppeteer;
 
 const float PUPPET_VELOCITY = 200.f;
-const float PUPPET_JUMP_VELOCITY = 300.f;
+const float PUPPET_JUMP_VELOCITY = 500.f;
 
 class CPuppet : public cocos2d::Node
 {
@@ -18,6 +18,8 @@ public:
 	void update(float delta) override;
 
 	cocos2d::Vec2 GetCenterInWorld()const;
+	cocos2d::Vec2 GetPosition()const;
+
 	void SetPuppeteer(IPuppeteer *puppeteer);
 
 private:

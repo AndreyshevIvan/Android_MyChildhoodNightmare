@@ -22,6 +22,11 @@ PuppetState CHeroPuppeteer::GetJumpState()
 	return m_controller->GetJumpState();
 }
 
+Vec2 CHeroPuppeteer::GetPuppetPos()
+{
+	return m_hero->GetPosition();
+}
+
 void CHeroPuppeteer::OnEnter()
 {
 	m_controller = std::unique_ptr<CPlayerController>(new CPlayerController());
@@ -35,5 +40,5 @@ void CHeroPuppeteer::Update(float delta)
 
 void CHeroPuppeteer::OnExit()
 {
-	//m_controller.reset();
+	m_controller.reset();
 }

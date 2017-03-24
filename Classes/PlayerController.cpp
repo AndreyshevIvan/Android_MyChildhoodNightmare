@@ -49,7 +49,10 @@ void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *even
 	switch (keyCode)
 	{
 	case EventKeyboard::KeyCode::KEY_SPACE:
-		m_pressedKeySpace = true;
+		if (!m_pressedKeySpace)
+		{
+			m_pressedKeySpace = true;
+		}
 		break;
 	case EventKeyboard::KeyCode::KEY_A:
 		m_pressedKeyA = true;
