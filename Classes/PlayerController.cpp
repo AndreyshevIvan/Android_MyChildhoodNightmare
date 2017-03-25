@@ -32,6 +32,13 @@ PuppetState CPlayerController::GetJumpState()
 	return m_jumpState;
 }
 
+void CPlayerController::SetMoveButtons(bool isLeft, bool isRight)
+{
+	m_pressedKeyD = isRight;
+	m_pressedKeyA = isLeft;
+}
+
+
 void CPlayerController::Update(float delta)
 {
 	m_moveState = PuppetState::NONE;

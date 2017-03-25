@@ -48,49 +48,34 @@ bool MenuScene::init()
 
 void MenuScene::update(float delta)
 {
-
+	HightlightButton();
 }
 
 void MenuScene::InitElements()
 {
-	m_background = make_node<Sprite>();
-	m_background->initWithFile(BACKGROUND_IMG);
-	SetRelativePos(m_background, Vec2(0.5f, 0.5f));
+	auto createSprite = [=](const std::string &path, Vec2 offset) {
+		auto sprite = make_node<Sprite>();
+		sprite->initWithFile(path);
+		SetRelativePos(sprite, offset);
+		this->addChild(sprite);
+	};
 
-	m_gameName = make_node<Sprite>();
-	m_gameName->initWithFile(GAME_NAME_IMG);
-	SetRelativePos(m_gameName, GAME_NAME_OFFSET);
+	createSprite(BACKGROUND_IMG, Vec2(0.5f, 0.5f));
+	createSprite(NAME_BACK, GAME_NAME_OFFSET);
+	createSprite(ITEMS_BACK, LEVELS_BUTTON_OFFSET);
+	createSprite(GAME_NAME_IMG, GAME_NAME_OFFSET);
 
-	m_nameBack = make_node<Sprite>();
-	m_nameBack->initWithFile(NAME_BACK);
-	SetRelativePos(m_nameBack, GAME_NAME_OFFSET);
+	auto createButton = [&](RefPtr<Label> &button, const std::string &name, Vec2 offset) {
+		button = make_node<Label>();
+		button->initWithTTF(name, FONT, FONT_SIZE);
+		button->setColor(Color3B::WHITE);
+		SetRelativePos(button, offset);
+		this->addChild(button);
+	};
 
-	m_itemsBack = make_node<Sprite>();
-	m_itemsBack->initWithFile(ITEMS_BACK);
-	SetRelativePos(m_itemsBack, LEVELS_BUTTON_OFFSET);
-
-	m_startButton = make_node<Label>();
-	m_startButton->initWithTTF("Start", FONT, FONT_SIZE);
-	m_startButton->setColor(Color3B::WHITE);
-	SetRelativePos(m_startButton, START_BUTTON_OFFSET);
-
-	m_levelsButton = make_node<Label>();
-	m_levelsButton->initWithTTF("Difficult", FONT, FONT_SIZE);
-	m_levelsButton->setColor(Color3B::WHITE);
-	SetRelativePos(m_levelsButton, LEVELS_BUTTON_OFFSET);
-
-	m_exitButton = make_node<Label>();
-	m_exitButton->initWithTTF("Leave", FONT, FONT_SIZE);
-	m_exitButton->setColor(Color3B::WHITE);
-	SetRelativePos(m_exitButton, EXIT_BUTTON_OFFSET);
-
-	addChild(m_background);
-	addChild(m_nameBack);
-	addChild(m_gameName);
-	addChild(m_itemsBack);
-	addChild(m_startButton);
-	addChild(m_levelsButton);
-	addChild(m_exitButton);
+	createButton(m_startButton, "Start", START_BUTTON_OFFSET);
+	createButton(m_levelsButton, "Difficult", LEVELS_BUTTON_OFFSET);
+	createButton(m_exitButton, "Leave", EXIT_BUTTON_OFFSET);
 }
 
 void MenuScene::InitListeners()
@@ -100,85 +85,82 @@ void MenuScene::InitListeners()
 	touchListener->onTouchMoved = CC_CALLBACK_2(MenuScene::onTouchMoved, this);
 	touchListener->onTouchEnded = CC_CALLBACK_2(MenuScene::onTouchEnded, this);
 
-	auto exitListener = EventListenerKeyboard::create();
-	exitListener->onKeyReleased = CC_CALLBACK_2(MenuScene::onKeyReleased, this);
-
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(exitListener, this);
+}
+
+void MenuScene::onTouchMoved(Touch* touch, Event* event)
+{
+
+}
+
+bool MenuScene::onTouchBegan(Touch* touch, Event* event)
+{
+	if (m_touch == nullptr)
+	{
+		m_touch = touch;
+	}
+
+	return true;
+}
+
+void MenuScene::HightlightButton()
+{
+	if (m_touch != nullptr)
+	{
+		float dt = Director::getInstance()->getDeltaTime();
+		Vec2 point = m_touch->getLocation();
+
+		auto highlight_if = [&](RefPtr<Label> button) {
+			float scale = button->getScale();
+			if (button->getBoundingBox().containsPoint(point) && scale < FONT_HIGHTLIGHT_SCALE)
+			{
+				button->setScale(scale + 1 * dt);
+			}
+			else if (!button->getBoundingBox().containsPoint(point) && scale > 1)
+			{
+				button->setScale(scale - 1 * dt);
+			}
+		};
+
+		highlight_if(m_startButton);
+		highlight_if(m_levelsButton);
+		highlight_if(m_exitButton);
+	}
+}
+
+void MenuScene::onTouchEnded(Touch* touch, Event* event)
+{
+	if (touch == m_touch)
+	{
+		Vec2 point = touch->getPreviousLocation();
+		auto isTouchButton = [&](RefPtr<Label> button) {
+			return button->getBoundingBox().containsPoint(point);
+		};
+
+		if (isTouchButton(m_startButton))
+		{
+			GoToGame();
+		}
+		if (isTouchButton(m_levelsButton))
+		{
+
+		}
+		if (isTouchButton(m_exitButton))
+		{
+			CloseApp();
+		}
+
+		m_startButton->setScale(1);
+		m_levelsButton->setScale(1);
+		m_exitButton->setScale(1);
+		m_touch = nullptr;
+	}
 }
 
 void MenuScene::GoToGame()
 {
 	auto scene = GameScene::createScene();
 	Director::getInstance()->pushScene(scene);
-}
-
-void MenuScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
-{
-	if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
-	{
-		CloseApp();
-	}
-}
-
-void MenuScene::onTouchMoved(Touch* touch, Event* event)
-{
-	HightlightButton(touch);
-}
-
-bool MenuScene::onTouchBegan(Touch* touch, Event* event)
-{
-	HightlightButton(touch);
-
-	return true;
-}
-
-void MenuScene::HightlightButton(Touch* touch)
-{
-	float dt = Director::getInstance()->getDeltaTime();
-	Vec2 point = touch->getLocation();
-
-	auto highlight_if = [&](RefPtr<Label> button) {
-		float scale = button->getScale();
-		if (button->getBoundingBox().containsPoint(point) && scale < FONT_HIGHTLIGHT_SCALE)
-		{
-			button->setScale(scale + 1 * dt);
-		}
-		else if (!button->getBoundingBox().containsPoint(point) && scale > 1)
-		{
-			button->setScale(scale - 1 * dt);
-		}
-	};
-
-	highlight_if(m_startButton);
-	highlight_if(m_levelsButton);
-	highlight_if(m_exitButton);
-}
-
-void MenuScene::onTouchEnded(Touch* touch, Event* event)
-{
-	Vec2 point = touch->getPreviousLocation();
-
-	auto isTouchButton = [&](RefPtr<Label> button) {
-		return button->getBoundingBox().containsPoint(point);
-	};
-
-	if (isTouchButton(m_startButton))
-	{
-		GoToGame();
-	}
-	if (isTouchButton(m_levelsButton))
-	{
-
-	}
-	if (isTouchButton(m_exitButton))
-	{
-		CloseApp();
-	}
-
-	m_startButton->setScale(1);
-	m_levelsButton->setScale(1);
-	m_exitButton->setScale(1);
 }
 
 void MenuScene::CloseApp()

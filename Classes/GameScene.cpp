@@ -1,5 +1,4 @@
 #include "GameScene.h"
-#include "SimpleAudioEngine.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -33,14 +32,6 @@ bool GameScene::init()
 
 	StartGame();
 
-	m_target = Node::create();
-	m_player->addChild(m_target);
-	auto follow = Follow::createWithOffset(
-		m_target, 0, 0,
-		m_levelFirst->getBoundingBox()
-	);
-	this->runAction(follow->reverse());
-
 	scheduleUpdate();
 
 	return true;
@@ -67,8 +58,12 @@ void GameScene::SpawnPlayer()
 
 	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
 	m_playerPuppeteer->SetPuppet(m_player);
+	m_playerPuppeteer->SetController(new CPlayerController());
+
+	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
 
 	addChild(m_player);
+	addChild(m_UILayer);
 }
 
 void GameScene::SpawnEnemy()
@@ -83,5 +78,5 @@ void GameScene::SpawnItems()
 
 void GameScene::update(float delta)
 {
-	m_target->setPosition(m_playerPuppeteer->GetPuppetPos());
+
 }

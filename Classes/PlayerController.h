@@ -28,6 +28,8 @@ public:
 
 	void Update(float delta);
 
+	void SetMoveButtons(bool isLeft, bool isRight);
+
 private:
 	bool m_pressedKeySpace = false;
 	bool m_pressedKeyA = false;

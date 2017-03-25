@@ -13,7 +13,7 @@ private:
 	void InitElements();
 	void InitListeners();
 
-	void HightlightButton(cocos2d::Touch* touch);
+	void HightlightButton();
 	void GoToGame();
 	void CloseApp();
 
@@ -23,17 +23,11 @@ private:
 
 	void update(float delta) override;
 
-	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *pEvent) override;
-
 	template<class T> void SetRelativePos(cocos2d::RefPtr<T> element, const cocos2d::Vec2 &offset);
 
-	cocos2d::RefPtr<cocos2d::Sprite> m_gameName;
-	cocos2d::RefPtr<cocos2d::Sprite> m_background;
-	cocos2d::RefPtr<cocos2d::Sprite> m_nameBack;
-	cocos2d::RefPtr<cocos2d::Sprite> m_itemsBack;
 	cocos2d::RefPtr<cocos2d::Label> m_startButton;
 	cocos2d::RefPtr<cocos2d::Label> m_levelsButton;
 	cocos2d::RefPtr<cocos2d::Label> m_exitButton;
 
-	std::unique_ptr<cocos2d::Touch> m_touch;
+	cocos2d::Touch* m_touch = nullptr;
 };

@@ -12,6 +12,12 @@ void CHeroPuppeteer::SetPuppet(CPuppet *hero)
 	}
 }
 
+void CHeroPuppeteer::SetController(CPlayerController *controller)
+{
+	m_controller = std::shared_ptr<CPlayerController>(controller);
+	m_controller->init();
+}
+
 PuppetState CHeroPuppeteer::GetMoveState()
 {
 	return m_controller->GetMoveState();
@@ -27,10 +33,14 @@ Vec2 CHeroPuppeteer::GetPuppetPos()
 	return m_hero->GetPosition();
 }
 
+std::shared_ptr<CPlayerController> CHeroPuppeteer::GetController()
+{
+	return m_controller;
+}
+
 void CHeroPuppeteer::OnEnter()
 {
-	m_controller = std::unique_ptr<CPlayerController>(new CPlayerController());
-	m_controller->init();
+
 }
 
 void CHeroPuppeteer::Update(float delta)

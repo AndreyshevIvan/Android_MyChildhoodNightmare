@@ -8,8 +8,10 @@ class CHeroPuppeteer : protected IPuppeteer
 {
 public:
 	void SetPuppet(CPuppet *hero);
+	void SetController(CPlayerController *controller);
 
 	cocos2d::Vec2 GetPuppetPos() override;
+	std::shared_ptr<CPlayerController> GetController();
 
 protected:
 	void OnEnter() override;
@@ -21,7 +23,7 @@ protected:
 
 private:
 	CPuppetPtr m_hero;
-	std::unique_ptr<CPlayerController> m_controller;
+	std::shared_ptr<CPlayerController> m_controller;
 
 };
 

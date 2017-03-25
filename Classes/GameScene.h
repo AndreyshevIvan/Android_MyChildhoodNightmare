@@ -1,8 +1,10 @@
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 #include "cocos_custom.h"
 #include "CustomMap.h"
 #include "Player.h"
 #include "HeroPuppeteer.h"
+#include "UILayer.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -26,5 +28,7 @@ private:
 	CPlayer* m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
 
-	cocos2d::Node *m_target;
+	CUILayer* m_UILayer = nullptr;
+
+	cocos2d::Node* m_target;
 };
