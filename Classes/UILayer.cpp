@@ -98,41 +98,58 @@ void CUILayer::InitElements()
 
 void CUILayer::InitListeners()
 {
-	auto touchListener = EventListenerTouchOneByOne::create();
-	touchListener->onTouchBegan = CC_CALLBACK_2(CUILayer::onTouchBegan, this);
-	touchListener->onTouchMoved = CC_CALLBACK_2(CUILayer::onTouchMoved, this);
-	touchListener->onTouchEnded = CC_CALLBACK_2(CUILayer::onTouchEnded, this);
+	auto touchListener = EventListenerTouchAllAtOnce::create();
+	touchListener->onTouchesBegan = CC_CALLBACK_2(CUILayer::onTouchesBegan, this);
+	touchListener->onTouchesMoved = CC_CALLBACK_2(CUILayer::onTouchesMoved, this);
+	touchListener->onTouchesEnded = CC_CALLBACK_2(CUILayer::onTouchesEnded, this);
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 }
 
-bool CUILayer::onTouchBegan(Touch* touch, Event* event)
+void CUILayer::onTouchesBegan(const std::vector<Touch*> &touches, Event* event)
 {
-	m_touches.push_back(touch);
+	CheckSingleTouchButtons(touches);
 
-	CheckSingleTouchButtons(touch);
-
-	return true;
+	for (auto touch : touches)
+	{
+		m_touches.push_back(touch);
+	}
 }
 
-void CUILayer::onTouchMoved(Touch* touch, Event* event)
+void CUILayer::onTouchesMoved(const std::vector<Touch*> &touches, Event* event)
 {
 
 }
 
-void CUILayer::onTouchEnded(Touch* touch, Event* event)
+void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 {
-	DeleteTouch(touch);
+	for (auto touch : touches)
+	{
+		Vec2 point = touch->getLocation();
+		bool isPause = m_buttonPause->getBoundingBox().containsPoint(point);
+		DeleteTouch(touch);
+
+		if (isPause)
+		{
+			Pause();
+		}
+	}
 }
 
-void CUILayer::CheckSingleTouchButtons(Touch* touch)
+void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 {
-	Vec2 point = touch->getLocation();
+	for (auto touch : touches)
+	{
+		Vec2 point = touch->getLocation();
+		bool isJump = m_buttonJump->getBoundingBox().containsPoint(point);
+		bool isFire = m_buttonFire->getBoundingBox().containsPoint(point);
+		bool isReload = m_buttonReload->getBoundingBox().containsPoint(point);
 
-	auto hightlight_button = [&](RefPtr<Sprite> &button, bool isTouch) {
-		float opacity = (isTouch) ? 255 : UNTOUCH_OPACITY;
-		button->setOpacity(opacity);
-	};
+		if (isJump)
+		{
+			m_playerController->SetJump(true);
+		}
+	}
 }
 
 void CUILayer::CheckMoveButtonsTouch()
@@ -150,7 +167,7 @@ void CUILayer::CheckMoveButtonsTouch()
 		isRightTouch = rightBox.containsPoint(point);
 	}
 
-	m_playerController->SetMoveButtons(isLeftTouch, isRightTouch);
+	m_playerController->SetMove(isLeftTouch, isRightTouch);
 }
 
 void CUILayer::HightlightButtons()
@@ -177,14 +194,19 @@ void CUILayer::HightlightButtons()
 	}
 }
 
-void CUILayer::DeleteTouch(Touch* touch)
+void CUILayer::DeleteTouch(Touch *touch)
 {
 	for (auto it = m_touches.begin(); it != m_touches.end(); it++)
 	{
-		if (*it = touch)
+		if (*it == touch)
 		{
 			m_touches.erase(it);
 			break;
 		}
 	}
+}
+
+void CUILayer::Pause()
+{
+	Director::getInstance()->popScene();
 }

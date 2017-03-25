@@ -11,7 +11,7 @@ Scene* GameScene::createScene()
 {
 	auto scene = Scene::createWithPhysics();
 	scene->getPhysicsWorld()->setGravity(GRAVITY);
-	scene->getPhysicsWorld()->setDebugDrawMask(1);
+	//scene->getPhysicsWorld()->setDebugDrawMask(1);
 	scene->getPhysicsWorld()->setSubsteps(10);
 
 	auto layer = GameScene::create();
