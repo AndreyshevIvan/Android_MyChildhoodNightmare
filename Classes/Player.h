@@ -2,6 +2,7 @@
 
 #include "Puppet.h"
 #include "cocos_custom.h"
+#include "UILayer.h"
 
 class CPlayer
 	: public CPuppet
@@ -15,4 +16,5 @@ protected:
 private:
 	void CreatePlayerBody(const cocos2d::Vec2 &spawnPos);
 
+	CUILayer m_UIcontroller;
 };

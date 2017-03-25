@@ -61,6 +61,8 @@ void GameScene::SpawnPlayer()
 	m_playerPuppeteer->SetController(new CPlayerController());
 
 	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
+	auto healthBar = m_UILayer->GetPlayerHealthBar();
+	m_player->SetHealthBar(healthBar);
 
 	addChild(m_player);
 	addChild(m_UILayer);

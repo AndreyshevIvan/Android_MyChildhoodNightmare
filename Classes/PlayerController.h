@@ -28,10 +28,11 @@ public:
 
 	void Update(float delta);
 
-	void SetMove(bool isLeft, bool isRight);
-	void SetJump(bool isJump);
-	void SetFire(bool isFire);
-	void SetReload(bool isReload);
+	void MoveLeft();
+	void MoveRight();
+	void Jump();
+	void Fire();
+	void Reload();
 
 private:
 	bool m_pressedKeySpace = false;

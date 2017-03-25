@@ -2,13 +2,16 @@
 
 #include "cocos_custom.h"
 #include "PlayerController.h"
+#include "LivingBody.h"
 
 class IPuppeteer;
 
 const float PUPPET_VELOCITY = 200.f;
 const float PUPPET_JUMP_VELOCITY = 500.f;
 
-class CPuppet : public cocos2d::Node
+class CPuppet
+	: public cocos2d::Node
+	, public CLivingBody
 {
 public:
 	bool init();

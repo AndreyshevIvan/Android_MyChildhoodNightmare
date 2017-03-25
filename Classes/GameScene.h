@@ -4,7 +4,6 @@
 #include "CustomMap.h"
 #include "Player.h"
 #include "HeroPuppeteer.h"
-#include "UILayer.h"
 
 class GameScene : public cocos2d::Layer
 {

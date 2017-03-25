@@ -19,6 +19,8 @@ namespace
 	const Vec2 START_BUTTON_OFFSET = Vec2(0.5f, 0.46f);
 	const Vec2 LEVELS_BUTTON_OFFSET = Vec2(0.5f, 0.30f);
 	const Vec2 EXIT_BUTTON_OFFSET = Vec2(0.5f, 0.14f);
+
+	const float ITEMS_SCALE_SPEED = 3;
 }
 
 Scene* MenuScene::createScene()
@@ -114,7 +116,7 @@ void MenuScene::HightlightButton()
 			float scale = button->getScale();
 			if (button->getBoundingBox().containsPoint(point) && scale < FONT_HIGHTLIGHT_SCALE)
 			{
-				button->setScale(scale + 1 * dt);
+				button->setScale(scale + ITEMS_SCALE_SPEED * dt);
 			}
 			else if (!button->getBoundingBox().containsPoint(point) && scale > 1)
 			{
@@ -169,9 +171,9 @@ void MenuScene::CloseApp()
 }
 
 template<class T>
-void MenuScene::SetRelativePos(cocos2d::RefPtr<T> element, const cocos2d::Vec2 &offset)
+void MenuScene::SetRelativePos(RefPtr<T> element, const Vec2 &offset)
 {
-	auto winSize = cocos2d::Director::getInstance()->getVisibleSize();
-	cocos2d::Vec2 position = cocos2d::Vec2(winSize.width * offset.x, winSize.height * offset.y);
+	auto winSize = Director::getInstance()->getVisibleSize();
+	Vec2 position = Vec2(winSize.width * offset.x, winSize.height * offset.y);
 	element->setPosition(position);
 }

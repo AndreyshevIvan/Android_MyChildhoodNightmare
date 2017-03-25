@@ -24,10 +24,13 @@ namespace
 	const Vec2 LEFT_BUTTON_OFFSET = Vec2(0.755f, 0.136f);
 	const Vec2 RIGHT_BUTTON_OFFSET = Vec2(0.906f, 0.136f);
 	const Vec2 PAUSE_BUTTON_OFFSET = Vec2(0.95f, 0.93f);
-
 	const Vec2 HEALTH_BAR_OFFSET = Vec2(0.13f, 0.82f);
+	const Vec2 HEALTH_COUNT_OFFSET = Vec2(0.165f, 0.88f);
 
 	const float UNTOUCH_OPACITY = 150;
+
+	const char FONT[] = "fonts/nightmarealley.ttf";
+	const int HEALTH_COUNT_SIZE = 80;
 }
 
 CUILayer *CUILayer::create(std::shared_ptr<CPlayerController> controller)
@@ -67,12 +70,6 @@ void CUILayer::SetController(std::shared_ptr<CPlayerController> controller)
 	m_playerController = controller;
 }
 
-void CUILayer::update(float delta)
-{
-	CheckMoveButtonsTouch();
-	HightlightButtons();
-}
-
 void CUILayer::InitElements()
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
@@ -92,8 +89,17 @@ void CUILayer::InitElements()
 	createElement(m_buttonLeft, LEFT_BUTTON_IMG, LEFT_BUTTON_OFFSET, true);
 	createElement(m_buttonRight, RIGHT_BUTTON_IMG, RIGHT_BUTTON_OFFSET, true);
 	createElement(m_buttonPause, PAUSE_BUTTON_IMG, PAUSE_BUTTON_OFFSET, true);
-
 	createElement(m_healthBar, HEALTH_BAR_IMG, HEALTH_BAR_OFFSET, false);
+
+	auto createText = [&](RefPtr<Label> &text, Vec2 offset, int fontSize) {
+		text = make_node<Label>();
+		text->initWithTTF("132", FONT, fontSize);
+		text->setColor(Color3B::WHITE);
+		text->setPosition(Vec2(winSize.width * offset.x, winSize.height * offset.y));
+		this->addChild(text);
+	};
+
+	createText(m_playerHealth, HEALTH_COUNT_OFFSET, HEALTH_COUNT_SIZE);
 }
 
 void CUILayer::InitListeners()
@@ -136,6 +142,24 @@ void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 	}
 }
 
+void CUILayer::DeleteTouch(Touch *touch)
+{
+	for (auto it = m_touches.begin(); it != m_touches.end(); it++)
+	{
+		if (*it == touch)
+		{
+			m_touches.erase(it);
+			break;
+		}
+	}
+}
+
+void CUILayer::update(float delta)
+{
+	CheckMoveButtonsTouch();
+	HightlightButtons();
+}
+
 void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 {
 	for (auto touch : touches)
@@ -147,7 +171,7 @@ void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 
 		if (isJump)
 		{
-			m_playerController->SetJump(true);
+			m_playerController->Jump();
 		}
 	}
 }
@@ -163,11 +187,11 @@ void CUILayer::CheckMoveButtonsTouch()
 	for (auto touch : m_touches)
 	{
 		Vec2 point = touch->getLocation();
-		isLeftTouch = leftBox.containsPoint(point);
-		isRightTouch = rightBox.containsPoint(point);
+		if (leftBox.containsPoint(point))
+			m_playerController->MoveLeft();
+		if (rightBox.containsPoint(point))
+			m_playerController->MoveRight();
 	}
-
-	m_playerController->SetMove(isLeftTouch, isRightTouch);
 }
 
 void CUILayer::HightlightButtons()
@@ -194,19 +218,12 @@ void CUILayer::HightlightButtons()
 	}
 }
 
-void CUILayer::DeleteTouch(Touch *touch)
-{
-	for (auto it = m_touches.begin(); it != m_touches.end(); it++)
-	{
-		if (*it == touch)
-		{
-			m_touches.erase(it);
-			break;
-		}
-	}
-}
-
 void CUILayer::Pause()
 {
 	Director::getInstance()->popScene();
+}
+
+cocos2d::RefPtr<cocos2d::Label> CUILayer::GetPlayerHealthBar()
+{
+	return m_playerHealth;
 }

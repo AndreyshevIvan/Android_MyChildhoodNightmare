@@ -32,23 +32,27 @@ PuppetState CPlayerController::GetJumpState()
 	return m_jumpState;
 }
 
-void CPlayerController::SetMove(bool isLeft, bool isRight)
+void CPlayerController::MoveLeft()
 {
-	m_pressedKeyD = isRight;
-	m_pressedKeyA = isLeft;
+	m_pressedKeyA = true;
 }
 
-void CPlayerController::SetJump(bool isJump)
+void CPlayerController::MoveRight()
 {
-	m_pressedKeySpace = isJump;
+	m_pressedKeyD = true;
 }
 
-void CPlayerController::SetFire(bool isFire)
+void CPlayerController::Jump()
+{
+	m_pressedKeySpace = true;
+}
+
+void CPlayerController::Fire()
 {
 
 }
 
-void CPlayerController::SetReload(bool isReload)
+void CPlayerController::Reload()
 {
 
 }
@@ -72,7 +76,9 @@ void CPlayerController::Update(float delta)
 		m_moveState = PuppetState::MOVE_LEFT;
 	}
 
-	m_pressedKeySpace = false;
+	//m_pressedKeySpace = false;
+	//m_pressedKeyD = false;
+	//m_pressedKeyA = false;
 }
 
 void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
