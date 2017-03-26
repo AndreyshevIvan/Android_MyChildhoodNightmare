@@ -22,14 +22,14 @@ bool CPlayerController::init()
 	return true;
 }
 
-PuppetState CPlayerController::GetMoveState()
+RunState CPlayerController::GetRunState()
 {
-	return m_moveState;
+	return m_runState;
 }
 
-PuppetState CPlayerController::GetJumpState()
+bool CPlayerController::GetJumpState()
 {
-	return m_jumpState;
+	return m_pressedJump;
 }
 
 void CPlayerController::MoveLeft()
@@ -44,7 +44,7 @@ void CPlayerController::MoveRight()
 
 void CPlayerController::Jump()
 {
-	m_pressedKeySpace = true;
+	m_pressedJump = true;
 }
 
 void CPlayerController::Fire()
@@ -57,28 +57,22 @@ void CPlayerController::Reload()
 
 }
 
-
-void CPlayerController::Update(float delta)
+void CPlayerController::ResetStates()
 {
-	m_moveState = PuppetState::NONE;
-	m_jumpState = PuppetState::NONE;
+	m_runState = RunState::NOT_RUN;
 
-	if (m_pressedKeySpace)
+	if (m_pressedKeyA)
 	{
-		m_jumpState = PuppetState::JUMP;
+		m_runState = RunState::RUN_LEFT;
 	}
 	if (m_pressedKeyD)
 	{
-		m_moveState = PuppetState::MOVE_RIGHT;
-	}
-	if (m_pressedKeyA)
-	{
-		m_moveState = PuppetState::MOVE_LEFT;
+		m_runState = RunState::RUN_RIGHT;
 	}
 
-	//m_pressedKeySpace = false;
-	//m_pressedKeyD = false;
-	//m_pressedKeyA = false;
+	m_pressedJump = false;
+	m_pressedKeyA = false;
+	m_pressedKeyD = false;
 }
 
 void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
@@ -87,10 +81,7 @@ void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *even
 	switch (keyCode)
 	{
 	case EventKeyboard::KeyCode::KEY_SPACE:
-		if (!m_pressedKeySpace)
-		{
-			m_pressedKeySpace = true;
-		}
+		m_pressedJump = true;
 		break;
 	case EventKeyboard::KeyCode::KEY_A:
 		m_pressedKeyA = true;
@@ -110,7 +101,7 @@ void CPlayerController::OnKeyReleased(EventKeyboard::KeyCode keyCode, Event *eve
 	switch (keyCode)
 	{
 	case EventKeyboard::KeyCode::KEY_SPACE:
-		m_pressedKeySpace = false;
+		m_pressedJump = false;
 		break;
 	case EventKeyboard::KeyCode::KEY_A:
 		m_pressedKeyA = false;

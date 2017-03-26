@@ -14,7 +14,7 @@ public:
 	bool IsLive();
 
 private:
-	void CLivingBody::UpdateHealthBar();
+	void UpdateHealthBar();
 
 	int m_maxHealth = 1;
 	int m_health = 1;

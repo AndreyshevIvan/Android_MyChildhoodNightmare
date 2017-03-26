@@ -12,8 +12,8 @@ public:
 	virtual void Update(float delta) = 0;
 	virtual void OnExit() = 0;
 
-	virtual PuppetState GetMoveState() = 0;
-	virtual PuppetState GetJumpState() = 0;
+	virtual RunState GetMoveState() = 0;
+	virtual bool GetJumpState() = 0;
 
 	virtual cocos2d::Vec2 GetPuppetPos() = 0;
 };

@@ -13,6 +13,7 @@ namespace
 	const char FONT[] = "fonts/nightmarealley.ttf";
 
 	const int FONT_SIZE = 100;
+	const int EXIT_FONT_SIZE = 80;
 	const float FONT_HIGHTLIGHT_SCALE = 1.2f;
 
 	const Vec2 GAME_NAME_OFFSET = Vec2(0.5f, 0.78f);
@@ -67,9 +68,9 @@ void MenuScene::InitElements()
 	createSprite(ITEMS_BACK, LEVELS_BUTTON_OFFSET);
 	createSprite(GAME_NAME_IMG, GAME_NAME_OFFSET);
 
-	auto createButton = [&](RefPtr<Label> &button, const std::string &name, Vec2 offset) {
+	auto createButton = [&](RefPtr<Label> &button, const std::string &name, Vec2 offset, int fontSize = FONT_SIZE) {
 		button = make_node<Label>();
-		button->initWithTTF(name, FONT, FONT_SIZE);
+		button->initWithTTF(name, FONT, fontSize);
 		button->setColor(Color3B::WHITE);
 		SetRelativePos(button, offset);
 		this->addChild(button);
@@ -77,7 +78,7 @@ void MenuScene::InitElements()
 
 	createButton(m_startButton, "Start", START_BUTTON_OFFSET);
 	createButton(m_levelsButton, "Difficult", LEVELS_BUTTON_OFFSET);
-	createButton(m_exitButton, "Leave", EXIT_BUTTON_OFFSET);
+	createButton(m_exitButton, "Leave", EXIT_BUTTON_OFFSET, EXIT_FONT_SIZE);
 }
 
 void MenuScene::InitListeners()
@@ -114,9 +115,9 @@ void MenuScene::HightlightButton()
 
 		auto highlight_if = [&](RefPtr<Label> button) {
 			float scale = button->getScale();
-			if (button->getBoundingBox().containsPoint(point) && scale < FONT_HIGHTLIGHT_SCALE)
+			if (button->getBoundingBox().containsPoint(point))
 			{
-				button->setScale(scale + ITEMS_SCALE_SPEED * dt);
+				button->setScale(FONT_HIGHTLIGHT_SCALE);
 			}
 			else if (!button->getBoundingBox().containsPoint(point) && scale > 1)
 			{

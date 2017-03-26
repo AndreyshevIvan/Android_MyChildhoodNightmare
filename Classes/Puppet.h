@@ -3,18 +3,22 @@
 #include "cocos_custom.h"
 #include "PlayerController.h"
 #include "LivingBody.h"
+#include "IMapPhysics.h"
+
+namespace
+{
+	const float PUPPET_VELOCITY = 200.f;
+	const float PUPPET_JUMP_VELOCITY = 500.f;
+}
 
 class IPuppeteer;
-
-const float PUPPET_VELOCITY = 200.f;
-const float PUPPET_JUMP_VELOCITY = 500.f;
 
 class CPuppet
 	: public cocos2d::Node
 	, public CLivingBody
 {
 public:
-	bool init();
+	bool init(IMapPhysics *mapPhysic);
 
 	void onEnter() override;
 	void onExit() override;
@@ -30,17 +34,18 @@ private:
 
 protected:
 	virtual void PersonalUpdate(float delta) {};
-	void MovePuppet();
+	void MoveVertical(float delta);
+	void UpdateGravity(float delta, bool isNeedJump);
+	cocos2d::Rect GetRectInWorld();
 
-	cocos2d::PhysicsBody *m_body = nullptr;
 	cocos2d::Sprite *m_puppetSprite = nullptr;
-	cocos2d::Sprite *m_phantomSprite = nullptr;
+	IMapPhysics *m_mapPhysics;
 
-	float m_xVelocity = PUPPET_VELOCITY;
+	float m_moveSpeed = PUPPET_VELOCITY;
+	float m_jumpSpeed = 0;
 
-	PuppetState m_moveState;
-	PuppetState m_jumpState;
-
+	RunState m_runState;
+	JumpState m_jumpState;
 };
 
 typedef cocos2d::RefPtr<CPuppet> CPuppetPtr;

@@ -4,8 +4,15 @@
 
 USING_NS_CC;
 
-bool CPuppet::init()
+namespace
 {
+	const float FLYING_SLOWDOWN = 1;
+	const float G = 1200;
+}
+
+bool CPuppet::init(IMapPhysics *mapPhysic)
+{
+	m_mapPhysics = mapPhysic;
 	return Node::init();
 }
 
@@ -31,34 +38,61 @@ void CPuppet::onExit()
 
 void CPuppet::update(float delta)
 {
-	m_moveState = m_puppeteer->GetMoveState();
-	m_jumpState = m_puppeteer->GetJumpState();
+	m_runState = m_puppeteer->GetMoveState();
+	bool isNeedJump = m_puppeteer->GetJumpState();
 
-	MovePuppet();
+	auto rect = getBoundingBox();
+	std::cout << "MinX: " << rect.getMinX() << " MinY: " << rect.getMinY() << " MaxX: " << rect.getMaxX() << " MaxY: " << rect.getMaxY() << std::endl;
+
+	MoveVertical(delta);
+	UpdateGravity(delta, isNeedJump);
 
 	m_puppeteer->Update(delta);
 	PersonalUpdate(delta);
 }
 
-void CPuppet::MovePuppet()
+void CPuppet::MoveVertical(float elapsedTime)
 {
-	auto currVelocity = m_body->getVelocity();
-
-	switch (m_moveState)
+	if (m_runState != RunState::NOT_RUN)
 	{
-	case PuppetState::MOVE_RIGHT:
-		m_body->setVelocity(Vec2(0, currVelocity.y) + Vec2(m_xVelocity, 0));
-		break;
-	case PuppetState::MOVE_LEFT:
-		m_body->setVelocity(Vec2(0, currVelocity.y) + Vec2(-m_xVelocity, 0));
-		break;
-	default:
-		break;
+		Vec2 movement = Vec2(m_moveSpeed * elapsedTime, 0);
+		movement = (m_runState == RunState::RUN_LEFT) ? -movement : movement;
+
+		setPosition(getPosition() + movement);
+
+		if (!m_mapPhysics->CanStandOn(GetRectInWorld()))
+		{
+			setPosition(getPosition() - movement);
+		}
+	}
+}
+
+void CPuppet::UpdateGravity(float elapsedTime, bool isNeedJump)
+{
+	if (isNeedJump && m_jumpState == JumpState::ON_GROUND)
+	{
+		m_jumpSpeed -= 500;
 	}
 
-	if (m_jumpState == PuppetState::JUMP)
+	Vec2 movement = Vec2(0, m_jumpSpeed);
+	m_jumpSpeed = m_jumpSpeed + G * elapsedTime;
+	movement.y = m_jumpSpeed * elapsedTime;
+
+	setPosition(getPosition() - movement);
+
+	if (m_mapPhysics->CanStandOn(GetRectInWorld()))
 	{
-		m_body->setVelocity(Vec2(currVelocity.x, PUPPET_JUMP_VELOCITY));
+		m_jumpState = JumpState::FLY;
+	}
+	else
+	{
+		setPosition(getPosition() + movement);
+		m_jumpSpeed = 0;
+
+		if (movement.y > 0)
+		{
+			m_jumpState = JumpState::ON_GROUND;
+		}
 	}
 }
 
@@ -70,12 +104,16 @@ Vec2 CPuppet::GetCenterInWorld() const
 
 Vec2 CPuppet::GetPosition() const
 {
-	if (m_body)
-	{
-		return m_body->getPosition();
-	}
+	return getPosition();
+}
 
-	return Vec2::ZERO;
+Rect CPuppet::GetRectInWorld()
+{
+	auto rect = getBoundingBox();
+	rect.size = rect.size * 0.9f;
+	rect.origin = rect.origin - rect.size / 2;
+
+	return rect;
 }
 
 void CPuppet::SetPuppeteer(IPuppeteer *puppeteer)

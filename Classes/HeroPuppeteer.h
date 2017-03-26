@@ -18,8 +18,8 @@ protected:
 	void Update(float delta) override;
 	void OnExit() override;
 
-	PuppetState GetMoveState() override;
-	PuppetState GetJumpState() override;
+	RunState GetMoveState() override;
+	bool GetJumpState() override;
 
 private:
 	CPuppetPtr m_hero;

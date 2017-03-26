@@ -13,23 +13,15 @@ namespace
 	const char C_NPC_TYPE_KEY[] = "npc";
 
 	const PhysicsMaterial obstacleMaterial = PhysicsMaterial(1000, 0, 0.5f);
+}
 
-#if 0
-	void DumpObjectGroup(TMXObjectGroup *group)
-	{
-		if (!group)
-		{
-			CCLOG("-- objects group empty --");
-			return;
-		}
-		CCLOG("-- objects group `%s` --", group->getGroupName().c_str());
-		for (const Value &v : group->getObjects())
-		{
-			CCLOG("%s", v.getDescription().c_str());
-		}
-		CCLOG("-- objects group end --");
-	}
-#endif
+bool CCustomMap::CanStandOn(const cocos2d::Rect &body)
+{
+	bool isOnObstacle = std::any_of(m_obstacles.begin(), m_obstacles.end(), [=](const Rect &rect) {
+		return rect.intersectsRect(body);
+	});
+
+	return !isOnObstacle;
 }
 
 Vec2 CCustomMap::GetHeroWorldPosition() const
@@ -59,7 +51,7 @@ bool CCustomMap::LoadObstacles()
 	{
 		for (Value object : group->getObjects())
 		{
-			CreateObstacleBody(object);
+			m_obstacles.push_back(AsRect(object.asValueMap()));
 		}
 	}
 	catch (const std::exception &)
@@ -95,21 +87,6 @@ bool CCustomMap::LoadUnits()
 	return true;
 }
 
-void CCustomMap::CreateObstacleBody(const Value &object)
-{
-	Node* obstacle = make_node<Node>();
-	Rect rect = AsRect(object.asValueMap());
-	PhysicsBody* body = PhysicsBody::createBox(rect.size, obstacleMaterial);
-	body->setDynamic(false);
-	body->setMass(10000);
-	body->setPositionOffset(Vec2(rect.getMidX(), rect.getMidY()));
-
-	obstacle->addComponent(body);
-	
-	addChild(obstacle);
-}
-
-// метод `.at()` бросит исключение, если заданного ключа нет в словаре.
 Rect CCustomMap::AsRect(const ValueMap &properties) const
 {
 	Rect rect;

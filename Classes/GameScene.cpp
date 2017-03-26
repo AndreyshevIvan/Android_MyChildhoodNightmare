@@ -9,12 +9,10 @@ const std::string FIRST_LEVEL_NAME = "tmx/level_1.tmx";
 
 Scene* GameScene::createScene()
 {
-	auto scene = Scene::createWithPhysics();
-	scene->getPhysicsWorld()->setGravity(GRAVITY);
-	//scene->getPhysicsWorld()->setDebugDrawMask(1);
-	scene->getPhysicsWorld()->setSubsteps(10);
+	auto scene = Scene::create();
 
 	auto layer = GameScene::create();
+	layer->InitCamera(scene->getDefaultCamera());
 	scene->addChild(layer);
 
 	return scene;
@@ -27,14 +25,18 @@ bool GameScene::init()
 		return false;
 	}
 
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	m_winSize = Director::getInstance()->getVisibleSize();
 
 	StartGame();
 
 	scheduleUpdate();
 
 	return true;
+}
+
+void GameScene::InitCamera(Camera* camera)
+{
+	m_camera = camera;
 }
 
 void GameScene::StartGame()
@@ -53,8 +55,8 @@ void GameScene::CreateLevel()
 
 void GameScene::SpawnPlayer()
 {
-	m_player = make_node<CPlayer>();
-	m_player->Spawn(Vec2(200, 300));
+	m_player = make_node<CPlayer>(m_levelFirst);
+	m_player->Spawn(Vec2(300, 300));
 
 	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
 	m_playerPuppeteer->SetPuppet(m_player);
@@ -80,5 +82,13 @@ void GameScene::SpawnItems()
 
 void GameScene::update(float delta)
 {
+	UpdateCamera();
+}
 
+void GameScene::UpdateCamera()
+{
+	auto playerPosition = m_playerPuppeteer->GetPuppetPos();
+
+	m_camera->setPosition(playerPosition);
+	m_UILayer->setPosition(playerPosition - Vec2(m_winSize / 2));
 }

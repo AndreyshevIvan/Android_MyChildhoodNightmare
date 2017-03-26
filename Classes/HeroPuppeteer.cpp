@@ -18,12 +18,12 @@ void CHeroPuppeteer::SetController(CPlayerController *controller)
 	m_controller->init();
 }
 
-PuppetState CHeroPuppeteer::GetMoveState()
+RunState CHeroPuppeteer::GetMoveState()
 {
-	return m_controller->GetMoveState();
+	return m_controller->GetRunState();
 }
 
-PuppetState CHeroPuppeteer::GetJumpState()
+bool CHeroPuppeteer::GetJumpState()
 {
 	return m_controller->GetJumpState();
 }
@@ -45,7 +45,7 @@ void CHeroPuppeteer::OnEnter()
 
 void CHeroPuppeteer::Update(float delta)
 {
-	m_controller->Update(delta);
+	m_controller->ResetStates();
 }
 
 void CHeroPuppeteer::OnExit()

@@ -8,15 +8,14 @@
 class GameScene : public cocos2d::Layer
 {
 public:
-	static cocos2d::Scene* createScene();
+	static cocos2d::Scene *createScene();
 	virtual bool init();
 	void update(float delta) override;
 
 	CREATE_FUNC(GameScene);
 
 private:
-	CCustomMap* m_levelFirst = nullptr;
-
+	void InitCamera(cocos2d::Camera* camera);
 	void StartGame();
 
 	void CreateLevel();
@@ -24,10 +23,16 @@ private:
 	void SpawnEnemy();
 	void SpawnItems();
 
-	CPlayer* m_player = nullptr;
+	void UpdateCamera();
+
+	cocos2d::Size m_winSize;
+
+	cocos2d::Camera *m_camera = nullptr;
+	CCustomMap *m_levelFirst = nullptr;
+	CPlayer *m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
 
-	CUILayer* m_UILayer = nullptr;
+	CUILayer *m_UILayer = nullptr;
 
-	cocos2d::Node* m_target;
+	cocos2d::Node *m_target;
 };

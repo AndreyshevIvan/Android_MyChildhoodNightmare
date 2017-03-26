@@ -14,7 +14,7 @@ protected:
 	void PersonalUpdate(float delta) override;
 
 private:
-	void CreatePlayerBody(const cocos2d::Vec2 &spawnPos);
+	void InitPlayer(const cocos2d::Vec2 &spawnPos);
 
 	CUILayer m_UIcontroller;
 };

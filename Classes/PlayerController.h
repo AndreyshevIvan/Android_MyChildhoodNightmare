@@ -2,19 +2,18 @@
 
 #include "cocos_custom.h"
 
-enum struct PuppetState
+enum struct RunState
 {
-	FIRE,
-	SWITCH_WEAPON,
-
-	JUMP,
-
-	MOVE_RIGHT,
-	MOVE_LEFT,
-
-	NONE,
+	NOT_RUN,
+	RUN_LEFT,
+	RUN_RIGHT,
 };
 
+enum struct JumpState
+{
+	FLY,
+	ON_GROUND,
+};
 
 class CPlayerController
 {
@@ -23,10 +22,9 @@ public:
 	void OnKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
 	void OnKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
 
-	PuppetState GetMoveState();
-	PuppetState GetJumpState();
-
-	void Update(float delta);
+	RunState GetRunState();
+	bool GetJumpState();
+	void ResetStates();
 
 	void MoveLeft();
 	void MoveRight();
@@ -35,11 +33,10 @@ public:
 	void Reload();
 
 private:
-	bool m_pressedKeySpace = false;
+	bool m_pressedJump = false;
 	bool m_pressedKeyA = false;
 	bool m_pressedKeyD = false;
 
-	PuppetState m_moveState = PuppetState::NONE;
-	PuppetState m_jumpState = PuppetState::NONE;
-	PuppetState m_weaponState = PuppetState::NONE;
+	RunState m_runState;
+	JumpState m_jumpState;
 };
