@@ -19,8 +19,9 @@ protected:
 	void OnExit() override;
 
 	RunState GetMoveState() override;
-	bool GetJumpState() override;
+	bool CheckJumpState() override;
 	bool GetFireState() override;
+	bool GetSwitchWeaponState() override;
 
 private:
 	CPuppetPtr m_hero;

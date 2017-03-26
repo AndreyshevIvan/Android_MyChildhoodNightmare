@@ -19,7 +19,7 @@ class CPuppet
 	, public CLivingBody
 {
 public:
-	bool init(IMapPhysics *mapPhysic);
+	bool init(IMapPhysics *mapPhysics);
 
 	void onEnter() override;
 	void onExit() override;
@@ -31,13 +31,17 @@ public:
 	void SetPuppeteer(IPuppeteer *puppeteer);
 
 private:
+	cocos2d::Rect GetRectInWorld() const;
+	void MoveHorizontal(float delta);
+	void MoveVertical(float delta);
+	void UpdateDirection(float movement);
+
 	IPuppeteer *m_puppeteer = nullptr;
 
 protected:
 	virtual void PersonalUpdate(float delta) {};
-	void MoveHorizontal(float delta);
-	void MoveVertical(float delta);
-	cocos2d::Rect GetRectInWorld() const;
+	virtual void Fire() {};
+	bool IsNeedToSwitchWeapon();
 
 	cocos2d::Sprite *m_puppetSprite = nullptr;
 	IMapPhysics *m_mapPhysics;
@@ -46,6 +50,7 @@ protected:
 	float m_jumpSpeed = PUPPET_JUMP_VELOCITY;
 	float m_bodyScaleFactor = 1;
 
+	Direction m_direction;
 	RunState m_runState;
 	JumpState m_jumpState;
 	bool m_isFire = false;

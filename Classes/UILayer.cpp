@@ -67,12 +67,10 @@ bool CUILayer::init()
 
 	return true;
 }
-
 void CUILayer::SetController(std::shared_ptr<CPlayerController> controller)
 {
 	m_playerController = controller;
 }
-
 void CUILayer::InitElements()
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
@@ -108,7 +106,6 @@ void CUILayer::InitElements()
 	createText(m_playerHealth, HEALTH_COUNT_OFFSET, HEALTH_COUNT_SIZE);
 	createText(m_playerAmmo, AMMO_COUNT_OFFSET, AMMO_COUNT_SIZE);
 }
-
 void CUILayer::InitListeners()
 {
 	auto touchListener = EventListenerTouchAllAtOnce::create();
@@ -128,12 +125,10 @@ void CUILayer::onTouchesBegan(const std::vector<Touch*> &touches, Event* event)
 		m_touches.push_back(touch);
 	}
 }
-
 void CUILayer::onTouchesMoved(const std::vector<Touch*> &touches, Event* event)
 {
 
 }
-
 void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 {
 	for (auto touch : touches)
@@ -148,7 +143,6 @@ void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 		}
 	}
 }
-
 void CUILayer::DeleteTouch(Touch *touch)
 {
 	for (auto it = m_touches.begin(); it != m_touches.end(); it++)
@@ -163,26 +157,20 @@ void CUILayer::DeleteTouch(Touch *touch)
 
 void CUILayer::update(float delta)
 {
-	CheckMoveButtonsTouch();
+	CheckAlwaysTouchButtons();
 	HightlightButtons();
 }
-
 void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 {
 	for (auto touch : touches)
 	{
 		Vec2 point = touch->getLocation();
 		bool isJump = m_buttonJump->getBoundingBox().containsPoint(point);
-		bool isFire = m_buttonFire->getBoundingBox().containsPoint(point);
 		bool isReload = m_buttonReload->getBoundingBox().containsPoint(point);
 
 		if (isJump)
 		{
 			m_playerController->Jump();
-		}
-		if (isFire)
-		{
-			m_playerController->Fire();
 		}
 		if (isReload)
 		{
@@ -190,25 +178,30 @@ void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 		}
 	}
 }
-
-void CUILayer::CheckMoveButtonsTouch()
+void CUILayer::CheckAlwaysTouchButtons()
 {
 	auto leftBox = m_buttonLeft->getBoundingBox();
 	auto rightBox = m_buttonRight->getBoundingBox();
-
-	bool isLeftTouch = false;
-	bool isRightTouch = false;
+	auto fireBox = m_buttonFire->getBoundingBox();
 
 	for (auto touch : m_touches)
 	{
 		Vec2 point = touch->getLocation();
+
 		if (leftBox.containsPoint(point))
+		{
 			m_playerController->MoveLeft();
+		}
 		if (rightBox.containsPoint(point))
+		{
 			m_playerController->MoveRight();
+		}
+		if (fireBox.containsPoint(point))
+		{
+			m_playerController->Fire();
+		}
 	}
 }
-
 void CUILayer::HightlightButtons()
 {
 	for (auto button : m_buttons)

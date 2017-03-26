@@ -33,6 +33,4 @@ private:
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
 
 	CUILayer *m_UILayer = nullptr;
-
-	cocos2d::Node *m_target;
 };

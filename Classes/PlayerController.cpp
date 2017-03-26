@@ -27,40 +27,38 @@ RunState CPlayerController::GetRunState()
 {
 	return m_runState;
 }
-
 bool CPlayerController::GetJumpState()
 {
 	return m_pressedJump;
 }
-
 bool CPlayerController::GetFireState()
 {
 	return m_isFire;
+}
+bool CPlayerController::GetSwitchWeaponState()
+{
+	return m_isReload;
 }
 
 void CPlayerController::MoveLeft()
 {
 	m_pressedKeyA = true;
 }
-
 void CPlayerController::MoveRight()
 {
 	m_pressedKeyD = true;
 }
-
 void CPlayerController::Jump()
 {
 	m_pressedJump = true;
 }
-
 void CPlayerController::Fire()
 {
 	m_isFire = true;
 }
-
 void CPlayerController::Reload()
 {
-
+	m_isReload = true;
 }
 
 void CPlayerController::ResetStates()
@@ -77,9 +75,10 @@ void CPlayerController::ResetStates()
 	}
 
 	m_pressedJump = false;
-	m_pressedKeyA = false;
-	m_pressedKeyD = false;
+	//m_pressedKeyA = false;
+	//m_pressedKeyD = false;
 	m_isFire = false;
+	m_isReload = false;
 }
 
 void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
@@ -100,7 +99,6 @@ void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *even
 		return;
 	}
 }
-
 void CPlayerController::OnKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 {
 	(void)event;

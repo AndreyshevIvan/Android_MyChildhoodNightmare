@@ -7,7 +7,7 @@ USING_NS_CC;
 namespace
 {
 	const float FLYING_SLOWDOWN = 1;
-	const float G = 1200;
+	const float G = 900;
 }
 
 bool CPuppet::init(IMapPhysics *mapPhysic)
@@ -39,7 +39,7 @@ void CPuppet::onExit()
 void CPuppet::update(float delta)
 {
 	m_runState = m_puppeteer->GetMoveState();
-	m_isJump = m_puppeteer->GetJumpState();
+	m_isJump = m_puppeteer->CheckJumpState();
 	m_isFire = m_puppeteer->GetFireState();
 
 	MoveHorizontal(delta);
@@ -55,6 +55,7 @@ void CPuppet::MoveHorizontal(float elapsedTime)
 	{
 		Vec2 movement = Vec2(m_moveSpeed.x * elapsedTime, 0);
 		movement = (m_runState == RunState::RUN_LEFT) ? -movement : movement;
+		UpdateDirection(movement.x);
 
 		setPosition(getPosition() + movement);
 
@@ -89,6 +90,18 @@ void CPuppet::MoveVertical(float elapsedTime)
 	}
 }
 
+void CPuppet::UpdateDirection(float movement)
+{
+	if (movement < 0)
+	{
+		m_direction = Direction::LEFT;
+	}
+	else if (movement > 0)
+	{
+		m_direction = Direction::RIGHT;
+	}
+}
+
 Vec2 CPuppet::GetCenterInWorld() const
 {
 	Vec2 localCenter(0, 0);
@@ -120,4 +133,9 @@ void CPuppet::SetPuppeteer(IPuppeteer *puppeteer)
 	{
 		m_puppeteer->OnEnter();
 	}
+}
+
+bool CPuppet::IsNeedToSwitchWeapon()
+{
+	return m_puppeteer->GetSwitchWeaponState();
 }

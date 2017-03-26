@@ -19,7 +19,7 @@ private:
 	void onTouchesMoved(const std::vector<cocos2d::Touch*> &touches, cocos2d::Event* event);
 	void onTouchesEnded(const std::vector<cocos2d::Touch*> &touches, cocos2d::Event* event);
 	void CheckSingleTouchButtons(const std::vector<cocos2d::Touch*> &touches);
-	void CheckMoveButtonsTouch();
+	void CheckAlwaysTouchButtons();
 	void HightlightButtons();
 	void DeleteTouch(cocos2d::Touch *touch);
 

@@ -24,6 +24,18 @@ bool CCustomMap::CanStandOn(const cocos2d::Rect &body)
 	return !isOnObstacle;
 }
 
+void CCustomMap::AddPlayerBullets(std::vector<RefPtr<CBullet>> playerBullets)
+{
+	if (!playerBullets.empty())
+	{
+		for (auto bullet : playerBullets)
+		{
+			m_playerBullets.push_back(bullet);
+			addChild(bullet);
+		}
+	}
+}
+
 Vec2 CCustomMap::GetHeroWorldPosition() const
 {
 	return convertToWorldSpace(m_heroPosition);

@@ -23,7 +23,7 @@ RunState CHeroPuppeteer::GetMoveState()
 	return m_controller->GetRunState();
 }
 
-bool CHeroPuppeteer::GetJumpState()
+bool CHeroPuppeteer::CheckJumpState()
 {
 	return m_controller->GetJumpState();
 }
@@ -31,6 +31,11 @@ bool CHeroPuppeteer::GetJumpState()
 bool CHeroPuppeteer::GetFireState()
 {
 	return m_controller->GetFireState();
+}
+
+bool CHeroPuppeteer::GetSwitchWeaponState()
+{
+	return m_controller->GetSwitchWeaponState();
 }
 
 Vec2 CHeroPuppeteer::GetPuppetPos()
@@ -50,6 +55,8 @@ void CHeroPuppeteer::OnEnter()
 
 void CHeroPuppeteer::Update(float delta)
 {
+
+
 	m_controller->ResetStates();
 }
 

@@ -15,9 +15,15 @@ protected:
 
 private:
 	void InitPlayer(const cocos2d::Vec2 &spawnPos);
-	void Fire();
+	void Fire() override;
+	void SwitchWeapon();
 
 	CUILayer m_UIcontroller;
-	cocos2d::RefPtr<CWeapon> m_pistol = nullptr;
 
+	IPlayerWeapon *m_currentWeapon = nullptr;
+	cocos2d::RefPtr<CWeapon> m_pistol = nullptr;
+	cocos2d::RefPtr<CWeapon> m_shootgun = nullptr;
+	cocos2d::RefPtr<CWeapon> m_ak = nullptr;
+
+	std::vector<CWeapon*> m_weapons;
 };

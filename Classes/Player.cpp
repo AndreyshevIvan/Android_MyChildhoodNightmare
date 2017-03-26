@@ -17,7 +17,19 @@ void CPlayer::Spawn(const Vec2 &spawnPos)
 	InitPlayer(spawnPos);
 	setPosition(spawnPos);
 
-	m_pistol = CWeapon::CreatePistol();
+	m_pistol = CPistol::Create(this);
+	m_shootgun = CShootgun::Create(this);
+	m_ak = CAkWeapon::Create(this);
+
+	addChild(m_pistol);
+	addChild(m_shootgun);
+	addChild(m_ak);
+
+	m_weapons.push_back(m_pistol);
+	m_weapons.push_back(m_shootgun);
+	m_weapons.push_back(m_ak);
+
+	m_currentWeapon = m_pistol;
 }
 
 void CPlayer::InitPlayer(const Vec2 &spawnPos)
@@ -34,13 +46,31 @@ void CPlayer::InitPlayer(const Vec2 &spawnPos)
 
 void CPlayer::PersonalUpdate(float delta)
 {
+	SwitchWeapon();
 	Fire();
 }
 
 void CPlayer::Fire()
 {
-	if (m_isFire)
+	if (m_isFire && m_currentWeapon->IsReady())
 	{
+		auto bullets = m_currentWeapon->Fire(m_direction);
+		m_mapPhysics->AddPlayerBullets(bullets);
+	}
+}
 
+void CPlayer::SwitchWeapon()
+{
+	if (IsNeedToSwitchWeapon())
+	{
+		for (size_t i = 0; i < m_weapons.size(); i++)
+		{
+			if (m_weapons[i] == m_currentWeapon)
+			{
+				i = (i == m_weapons.size() - 1) ? 0 : i + 1;
+				m_currentWeapon = m_weapons[i];
+				break;
+			}
+		}
 	}
 }

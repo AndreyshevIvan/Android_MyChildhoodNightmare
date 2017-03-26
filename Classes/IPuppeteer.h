@@ -13,8 +13,9 @@ public:
 	virtual void OnExit() = 0;
 
 	virtual RunState GetMoveState() = 0;
-	virtual bool GetJumpState() = 0;
+	virtual bool CheckJumpState() = 0;
 	virtual bool GetFireState() = 0;
+	virtual bool GetSwitchWeaponState() = 0;
 
 	virtual cocos2d::Vec2 GetPuppetPos() = 0;
 };
