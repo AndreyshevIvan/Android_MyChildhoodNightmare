@@ -1,4 +1,5 @@
 #include "PlayerController.h"
+#include <iostream>
 
 USING_NS_CC;
 
@@ -32,6 +33,11 @@ bool CPlayerController::GetJumpState()
 	return m_pressedJump;
 }
 
+bool CPlayerController::GetFireState()
+{
+	return m_isFire;
+}
+
 void CPlayerController::MoveLeft()
 {
 	m_pressedKeyA = true;
@@ -49,7 +55,7 @@ void CPlayerController::Jump()
 
 void CPlayerController::Fire()
 {
-
+	m_isFire = true;
 }
 
 void CPlayerController::Reload()
@@ -73,6 +79,7 @@ void CPlayerController::ResetStates()
 	m_pressedJump = false;
 	m_pressedKeyA = false;
 	m_pressedKeyD = false;
+	m_isFire = false;
 }
 
 void CPlayerController::OnKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)

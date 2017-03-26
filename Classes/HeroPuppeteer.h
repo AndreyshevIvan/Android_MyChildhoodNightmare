@@ -20,6 +20,7 @@ protected:
 
 	RunState GetMoveState() override;
 	bool GetJumpState() override;
+	bool GetFireState() override;
 
 private:
 	CPuppetPtr m_hero;

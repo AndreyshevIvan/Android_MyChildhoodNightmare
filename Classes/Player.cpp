@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 USING_NS_CC;
 
@@ -15,11 +16,13 @@ void CPlayer::Spawn(const Vec2 &spawnPos)
 	InitLivingBody(PLAYER_HEALTH);
 	InitPlayer(spawnPos);
 	setPosition(spawnPos);
+
+	m_pistol = CWeapon::CreatePistol();
 }
 
 void CPlayer::InitPlayer(const Vec2 &spawnPos)
 {
-	m_moveSpeed = PLAYER_VELOCITY;
+	m_moveSpeed.x = PLAYER_VELOCITY;
 
 	m_puppetSprite = Sprite::create();
 	m_puppetSprite->initWithFile("textures/player.png");
@@ -31,5 +34,13 @@ void CPlayer::InitPlayer(const Vec2 &spawnPos)
 
 void CPlayer::PersonalUpdate(float delta)
 {
+	Fire();
+}
 
+void CPlayer::Fire()
+{
+	if (m_isFire)
+	{
+
+	}
 }

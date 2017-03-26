@@ -28,6 +28,11 @@ bool CHeroPuppeteer::GetJumpState()
 	return m_controller->GetJumpState();
 }
 
+bool CHeroPuppeteer::GetFireState()
+{
+	return m_controller->GetFireState();
+}
+
 Vec2 CHeroPuppeteer::GetPuppetPos()
 {
 	return m_hero->GetPosition();

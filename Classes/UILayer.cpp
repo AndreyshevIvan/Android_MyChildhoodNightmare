@@ -26,11 +26,14 @@ namespace
 	const Vec2 PAUSE_BUTTON_OFFSET = Vec2(0.95f, 0.93f);
 	const Vec2 HEALTH_BAR_OFFSET = Vec2(0.13f, 0.82f);
 	const Vec2 HEALTH_COUNT_OFFSET = Vec2(0.165f, 0.88f);
+	const Vec2 WEAPON_BAR_OFFSET = Vec2(0.09f, 0.72f);
+	const Vec2 AMMO_COUNT_OFFSET = Vec2(0.131f, 0.68f);
 
 	const float UNTOUCH_OPACITY = 150;
 
 	const char FONT[] = "fonts/nightmarealley.ttf";
 	const int HEALTH_COUNT_SIZE = 80;
+	const int AMMO_COUNT_SIZE = 40;
 }
 
 CUILayer *CUILayer::create(std::shared_ptr<CPlayerController> controller)
@@ -90,16 +93,20 @@ void CUILayer::InitElements()
 	createElement(m_buttonRight, RIGHT_BUTTON_IMG, RIGHT_BUTTON_OFFSET, true);
 	createElement(m_buttonPause, PAUSE_BUTTON_IMG, PAUSE_BUTTON_OFFSET, true);
 	createElement(m_healthBar, HEALTH_BAR_IMG, HEALTH_BAR_OFFSET, false);
+	createElement(m_weaponBarPistol, PISTOL_BAR_IMG, WEAPON_BAR_OFFSET, false);
+	createElement(m_weaponBarShootgun, SHOOTGUN_BAR_IMG, WEAPON_BAR_OFFSET, false);
+	createElement(m_weaponBarAK, AK_BAR_IMG, WEAPON_BAR_OFFSET, false);
 
 	auto createText = [&](RefPtr<Label> &text, Vec2 offset, int fontSize) {
 		text = make_node<Label>();
-		text->initWithTTF("132", FONT, fontSize);
+		text->initWithTTF("99", FONT, fontSize);
 		text->setColor(Color3B::WHITE);
 		text->setPosition(Vec2(winSize.width * offset.x, winSize.height * offset.y));
 		this->addChild(text);
 	};
 
 	createText(m_playerHealth, HEALTH_COUNT_OFFSET, HEALTH_COUNT_SIZE);
+	createText(m_playerAmmo, AMMO_COUNT_OFFSET, AMMO_COUNT_SIZE);
 }
 
 void CUILayer::InitListeners()
@@ -172,6 +179,14 @@ void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 		if (isJump)
 		{
 			m_playerController->Jump();
+		}
+		if (isFire)
+		{
+			m_playerController->Fire();
+		}
+		if (isReload)
+		{
+			m_playerController->Reload();
 		}
 	}
 }

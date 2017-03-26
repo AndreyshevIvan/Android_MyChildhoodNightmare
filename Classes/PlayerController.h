@@ -24,6 +24,7 @@ public:
 
 	RunState GetRunState();
 	bool GetJumpState();
+	bool GetFireState();
 	void ResetStates();
 
 	void MoveLeft();
@@ -36,6 +37,7 @@ private:
 	bool m_pressedJump = false;
 	bool m_pressedKeyA = false;
 	bool m_pressedKeyD = false;
+	bool m_isFire = false;
 
 	RunState m_runState;
 	JumpState m_jumpState;

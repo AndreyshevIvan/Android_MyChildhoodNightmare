@@ -36,7 +36,11 @@ private:
 	cocos2d::RefPtr<cocos2d::Sprite> m_buttonLeft;
 	cocos2d::RefPtr<cocos2d::Sprite> m_buttonRight;
 	cocos2d::RefPtr<cocos2d::Sprite> m_buttonPause;
+	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBarAK;
+	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBarPistol;
+	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBarShootgun;
 	cocos2d::RefPtr<cocos2d::Label> m_playerHealth;
+	cocos2d::RefPtr<cocos2d::Label> m_playerAmmo;
 
 	std::vector<cocos2d::Touch*> m_touches;
 	std::vector<cocos2d::RefPtr<cocos2d::Sprite>> m_buttons;
