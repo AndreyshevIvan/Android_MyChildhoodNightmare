@@ -3,16 +3,15 @@
 #include "cocos_custom.h"
 #include "IPuppeteer.h"
 #include "Puppet.h"
-#include "PlayerController.h"
 
-class CHeroPuppeteer : protected IPuppeteer
+class CEnemyPuppeteer : protected IPuppeteer
 {
 public:
-	void SetPuppet(CPuppet *hero);
-	void SetController(CPlayerController *controller);
+	void SetPuppet(CPuppet *enemy);
+	//void SetController(CPlayerController *controller);
 
 	cocos2d::Vec2 GetPuppetPos() override;
-	std::shared_ptr<CPlayerController> GetController();
+	//std::shared_ptr<CPlayerController> GetController();
 
 protected:
 	void OnEnter() override;
@@ -25,9 +24,7 @@ protected:
 	bool GetSwitchWeaponState() override;
 
 private:
-	CPuppetPtr m_hero;
-	std::shared_ptr<CPlayerController> m_controller;
+	CPuppetPtr m_enemy;
+	//std::shared_ptr<CPlayerController> m_controller;
 
 };
-
-typedef std::unique_ptr<CHeroPuppeteer> CHeroPuppeteerPtr;

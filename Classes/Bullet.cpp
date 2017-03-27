@@ -12,6 +12,8 @@ namespace
 	const float PISTOL_BULLET_SPEED = 500;
 	const float SHOOTGUN_BULLET_SPEED = 600;
 	const float AK_BULLET_SPEED = 700;
+
+	const float BULLET_DISTANCE = 400;
 }
 
 RefPtr<CBullet> CBullet::Create()
@@ -68,13 +70,29 @@ RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir)
 	return newBullet;
 }
 
+bool CBullet::IsDistanceValid()
+{
+	return (m_distance <= BULLET_DISTANCE);
+}
+
 void CBullet::update(float delta)
 {
 	auto position = getPosition();
-	setPosition(position + Vec2(m_speed * delta, 0));
+	auto movement = Vec2(m_speed * delta, 0);
+
+	setPosition(position + movement);
+	m_distance += movement.x;
 }
 
 void CBullet::SetSpeed(float speed)
 {
 	m_speed = speed;
+}
+
+void CBullet::onExit()
+{
+	this->unscheduleUpdate();
+	this->stopAllActions();
+	this->removeAllChildren();
+	Node::onExit();
 }

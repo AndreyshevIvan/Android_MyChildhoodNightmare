@@ -7,7 +7,7 @@ namespace
 {
 	const float PISTOL_COLDOWN = 0.5f;
 	const float SHOOTGUN_COLDOWN = 0.5f;
-	const float AK_COLDOWN = 0.25f;
+	const float AK_COLDOWN = 0.20f;
 
 	const Vec2 SHOOTGUN_BULLET_OFFSET = Vec2(0, 20);
 }

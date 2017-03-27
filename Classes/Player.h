@@ -8,13 +8,13 @@ class CPlayer
 	: public CPuppet
 {
 public:
-	void Spawn(const cocos2d::Vec2 &spawnPos);
+	void Spawn(const cocos2d::Vec2 &spawnPos) override;
 
 protected:
 	void PersonalUpdate(float delta) override;
 
 private:
-	void InitPlayer(const cocos2d::Vec2 &spawnPos);
+	void InitPlayer();
 	void Fire() override;
 	void SwitchWeapon();
 

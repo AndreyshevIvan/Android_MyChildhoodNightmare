@@ -3,7 +3,10 @@
 #include "cocos_custom.h"
 #include "CustomMap.h"
 #include "Player.h"
+#include "Enemy.h"
+
 #include "HeroPuppeteer.h"
+#include "EnemyPuppeteer.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -19,8 +22,9 @@ private:
 	void StartGame();
 
 	void CreateLevel();
+	void CreateUI();
 	void SpawnPlayer();
-	void SpawnEnemy();
+	void SpawnEnemies();
 	void SpawnItems();
 
 	void UpdateCamera();
@@ -29,8 +33,12 @@ private:
 
 	cocos2d::Camera *m_camera = nullptr;
 	CCustomMap *m_levelFirst = nullptr;
-	CPlayer *m_player = nullptr;
+
+	cocos2d::RefPtr<CPlayer> m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
+
+	std::vector<cocos2d::RefPtr<CEnemy>> m_enemies;
+	std::vector<std::shared_ptr<CEnemyPuppeteer>> m_enemiesPuppeeters;
 
 	CUILayer *m_UILayer = nullptr;
 };

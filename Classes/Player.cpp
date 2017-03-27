@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "IMapPhysics.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -9,12 +10,14 @@ namespace
 
 	const int PLAYER_HEALTH = 100;
 	const float PLAYER_VELOCITY = 200;
+
+	const std::string PLAYER_IMG = "textures/player.png";
 }
 
 void CPlayer::Spawn(const Vec2 &spawnPos)
 {
 	InitLivingBody(PLAYER_HEALTH);
-	InitPlayer(spawnPos);
+	InitPlayer();
 	setPosition(spawnPos);
 
 	m_pistol = CPistol::Create(this);
@@ -32,14 +35,13 @@ void CPlayer::Spawn(const Vec2 &spawnPos)
 	m_currentWeapon = m_pistol;
 }
 
-void CPlayer::InitPlayer(const Vec2 &spawnPos)
+void CPlayer::InitPlayer()
 {
 	m_moveSpeed.x = PLAYER_VELOCITY;
 
 	m_puppetSprite = Sprite::create();
-	m_puppetSprite->initWithFile("textures/player.png");
-	m_puppetSprite->setContentSize(PLAYER_BODY_SIZE);
-	setContentSize(PLAYER_BODY_SIZE);
+	m_puppetSprite->initWithFile(PLAYER_IMG);
+	setContentSize(m_puppetSprite->getContentSize());
 
 	addChild(m_puppetSprite);
 }

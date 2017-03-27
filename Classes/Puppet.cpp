@@ -1,5 +1,6 @@
 #include "Puppet.h"
 #include "IPuppeteer.h"
+#include "IMapPhysics.h"
 #include <iostream>
 
 USING_NS_CC;

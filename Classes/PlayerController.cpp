@@ -75,8 +75,8 @@ void CPlayerController::ResetStates()
 	}
 
 	m_pressedJump = false;
-	//m_pressedKeyA = false;
-	//m_pressedKeyD = false;
+	m_pressedKeyA = false;
+	m_pressedKeyD = false;
 	m_isFire = false;
 	m_isReload = false;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos_custom.h"
 #include "IMapPhysics.h"
+#include "Puppet.h"
 
 class CCustomMap
 	: public cocos2d::TMXTiledMap
@@ -9,12 +10,17 @@ class CCustomMap
 public:
 	bool init(const std::string& tmxFile);
 
-	cocos2d::Vec2 GetHeroWorldPosition()const;
+	void update(float delta) override;
+	void UpdateBullets();
+
+	cocos2d::Vec2 GetHeroWorldPosition()const	;
 	std::vector<cocos2d::Vec2> GetEnemyWorldPositions()const;
+	
 	void AddPlayerBullets(std::vector<cocos2d::RefPtr<CBullet>> bullet) override;
+	void AddEnemy(CPuppet *enemy) override;
 
 	bool CanStandOn(const cocos2d::Rect &body) override;
-
+		
 private:
 	bool LoadObstacles();
 	bool LoadUnits();
@@ -22,6 +28,9 @@ private:
 
 	std::vector<cocos2d::Rect> m_obstacles;
 	std::vector<cocos2d::Vec2> m_enemyPositions;
-	std::vector<CBullet*> m_playerBullets;
+
+	std::vector<cocos2d::RefPtr<CBullet>> m_playerBullets;
+	std::vector<cocos2d::RefPtr<CPuppet>> m_enemies;
+
 	cocos2d::Vec2 m_heroPosition;
 };

@@ -3,7 +3,6 @@
 #include "cocos_custom.h"
 #include "PlayerController.h"
 #include "LivingBody.h"
-#include "IMapPhysics.h"
 #include "Weapon.h"
 
 namespace
@@ -13,6 +12,7 @@ namespace
 }
 
 class IPuppeteer;
+class IMapPhysics;
 
 class CPuppet
 	: public cocos2d::Node
@@ -20,6 +20,7 @@ class CPuppet
 {
 public:
 	bool init(IMapPhysics *mapPhysics);
+	virtual void Spawn(const cocos2d::Vec2 &position) {};
 
 	void onEnter() override;
 	void onExit() override;
@@ -39,6 +40,7 @@ private:
 	IPuppeteer *m_puppeteer = nullptr;
 
 protected:
+
 	virtual void PersonalUpdate(float delta) {};
 	virtual void Fire() {};
 	bool IsNeedToSwitchWeapon();

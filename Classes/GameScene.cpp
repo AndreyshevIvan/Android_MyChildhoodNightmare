@@ -3,8 +3,6 @@
 
 USING_NS_CC;
 
-const Vec2 GRAVITY = Vec2(0, -1500.0f);
-
 const std::string FIRST_LEVEL_NAME = "tmx/level_1.tmx";
 
 Scene* GameScene::createScene()
@@ -43,8 +41,9 @@ void GameScene::StartGame()
 {
 	CreateLevel();
 	SpawnPlayer();
-	SpawnEnemy();
+	SpawnEnemies();
 	SpawnItems();
+	CreateUI();
 }
 
 void GameScene::CreateLevel()
@@ -53,26 +52,44 @@ void GameScene::CreateLevel()
 	addChild(m_levelFirst);
 }
 
+void GameScene::CreateUI()
+{
+	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
+	auto healthBar = m_UILayer->GetPlayerHealthBar();
+	m_player->SetHealthBar(healthBar);
+
+	addChild(m_UILayer);
+}
+
 void GameScene::SpawnPlayer()
 {
 	m_player = make_node<CPlayer>(m_levelFirst);
-	m_player->Spawn(Vec2(300, 300));
+	m_player->Spawn(m_levelFirst->GetHeroWorldPosition());
 
 	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
 	m_playerPuppeteer->SetPuppet(m_player);
 	m_playerPuppeteer->SetController(new CPlayerController());
 
-	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
-	auto healthBar = m_UILayer->GetPlayerHealthBar();
-	m_player->SetHealthBar(healthBar);
-
 	addChild(m_player);
-	addChild(m_UILayer);
 }
 
-void GameScene::SpawnEnemy()
+void GameScene::SpawnEnemies()
 {
+	auto positions = m_levelFirst->GetEnemyWorldPositions();
 
+	for (auto pos : positions)
+	{
+		auto enemy = make_node<CEnemy>(m_levelFirst);
+		m_enemies.push_back(enemy);
+		enemy->Spawn(pos);
+		m_levelFirst->AddEnemy(enemy);
+
+		auto enemyPuppeteer = std::make_shared<CEnemyPuppeteer>();
+		enemyPuppeteer->SetPuppet(enemy);
+		m_enemiesPuppeeters.push_back(enemyPuppeteer);
+
+		addChild(enemy);
+	}
 }
 
 void GameScene::SpawnItems()
