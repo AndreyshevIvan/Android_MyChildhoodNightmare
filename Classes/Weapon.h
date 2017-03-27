@@ -21,7 +21,7 @@ public:
 	void SetColdown(float coldown);
 	void SetHost(cocos2d::Node *host);
 
-	int GetAmmoCount();
+	int GetAmmoCount() override;
 
 protected:
 	cocos2d::Node *m_host;

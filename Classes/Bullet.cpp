@@ -54,7 +54,7 @@ void CBullet::InitBody(const std::string &spritePath)
 	addChild(m_body);
 }
 
-RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir)
+RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir, int demage)
 {
 	auto newBullet = CBullet::Create();
 	newBullet->m_body = make_node<Sprite>();
@@ -64,6 +64,7 @@ RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir)
 
 	float speed = (dir == Direction::RIGHT) ? m_speed : -m_speed;
 	newBullet->SetSpeed(speed);
+	newBullet->SetDemage(demage);
 	newBullet->scheduleUpdate();
 	newBullet->setVisible(true);
 
@@ -87,6 +88,16 @@ void CBullet::update(float delta)
 void CBullet::SetSpeed(float speed)
 {
 	m_speed = speed;
+}
+
+void CBullet::SetDemage(int demage)
+{
+	m_demage = demage;
+}
+
+int CBullet::GetDemage()
+{
+	return m_demage;
 }
 
 void CBullet::onExit()

@@ -51,16 +51,6 @@ void GameScene::CreateLevel()
 	m_levelFirst = make_node<CCustomMap>(FIRST_LEVEL_NAME);
 	addChild(m_levelFirst);
 }
-
-void GameScene::CreateUI()
-{
-	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
-	auto healthBar = m_UILayer->GetPlayerHealthBar();
-	m_player->SetHealthBar(healthBar);
-
-	addChild(m_UILayer);
-}
-
 void GameScene::SpawnPlayer()
 {
 	m_player = make_node<CPlayer>(m_levelFirst);
@@ -72,7 +62,6 @@ void GameScene::SpawnPlayer()
 
 	addChild(m_player);
 }
-
 void GameScene::SpawnEnemies()
 {
 	auto positions = m_levelFirst->GetEnemyWorldPositions();
@@ -91,17 +80,29 @@ void GameScene::SpawnEnemies()
 		addChild(enemy);
 	}
 }
-
 void GameScene::SpawnItems()
 {
 
+}
+void GameScene::CreateUI()
+{
+	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
+
+	auto healthBar = m_UILayer->GetPlayerHealthBar();
+	auto pistolBar = m_UILayer->GetPistolWeaponBar();
+	auto shootgunBar = m_UILayer->GetShootgunWeaponBar();
+	auto akBar = m_UILayer->GetAkWeaponBar();
+
+	m_player->SetHealthBar(healthBar);
+	m_player->InitWeaponBars(pistolBar, shootgunBar, akBar);
+
+	addChild(m_UILayer);
 }
 
 void GameScene::update(float delta)
 {
 	UpdateCamera();
 }
-
 void GameScene::UpdateCamera()
 {
 	auto playerPosition = m_playerPuppeteer->GetPuppetPos();

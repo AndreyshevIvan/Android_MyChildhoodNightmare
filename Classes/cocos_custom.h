@@ -4,17 +4,6 @@
 #include <memory>
 #include <functional>
 
-#ifndef _WIN32
-namespace std
-{
-	template <class T, class ...TArgs>
-	std::unique_ptr<T> make_unique(TArgs&&... args)
-	{
-		return std::unique_ptr<T>(new T(std::forward<TArgs>(args)...));
-	}
-}
-#endif
-
 template <class T, class ...TArgs>
 cocos2d::RefPtr<T> make_node(TArgs&&... args)
 {

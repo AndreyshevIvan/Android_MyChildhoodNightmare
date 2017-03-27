@@ -15,10 +15,12 @@ namespace
 template <class TContainer, class TPredicate>
 void erase_if(TContainer &container, TPredicate && predicate)
 {
-	container.erase(
-		remove_if(begin(container), end(container), [&](auto &pBullet) {return predicate(pBullet);}),
-		container.end()
-	);
+	auto removePredicate = [&](auto &element) {
+		return predicate(element);
+	};
+	auto newEnd = remove_if(begin(container), end(container), removePredicate);
+
+	container.erase(newEnd, container.end());
 }
 
 bool CCustomMap::init(const std::string &tmxFile)

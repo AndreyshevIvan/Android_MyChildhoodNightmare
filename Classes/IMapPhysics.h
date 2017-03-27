@@ -7,6 +7,8 @@
 class IMapPhysics
 {
 public:
+	virtual ~IMapPhysics() = default;
+
 	virtual bool CanStandOn(const cocos2d::Rect &body) = 0;
 	virtual void AddPlayerBullets(std::vector<cocos2d::RefPtr<CBullet>> bullet) = 0;
 	virtual void AddEnemy(CPuppet *enemy) = 0;

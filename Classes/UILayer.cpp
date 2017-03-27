@@ -105,6 +105,12 @@ void CUILayer::InitElements()
 
 	createText(m_playerHealth, HEALTH_COUNT_OFFSET, HEALTH_COUNT_SIZE);
 	createText(m_playerAmmo, AMMO_COUNT_OFFSET, AMMO_COUNT_SIZE);
+
+	m_pistolBar = std::make_shared<WeaponBar>(m_weaponBarPistol, m_playerAmmo);
+	m_shootgunBar = std::make_shared<WeaponBar>(m_weaponBarShootgun, m_playerAmmo);
+	m_akBar = std::make_shared<WeaponBar>(m_weaponBarAK, m_playerAmmo);
+
+	m_akBar->SetVisible(false);
 }
 void CUILayer::InitListeners()
 {
@@ -224,6 +230,19 @@ void CUILayer::HightlightButtons()
 			hightlight_if_touch(button, point);
 		}
 	}
+}
+
+WeaponBar *CUILayer::GetPistolWeaponBar()
+{
+	return m_pistolBar.get();
+}
+WeaponBar *CUILayer::GetShootgunWeaponBar()
+{
+	return m_shootgunBar.get();
+}
+WeaponBar *CUILayer::GetAkWeaponBar()
+{
+	return m_akBar.get();
 }
 
 void CUILayer::Pause()

@@ -9,12 +9,15 @@ class CPlayer
 {
 public:
 	void Spawn(const cocos2d::Vec2 &spawnPos) override;
+	void InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, WeaponBar *akBar);
 
 protected:
 	void PersonalUpdate(float delta) override;
 
 private:
 	void InitPlayer();
+	void InitWeapons();
+
 	void Fire() override;
 	void SwitchWeapon();
 
@@ -25,5 +28,5 @@ private:
 	cocos2d::RefPtr<CWeapon> m_shootgun = nullptr;
 	cocos2d::RefPtr<CWeapon> m_ak = nullptr;
 
-	std::vector<CWeapon*> m_weapons;
+	std::vector<std::pair<CWeapon*, WeaponBar*>> m_weapons;
 };

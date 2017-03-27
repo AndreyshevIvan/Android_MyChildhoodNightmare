@@ -1,0 +1,1357 @@
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/editor-support/spine/SkeletonBatch.cpp: In member function 'void spine::SkeletonBatch::addCommand(cocos2d::Renderer*, float, GLuint, cocos2d::GLProgramState*, cocos2d::BlendFunc, const cocos2d::TrianglesCommand::Triangles&, const cocos2d::Mat4&, uint32_t)':
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/editor-support/spine/SkeletonBatch.cpp:96:125: warning: 'void cocos2d::TrianglesCommand::init(float, GLuint, cocos2d::GLProgramState*, cocos2d::BlendFunc, const cocos2d::TrianglesCommand::Triangles&, const cocos2d::Mat4&)' is deprecated (declared at D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/./renderer/CCTrianglesCommand.h:73) [-Wdeprecated-declarations]
+         _command->trianglesCommand->init(globalZOrder, textureID, glProgramState, blendFunc, *_command->triangles, transform);
+                                                                                                                             ^
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/ui/UIEditBox/UIEditBoxImpl-common.cpp: In member function 'void cocos2d::ui::EditBoxImplCommon::editBoxEditingDidEnd(const string&, cocos2d::ui::EditBoxDelegate::EditBoxEndAction)':
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/ui/UIEditBox/UIEditBoxImpl-common.cpp:364:49: warning: 'virtual void cocos2d::ui::EditBoxDelegate::editBoxEditingDidEnd(cocos2d::ui::EditBox*)' is deprecated (declared at D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/./ui/UIEditBox/UIEditBox.h:80) [-Wdeprecated-declarations]
+         pDelegate->editBoxEditingDidEnd(_editBox);
+                                                 ^
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/javaactivity-android.cpp: In function 'void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*, jobject, jint, jint)':
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/javaactivity-android.cpp:101:34: warning: 'void cocos2d::DrawPrimitives::init()' is deprecated (declared at D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/../../2d/CCDrawingPrimitives.h:88) [-Wdeprecated-declarations]
+         cocos2d::DrawPrimitives::init();
+                                  ^
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/javaactivity-android.cpp:101:39: warning: 'void cocos2d::DrawPrimitives::init()' is deprecated (declared at D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/../../2d/CCDrawingPrimitives.h:88) [-Wdeprecated-declarations]
+         cocos2d::DrawPrimitives::init();
+                                       ^
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+<built-in>: In function 'float abs(float)':
+<built-in>: warning: conflicts with previous declaration here [-Wattributes]
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/jni/TouchesJni.cpp:47: error: undefined reference to '__cxa_throw_bad_array_length'
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/jni/TouchesJni.cpp:48: error: undefined reference to '__cxa_throw_bad_array_length'
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/jni/TouchesJni.cpp:49: error: undefined reference to '__cxa_throw_bad_array_length'
+D:/Programs/Android_Developing/MyChildhoodNightmares/cocos2d/cocos/platform/android/jni/TouchesJni.cpp:55: error: undefined reference to '__cxa_throw_bad_array_length'
+collect2.exe: error: ld returned 1 exit status
+make: *** [obj/local/armeabi/libMyGame.so] Error 1

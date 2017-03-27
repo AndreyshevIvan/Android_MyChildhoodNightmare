@@ -1,6 +1,44 @@
 #include "cocos_custom.h"
 #include "PlayerController.h"
 
+struct WeaponBar
+{
+	WeaponBar(cocos2d::RefPtr<cocos2d::Sprite> icon, cocos2d::RefPtr<cocos2d::Label> ammo)
+		: m_icon(icon)
+		, m_ammoCount(ammo)
+	{
+
+	}
+	void SetVisible(bool isVisible)
+	{
+		m_icon->setVisible(isVisible);
+		m_ammoCount->setVisible(isVisible);
+	}
+	void SetAmmoCount(int ammoCount)
+	{
+		std::string ammoStr = AmmoToStr(ammoCount);
+		m_ammoCount->setString(ammoStr);
+	}
+
+private:
+	std::string AmmoToStr(int ammoCount)
+	{
+		std::string str = "0";
+
+		if (ammoCount > 0)
+		{
+			std::stringstream sstr;
+			sstr << ammoCount;
+			str = sstr.str();
+		}
+
+		return str;
+	}
+
+	cocos2d::RefPtr<cocos2d::Sprite> m_icon;
+	cocos2d::RefPtr<cocos2d::Label> m_ammoCount;
+};
+
 class CUILayer : public cocos2d::Layer
 {
 public:
@@ -9,6 +47,9 @@ public:
 	void update(float delta) override;
 
 	cocos2d::RefPtr<cocos2d::Label> GetPlayerHealthBar();
+	WeaponBar *GetPistolWeaponBar();
+	WeaponBar *GetShootgunWeaponBar();
+	WeaponBar *GetAkWeaponBar();
 
 private:
 	void InitElements();
@@ -24,6 +65,10 @@ private:
 	void DeleteTouch(cocos2d::Touch *touch);
 
 	void Pause();
+
+	std::shared_ptr<WeaponBar> m_pistolBar;
+	std::shared_ptr<WeaponBar> m_shootgunBar;
+	std::shared_ptr<WeaponBar> m_akBar;
 
 	std::shared_ptr<CPlayerController> m_playerController;
 
