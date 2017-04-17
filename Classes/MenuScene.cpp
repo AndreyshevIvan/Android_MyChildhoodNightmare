@@ -88,12 +88,12 @@ void MenuScene::InitElements()
 
 void MenuScene::InitListeners()
 {
-	auto touchListener = EventListenerTouchOneByOne::create();
-	touchListener->onTouchBegan = CC_CALLBACK_2(MenuScene::onTouchBegan, this);
-	touchListener->onTouchMoved = CC_CALLBACK_2(MenuScene::onTouchMoved, this);
-	touchListener->onTouchEnded = CC_CALLBACK_2(MenuScene::onTouchEnded, this);
+	m_touchListener = EventListenerTouchOneByOne::create();
+	m_touchListener->onTouchBegan = CC_CALLBACK_2(MenuScene::onTouchBegan, this);
+	m_touchListener->onTouchMoved = CC_CALLBACK_2(MenuScene::onTouchMoved, this);
+	m_touchListener->onTouchEnded = CC_CALLBACK_2(MenuScene::onTouchEnded, this);
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(m_touchListener, this);
 }
 
 void MenuScene::onTouchMoved(Touch* touch, Event* event)
@@ -113,56 +113,61 @@ bool MenuScene::onTouchBegan(Touch* touch, Event* event)
 
 void MenuScene::HightlightButton()
 {
-	if (m_touch != nullptr)
+	if (m_touch == nullptr)
 	{
-		float dt = Director::getInstance()->getDeltaTime();
-		Vec2 point = m_touch->getLocation();
-
-		auto highlight_if = [&](RefPtr<Label> button) {
-			float scale = button->getScale();
-			if (button->getBoundingBox().containsPoint(point))
-			{
-				button->setScale(FONT_HIGHTLIGHT_SCALE);
-			}
-			else if (!button->getBoundingBox().containsPoint(point) && scale > 1)
-			{
-				button->setScale(scale - 1 * dt);
-			}
-		};
-
-		highlight_if(m_startButton);
-		highlight_if(m_levelsButton);
-		highlight_if(m_exitButton);
+		return;
 	}
+
+	float dt = Director::getInstance()->getDeltaTime();
+	Vec2 touchPoint = m_touch->getLocation();
+
+	auto highlight_if_touch = [&](RefPtr<Label> button) {
+		float scale = button->getScale();
+		if (button->getBoundingBox().containsPoint(touchPoint))
+		{
+			button->setScale(FONT_HIGHTLIGHT_SCALE);
+		}
+		else if (!button->getBoundingBox().containsPoint(touchPoint) && scale > 1)
+		{
+			button->setScale(scale - 1 * dt);
+		}
+	};
+
+	highlight_if_touch(m_startButton);
+	highlight_if_touch(m_levelsButton);
+	highlight_if_touch(m_exitButton);
+
 }
 
 void MenuScene::onTouchEnded(Touch* touch, Event* event)
 {
-	if (touch == m_touch)
+	if (touch != m_touch)
 	{
-		Vec2 point = touch->getPreviousLocation();
-		auto isTouchButton = [&](RefPtr<Label> button) {
-			return button->getBoundingBox().containsPoint(point);
-		};
-
-		if (isTouchButton(m_startButton))
-		{
-			GoToGame();
-		}
-		if (isTouchButton(m_levelsButton))
-		{
-
-		}
-		if (isTouchButton(m_exitButton))
-		{
-			CloseApp();
-		}
-
-		m_startButton->setScale(1);
-		m_levelsButton->setScale(1);
-		m_exitButton->setScale(1);
-		m_touch = nullptr;
+		return;
 	}
+
+	Vec2 point = touch->getPreviousLocation();
+	auto isTouchButton = [&](RefPtr<Label> button) {
+		return button->getBoundingBox().containsPoint(point);
+	};
+
+	if (isTouchButton(m_startButton))
+	{
+		GoToGame();
+	}
+	if (isTouchButton(m_levelsButton))
+	{
+
+	}
+	if (isTouchButton(m_exitButton))
+	{
+		CloseApp();
+	}
+
+	m_startButton->setScale(1);
+	m_levelsButton->setScale(1);
+	m_exitButton->setScale(1);
+	m_touch = nullptr;
 }
 
 void MenuScene::GoToGame()
@@ -182,4 +187,10 @@ void MenuScene::SetRelativePos(RefPtr<T> element, const Vec2 &offset)
 	auto winSize = Director::getInstance()->getVisibleSize();
 	Vec2 position = Vec2(winSize.width * offset.x, winSize.height * offset.y);
 	element->setPosition(position);
+}
+
+void MenuScene::cleanup()
+{
+	unscheduleUpdate();
+	_eventDispatcher->removeEventListener(m_touchListener);
 }

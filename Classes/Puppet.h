@@ -42,6 +42,7 @@ private:
 protected:
 
 	virtual void PersonalUpdate(float delta) {};
+	virtual void UpdateInterfaces() {};
 	virtual void Fire() {};
 	bool IsNeedToSwitchWeapon();
 

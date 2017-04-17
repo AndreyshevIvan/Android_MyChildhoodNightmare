@@ -25,9 +25,12 @@ private:
 
 	template<class T> void SetRelativePos(cocos2d::RefPtr<T> element, const cocos2d::Vec2 &offset);
 
+	void cleanup() override;
+
 	cocos2d::RefPtr<cocos2d::Label> m_startButton;
 	cocos2d::RefPtr<cocos2d::Label> m_levelsButton;
 	cocos2d::RefPtr<cocos2d::Label> m_exitButton;
 
+	cocos2d::EventListenerTouchOneByOne* m_touchListener;
 	cocos2d::Touch* m_touch = nullptr;
 };

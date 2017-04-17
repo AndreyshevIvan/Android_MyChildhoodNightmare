@@ -16,7 +16,7 @@ public:
 	cocos2d::Vec2 GetHeroWorldPosition()const	;
 	std::vector<cocos2d::Vec2> GetEnemyWorldPositions()const;
 	
-	void AddPlayerBullets(std::vector<cocos2d::RefPtr<CBullet>> bullet) override;
+	void AddPlayerBullets(Bullets bullet) override;
 	void AddEnemy(CPuppet *enemy) override;
 
 	bool CanStandOn(const cocos2d::Rect &body) override;
@@ -29,7 +29,7 @@ private:
 	std::vector<cocos2d::Rect> m_obstacles;
 	std::vector<cocos2d::Vec2> m_enemyPositions;
 
-	std::vector<cocos2d::RefPtr<CBullet>> m_playerBullets;
+	Bullets m_playerBullets;
 	std::vector<cocos2d::RefPtr<CPuppet>> m_enemies;
 
 	cocos2d::Vec2 m_heroPosition;

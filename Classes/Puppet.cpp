@@ -46,6 +46,7 @@ void CPuppet::update(float delta)
 	MoveHorizontal(delta);
 	MoveVertical(delta);
 	PersonalUpdate(delta);
+	UpdateInterfaces();
 
 	m_puppeteer->Update(delta);
 }

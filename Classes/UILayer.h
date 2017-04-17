@@ -7,7 +7,7 @@ struct WeaponBar
 		: m_icon(icon)
 		, m_ammoCount(ammo)
 	{
-
+		SetVisible(false);
 	}
 	void SetVisible(bool isVisible)
 	{
@@ -16,25 +16,11 @@ struct WeaponBar
 	}
 	void SetAmmoCount(int ammoCount)
 	{
-		std::string ammoStr = AmmoToStr(ammoCount);
+		std::string ammoStr = std::to_string(ammoCount);
 		m_ammoCount->setString(ammoStr);
 	}
 
 private:
-	std::string AmmoToStr(int ammoCount)
-	{
-		std::string str = "0";
-
-		if (ammoCount > 0)
-		{
-			std::stringstream sstr;
-			sstr << ammoCount;
-			str = sstr.str();
-		}
-
-		return str;
-	}
-
 	cocos2d::RefPtr<cocos2d::Sprite> m_icon;
 	cocos2d::RefPtr<cocos2d::Label> m_ammoCount;
 };
@@ -51,9 +37,12 @@ public:
 	WeaponBar *GetShootgunWeaponBar();
 	WeaponBar *GetAkWeaponBar();
 
+	static void UpdateWeaponBar(WeaponBar *weaponBar, int ammoCount);
+
 private:
 	void InitElements();
 	void InitListeners();
+	
 	void SetController(std::shared_ptr<CPlayerController> controller);
 
 	void onTouchesBegan(const std::vector<cocos2d::Touch*> &touches, cocos2d::Event* event);
@@ -65,6 +54,8 @@ private:
 	void DeleteTouch(cocos2d::Touch *touch);
 
 	void Pause();
+
+	void cleanup() override;
 
 	std::shared_ptr<WeaponBar> m_pistolBar;
 	std::shared_ptr<WeaponBar> m_shootgunBar;
@@ -87,6 +78,7 @@ private:
 	cocos2d::RefPtr<cocos2d::Label> m_playerHealth;
 	cocos2d::RefPtr<cocos2d::Label> m_playerAmmo;
 
+	cocos2d::EventListenerTouchAllAtOnce* m_touchListener;
 	std::vector<cocos2d::Touch*> m_touches;
 	std::vector<cocos2d::RefPtr<cocos2d::Sprite>> m_buttons;
 

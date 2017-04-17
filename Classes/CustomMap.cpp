@@ -76,27 +76,29 @@ void CCustomMap::update(float delta)
 }
 void CCustomMap::UpdateBullets()
 {
+	auto bulletErasePredicate = [&](CBullet* pBullet) {
+		bool isDead = (!CanStandOn(pBullet->getBoundingBox()) || !pBullet->IsDistanceValid());
+		if (isDead)
+		{
+			pBullet->onExit();
+		}
+		return isDead;
+	};
+
 	auto updateBullets = [&](std::vector<RefPtr<CBullet>> &bullets) {
-		erase_if(bullets, [&](CBullet* pBullet) {
-			bool dead = (!CanStandOn(pBullet->getBoundingBox()) || !pBullet->IsDistanceValid());
-			if (dead)
-			{
-				pBullet->onExit();
-			}
-			return dead;
-		});
+		erase_if(bullets, bulletErasePredicate);
 	};
 
 	updateBullets(m_playerBullets);
 }
 
-bool CCustomMap::CanStandOn(const cocos2d::Rect &body)
+bool CCustomMap::CanStandOn(const Rect &body)
 {
-	bool isOnObstacle = std::any_of(m_obstacles.begin(), m_obstacles.end(), [=](const Rect &rect) {
+	auto isIntersects = [=](const Rect &rect) {
 		return rect.intersectsRect(body);
-	});
+	};
 
-	return !isOnObstacle;
+	return !std::any_of(m_obstacles.begin(), m_obstacles.end(), isIntersects);
 }
 
 Vec2 CCustomMap::GetHeroWorldPosition() const
@@ -113,7 +115,7 @@ std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
 	return positions;
 }
 
-void CCustomMap::AddPlayerBullets(std::vector<RefPtr<CBullet>> playerBullets)
+void CCustomMap::AddPlayerBullets(Bullets playerBullets)
 {
 	for (auto bullet : playerBullets)
 	{

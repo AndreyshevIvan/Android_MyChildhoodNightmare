@@ -43,20 +43,23 @@ void CPlayer::InitWeapons()
 	addChild(m_shootgun);
 	addChild(m_ak);
 
-	m_weapons.push_back(std::pair<CWeapon*, WeaponBar*>(m_pistol, nullptr));
-	m_weapons.push_back(std::pair<CWeapon*, WeaponBar*>(m_shootgun, nullptr));
-	m_weapons.push_back(std::pair<CWeapon*, WeaponBar*>(m_ak, nullptr));
+	m_weapons.push_back(WeaponsContainer::value_type(m_pistol, nullptr));
+	m_weapons.push_back(WeaponsContainer::value_type(m_shootgun, nullptr));
+	m_weapons.push_back(WeaponsContainer::value_type(m_ak, nullptr));
 
 	m_currentWeapon = m_pistol;
 }
 
 void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, WeaponBar *akBar)
 {
+	WeaponBar *currentBar = nullptr;
+
 	for (auto& weapon : m_weapons)
 	{
 		if (weapon.first == m_pistol)
 		{
 			weapon.second = pistolBar;
+			currentBar = pistolBar;
 		}
 		if (weapon.first == m_shootgun)
 		{
@@ -66,12 +69,10 @@ void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, Weapo
 		{
 			weapon.second = akBar;
 		}
-
-		if (weapon.first == m_currentWeapon)
-		{
-			weapon.second->SetAmmoCount(m_currentWeapon->GetAmmoCount());
-		}
 	}
+
+	m_currentWeaponBar = currentBar;
+	UpdateWeaponBar();
 }
 
 void CPlayer::PersonalUpdate(float delta)
@@ -82,29 +83,54 @@ void CPlayer::PersonalUpdate(float delta)
 
 void CPlayer::Fire()
 {
-	if (m_isFire && m_currentWeapon->IsReady())
+	if (!m_isFire)
 	{
-		auto bullets = m_currentWeapon->Fire(m_direction);
-		m_mapPhysics->AddPlayerBullets(bullets);
+		return;
 	}
+
+	auto bullets = m_currentWeapon->Fire(m_direction);
+	m_mapPhysics->AddPlayerBullets(bullets);
+	UpdateWeaponBar();
 }
 
-// TODO: Улучшить читаемость
+void CPlayer::UpdateWeaponBar()
+{
+	if (!m_currentWeaponBar)
+	{
+		return;
+	}
+
+	CUILayer::UpdateWeaponBar(m_currentWeaponBar, m_currentWeapon->GetAmmoCount());
+}
+
 void CPlayer::SwitchWeapon()
 {
-	if (IsNeedToSwitchWeapon())
+	if (!IsNeedToSwitchWeapon())
 	{
-		for (size_t i = 0; i < m_weapons.size(); i++)
-		{
-			if (m_weapons[i].first == m_currentWeapon)
-			{
-				(m_weapons[i].second)->SetVisible(false);
-				i = (i == m_weapons.size() - 1) ? 0 : i + 1;
-				m_weapons[i].second->SetVisible(true);
-				m_currentWeapon = m_weapons[i].first;
-				m_weapons[i].second->SetAmmoCount(m_currentWeapon->GetAmmoCount());
-				break;
-			}
-		}
+		return;
 	}
+
+	WeaponBar* lastBar = nullptr;
+	WeaponBar* newBar = nullptr;
+
+	for (size_t weaponNum = 0; weaponNum < m_weapons.size(); weaponNum++)
+	{
+		if (m_weapons[weaponNum].first != m_currentWeapon)
+		{
+			continue;
+		}
+		
+		bool isPickLastWeapon = (weaponNum == m_weapons.size() - 1);
+		int nextWeaponNum = isPickLastWeapon ? 0 : weaponNum + 1;
+
+		lastBar = m_weapons[weaponNum].second;
+		newBar = m_weapons[nextWeaponNum].second;
+		m_currentWeapon = m_weapons[nextWeaponNum].first;
+		break;
+	}
+
+	if (lastBar)
+		lastBar->SetVisible(false);
+	m_currentWeaponBar = newBar;
+	UpdateWeaponBar();
 }

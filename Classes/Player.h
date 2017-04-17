@@ -4,8 +4,9 @@
 #include "cocos_custom.h"
 #include "UILayer.h"
 
-class CPlayer
-	: public CPuppet
+typedef std::vector<std::pair<CWeapon*, WeaponBar*>> WeaponsContainer;
+
+class CPlayer : public CPuppet
 {
 public:
 	void Spawn(const cocos2d::Vec2 &spawnPos) override;
@@ -20,13 +21,13 @@ private:
 
 	void Fire() override;
 	void SwitchWeapon();
+	void UpdateWeaponBar();
 
-	CUILayer m_UIcontroller;
-
+	WeaponBar *m_currentWeaponBar;
 	IPlayerWeapon *m_currentWeapon = nullptr;
 	cocos2d::RefPtr<CWeapon> m_pistol = nullptr;
 	cocos2d::RefPtr<CWeapon> m_shootgun = nullptr;
 	cocos2d::RefPtr<CWeapon> m_ak = nullptr;
 
-	std::vector<std::pair<CWeapon*, WeaponBar*>> m_weapons;
+	WeaponsContainer m_weapons;
 };

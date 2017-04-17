@@ -42,12 +42,25 @@ bool CWeapon::IsReady()
 
 	return isColdownEnd && isAmmoEnough;
 }
-std::vector<RefPtr<CBullet>> CWeapon::Fire(Direction direction)
+Bullets CWeapon::CreateBullets(Direction direction)
 {
-	std::vector<RefPtr<CBullet>> bullets;
+	Bullets bullets;
 	auto bullet = m_bullet->CloneAndStart(m_host->getPosition(), direction);
 	bullets.push_back(bullet);
+
+	return bullets;
+}
+Bullets CWeapon::Fire(Direction direction)
+{
+	Bullets bullets;
+	if (!IsReady())
+	{
+		return bullets;
+	}
+
+	bullets = CreateBullets(direction);
 	m_currColdown = 0;
+	m_ammo--;
 
 	return bullets;
 }
@@ -55,17 +68,13 @@ std::vector<RefPtr<CBullet>> CWeapon::Fire(Direction direction)
 RefPtr<CPistol> CPistol::Create(Node *host)
 {
 	RefPtr<CPistol> weapon = make_node<CPistol>();
+	RefPtr<CBullet> pistolBullet = CBullet::CreatePistolBullet();
 
-	if (weapon)
-	{
-		RefPtr<CBullet> pistolBullet = CBullet::CreatePistolBullet();
-
-		weapon->SetBullet(pistolBullet);
-		weapon->SetColdown(PISTOL_COLDOWN);
-		weapon->SetHost(host);
-		weapon->addChild(pistolBullet);
-		weapon->scheduleUpdate();
-	}
+	weapon->SetBullet(pistolBullet);
+	weapon->SetColdown(PISTOL_COLDOWN);
+	weapon->SetHost(host);
+	weapon->addChild(pistolBullet);
+	weapon->scheduleUpdate();
 
 	return weapon;
 }
@@ -73,23 +82,19 @@ RefPtr<CPistol> CPistol::Create(Node *host)
 RefPtr<CShootgun> CShootgun::Create(Node *host)
 {
 	RefPtr<CShootgun> weapon = make_node<CShootgun>();
+	RefPtr<CBullet> shootgunBullet = CBullet::CreateShootgunBullet();
 
-	if (weapon)
-	{
-		RefPtr<CBullet> shootgunBullet = CBullet::CreateShootgunBullet();
-		weapon->SetBullet(shootgunBullet);
-		weapon->SetColdown(SHOOTGUN_COLDOWN);
-		weapon->SetHost(host);
-		weapon->addChild(shootgunBullet);
-		weapon->scheduleUpdate();
-	}
+	weapon->SetBullet(shootgunBullet);
+	weapon->SetColdown(SHOOTGUN_COLDOWN);
+	weapon->SetHost(host);
+	weapon->addChild(shootgunBullet);
+	weapon->scheduleUpdate();
 
 	return weapon;
 }
-std::vector<RefPtr<CBullet>> CShootgun::Fire(Direction direction)
+Bullets CShootgun::CreateBullets(Direction direction)
 {
-	std::vector<RefPtr<CBullet>> bullets;
-
+	Bullets bullets;
 	Vec2 topPos = m_host->getPosition() + SHOOTGUN_BULLET_OFFSET;
 	Vec2 bottomPos = m_host->getPosition() - SHOOTGUN_BULLET_OFFSET;
 
@@ -108,16 +113,13 @@ std::vector<RefPtr<CBullet>> CShootgun::Fire(Direction direction)
 RefPtr<CAkWeapon> CAkWeapon::Create(Node *host)
 {
 	RefPtr<CAkWeapon> weapon = make_node<CAkWeapon>();
+	RefPtr<CBullet> akBullet = CBullet::CreateAKBullet();
 
-	if (weapon)
-	{
-		RefPtr<CBullet> akBullet = CBullet::CreateAKBullet();
-		weapon->SetBullet(akBullet);
-		weapon->SetColdown(AK_COLDOWN);
-		weapon->SetHost(host);
-		weapon->addChild(akBullet);
-		weapon->scheduleUpdate();
-	}
+	weapon->SetBullet(akBullet);
+	weapon->SetColdown(AK_COLDOWN);
+	weapon->SetHost(host);
+	weapon->addChild(akBullet);
+	weapon->scheduleUpdate();
 
 	return weapon;
 }

@@ -97,7 +97,7 @@ void CUILayer::InitElements()
 
 	auto createText = [&](RefPtr<Label> &text, Vec2 offset, int fontSize) {
 		text = make_node<Label>();
-		text->initWithTTF("99", FONT, fontSize);
+		text->initWithTTF("", FONT, fontSize);
 		text->setColor(Color3B::WHITE);
 		text->setPosition(Vec2(winSize.width * offset.x, winSize.height * offset.y));
 		this->addChild(text);
@@ -109,17 +109,15 @@ void CUILayer::InitElements()
 	m_pistolBar = std::make_shared<WeaponBar>(m_weaponBarPistol, m_playerAmmo);
 	m_shootgunBar = std::make_shared<WeaponBar>(m_weaponBarShootgun, m_playerAmmo);
 	m_akBar = std::make_shared<WeaponBar>(m_weaponBarAK, m_playerAmmo);
-
-	m_akBar->SetVisible(false);
 }
 void CUILayer::InitListeners()
 {
-	auto touchListener = EventListenerTouchAllAtOnce::create();
-	touchListener->onTouchesBegan = CC_CALLBACK_2(CUILayer::onTouchesBegan, this);
-	touchListener->onTouchesMoved = CC_CALLBACK_2(CUILayer::onTouchesMoved, this);
-	touchListener->onTouchesEnded = CC_CALLBACK_2(CUILayer::onTouchesEnded, this);
+	m_touchListener = EventListenerTouchAllAtOnce::create();
+	m_touchListener->onTouchesBegan = CC_CALLBACK_2(CUILayer::onTouchesBegan, this);
+	m_touchListener->onTouchesMoved = CC_CALLBACK_2(CUILayer::onTouchesMoved, this);
+	m_touchListener->onTouchesEnded = CC_CALLBACK_2(CUILayer::onTouchesEnded, this);
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(m_touchListener, this);
 }
 
 void CUILayer::onTouchesBegan(const std::vector<Touch*> &touches, Event* event)
@@ -133,7 +131,8 @@ void CUILayer::onTouchesBegan(const std::vector<Touch*> &touches, Event* event)
 }
 void CUILayer::onTouchesMoved(const std::vector<Touch*> &touches, Event* event)
 {
-
+	(void)touches;
+	(void)event;
 }
 void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 {
@@ -151,14 +150,7 @@ void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 }
 void CUILayer::DeleteTouch(Touch *touch)
 {
-	for (auto it = m_touches.begin(); it != m_touches.end(); it++)
-	{
-		if (*it == touch)
-		{
-			m_touches.erase(it);
-			break;
-		}
-	}
+	std::remove(m_touches.begin(), m_touches.end(), touch);
 }
 
 void CUILayer::update(float delta)
@@ -245,6 +237,17 @@ WeaponBar *CUILayer::GetAkWeaponBar()
 	return m_akBar.get();
 }
 
+void CUILayer::UpdateWeaponBar(WeaponBar *weaponBar, int ammoCount)
+{
+	if (!weaponBar)
+	{
+		return;
+	}
+
+	weaponBar->SetVisible(true);
+	weaponBar->SetAmmoCount(ammoCount);
+}
+
 void CUILayer::Pause()
 {
 	Director::getInstance()->popScene();
@@ -253,4 +256,10 @@ void CUILayer::Pause()
 cocos2d::RefPtr<cocos2d::Label> CUILayer::GetPlayerHealthBar()
 {
 	return m_playerHealth;
+}
+
+void CUILayer::cleanup()
+{
+	unscheduleUpdate();
+	_eventDispatcher->removeEventListener(m_touchListener);
 }
