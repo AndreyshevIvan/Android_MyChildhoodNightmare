@@ -48,7 +48,8 @@ void GameScene::StartGame()
 }
 void GameScene::PauseGame(bool isPause)
 {
-
+	m_isPause = isPause;
+	m_gameMap->Pause(m_isPause);
 }
 void GameScene::ReturnToMenu()
 {
@@ -57,36 +58,34 @@ void GameScene::ReturnToMenu()
 
 void GameScene::CreateLevel()
 {
-	m_levelFirst = make_node<CCustomMap>(FIRST_LEVEL_NAME);
-	addChild(m_levelFirst);
+	m_gameMap = make_node<CCustomMap>(FIRST_LEVEL_NAME);
+	addChild(m_gameMap);
 }
 void GameScene::SpawnPlayer()
 {
-	m_player = make_node<CPlayer>(m_levelFirst);
-	m_player->Spawn(m_levelFirst->GetHeroWorldPosition());
+	m_player = make_node<CPlayer>(m_gameMap);
+	m_player->Spawn(m_gameMap->GetHeroWorldPosition());
 
 	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
 	m_playerPuppeteer->SetPuppet(m_player);
 	m_playerPuppeteer->SetController(new CPlayerController());
 
-	addChild(m_player);
+	m_gameMap->AddPlayer(m_player);
 }
 void GameScene::SpawnEnemies()
 {
-	auto positions = m_levelFirst->GetEnemyWorldPositions();
+	auto positions = m_gameMap->GetEnemyWorldPositions();
 
 	for (auto pos : positions)
 	{
-		auto enemy = make_node<CEnemy>(m_levelFirst);
+		auto enemy = make_node<CEnemy>(m_gameMap);
 		m_enemies.push_back(enemy);
 		enemy->Spawn(pos);
-		m_levelFirst->AddEnemy(enemy);
+		m_gameMap->AddEnemy(enemy);
 
 		auto enemyPuppeteer = std::make_shared<CEnemyPuppeteer>();
 		enemyPuppeteer->SetPuppet(enemy);
 		m_enemiesPuppeeters.push_back(enemyPuppeteer);
-
-		addChild(enemy);
 	}
 }
 void GameScene::SpawnItems()
@@ -118,5 +117,5 @@ void GameScene::UpdateCamera()
 	const Vec2 &playerPosition = m_playerPuppeteer->GetPuppetPos();
 
 	m_camera->setPosition(playerPosition);
-	m_UILayer->setPosition(playerPosition - Vec2(m_winSize / 2));
+	m_UILayer->setPosition(playerPosition - m_winSize / 2);
 }

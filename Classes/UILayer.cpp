@@ -84,15 +84,17 @@ void CUILayer::InitElements()
 		m_buttonLeft = GameUI::CreateSprite(LEFT_BUTTON_IMG, this, LEFT_BUTTON_OFFSET),
 		m_buttonRight = GameUI::CreateSprite(RIGHT_BUTTON_IMG, this, RIGHT_BUTTON_OFFSET),
 		m_buttonPause = GameUI::CreateSprite(PAUSE_BUTTON_IMG, this, PAUSE_BUTTON_OFFSET),
-		m_healthBar = GameUI::CreateSprite(HEALTH_BAR_IMG, this, HEALTH_BAR_OFFSET)
 	};
 
-	m_playerHealth = GameUI::CreateMenuItem("", FONT, HEALTH_COUNT_SIZE, this, HEALTH_COUNT_OFFSET);
-	m_playerAmmo = GameUI::CreateMenuItem("", FONT, AMMO_COUNT_SIZE, this, AMMO_COUNT_OFFSET);
+	m_healthBar = GameUI::CreateSprite(HEALTH_BAR_IMG, this, HEALTH_BAR_OFFSET);
 
 	auto pistolBar = GameUI::CreateSprite(PISTOL_BAR_IMG, this, WEAPON_BAR_OFFSET);
 	auto shootgunBar = GameUI::CreateSprite(SHOOTGUN_BAR_IMG, this, WEAPON_BAR_OFFSET);
 	auto akBar = GameUI::CreateSprite(AK_BAR_IMG, this, WEAPON_BAR_OFFSET);
+
+	m_playerHealth = GameUI::CreateMenuItem("", FONT, HEALTH_COUNT_SIZE, this, HEALTH_COUNT_OFFSET);
+	m_playerAmmo = GameUI::CreateMenuItem("", FONT, AMMO_COUNT_SIZE, this, AMMO_COUNT_OFFSET);
+
 	m_pistolBar = std::make_shared<UILayer::WeaponBar>(pistolBar, m_playerAmmo);
 	m_shootgunBar = std::make_shared<UILayer::WeaponBar>(shootgunBar, m_playerAmmo);
 	m_akBar = std::make_shared<UILayer::WeaponBar>(akBar, m_playerAmmo);
@@ -127,9 +129,14 @@ void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 	for (auto touch : touches)
 	{
 		const Vec2 &point = touch->getLocation();
+
 		bool isPause = m_buttonPause->getBoundingBox().containsPoint(point);
+		if (isPause)
+		{
+			Pause();
+		}
+
 		DeleteTouch(touch);
-		Pause(isPause);
 	}
 }
 void CUILayer::DeleteTouch(Touch *touch)
@@ -221,9 +228,10 @@ UILayer::WeaponBar *CUILayer::GetAkWeaponBar()
 	return m_akBar.get();
 }
 
-void CUILayer::Pause(bool isPause)
+void CUILayer::Pause()
 {
-	onPause(isPause);
+	m_isPause = !m_isPause;
+	onPause(m_isPause);
 
 	// open-close pause menu
 }

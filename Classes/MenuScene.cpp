@@ -26,9 +26,9 @@ namespace
 	const Vec2 EXIT_BUTTON_OFFSET = Vec2(0.91f, 0.1f);
 	const Vec2 ITEMS_BACK_OFFSET = Vec2(0.5f, 0.36f);
 
-	const float BUTTONS_SCALE_TIME = 0.8f;
+	const float BUTTONS_SCALE_TIME = 0.3f;
 	const float BUTTONS_SCALE_FACTOR = 1.6f;
-	const float SCENE_TRANSITION_TIME = 1.4f;
+	const float SCENE_TRANSITION_TIME = 1.1f;
 }
 
 Scene* MenuScene::createScene()
@@ -63,37 +63,17 @@ void MenuScene::update(float delta)
 
 void MenuScene::InitElements()
 {
-	auto winSize = Director::getInstance()->getWinSize();
-
-	/*
-	auto createSprite = [=](const string &path, Node* parent, Vec2 offset = Vec2(0.5, 0.5)) {
-		auto sprite = make_node<Sprite>();
-		sprite->initWithFile(path);
-		SetRelativePos(sprite, offset);
-		parent->addChild(sprite);
-		return sprite;
-	};*/
-
 	GameUI::CreateSprite(BACKGROUND_IMG, this, Vec2::ANCHOR_MIDDLE);
 	GameUI::CreateSprite(NAME_BACK, this, GAME_NAME_OFFSET);
 	GameUI::CreateSprite(ITEMS_BACK, this, ITEMS_BACK_OFFSET);
 	GameUI::CreateSprite(GAME_NAME_IMG, this, GAME_NAME_OFFSET);
 	GameUI::CreateSprite(LEAVE_BACK, this, EXIT_BUTTON_OFFSET);
 
-	/*
-	auto createButton = [&](RefPtr<Label> &button, const string &name, Vec2 offset, int fontSize = FONT_SIZE) {
-		button = make_node<Label>();
-		button->initWithTTF(name, FONT, fontSize);
-		button->enableOutline(Color4B::BLACK, 1);
-		button->setColor(Color3B::WHITE);
-		SetRelativePos(button, offset);
-		this->addChild(button);
-	};*/
-
 	m_startButton = GameUI::CreateMenuItem("Start", FONT, START_BUTTON_FONT_SIZE, this, START_BUTTON_OFFSET);
 	m_levelsButton = GameUI::CreateMenuItem("Difficult", FONT, START_BUTTON_FONT_SIZE, this, LEVELS_BUTTON_OFFSET);
 	m_exitButton = GameUI::CreateMenuItem("Leave", FONT, EXIT_FONT_SIZE, this, EXIT_BUTTON_OFFSET);
 
+	auto winSize = Director::getInstance()->getWinSize();
 	m_fadeSprite = GameUI::CreateSprite(FADE_SPRITE_IMG, this, Vec2::ANCHOR_MIDDLE);
 	m_fadeSprite->setContentSize(winSize);
 	m_fadeSprite->setOpacity(0);
@@ -122,13 +102,13 @@ bool MenuScene::onTouchBegan(Touch* touch, Event* event)
 
 	const Vec2 touchPoint = touch->getLocation();
 	
-	auto start_event_if_touch = [&](RefPtr<Label> &button, std::function<void()> onTouch) {
+	auto start_event_if_touch = [&](GameText &button, std::function<void()> onTouch) {
 		if (!button->getBoundingBox().containsPoint(touchPoint))
 		{
 			return;
 		}
 
-		auto highLight = ScaleTo::create(BUTTONS_SCALE_TIME, BUTTONS_SCALE_FACTOR);
+		auto highLight = ScaleTo::create(SCENE_TRANSITION_TIME, BUTTONS_SCALE_FACTOR);
 		auto onTouchEvent = Sequence::create(CallFunc::create(onTouch), nullptr);
 		button->runAction(highLight);
 		runAction(onTouchEvent);

@@ -9,6 +9,7 @@ class CCustomMap
 {
 public:
 	bool init(const std::string& tmxFile);
+	void Pause(bool isPause) override;
 
 	void update(float delta) override;
 	void UpdateBullets();
@@ -17,14 +18,16 @@ public:
 	std::vector<cocos2d::Vec2> GetEnemyWorldPositions() const;
 	
 	void AddPlayerBullets(Bullets bullet) override;
-	void AddEnemy(CPuppet *enemy) override;
+	void AddEnemy(CPuppet* enemy) override;
+	void AddPlayer(CPuppet* player) override;
+
 
 	bool CanStandOn(const cocos2d::Rect &body) override;
 		
 private:
 	bool LoadObstacles();
 	bool LoadUnits();
-	template <class T> void PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, bool isAddToScene = true);
+	template <class T> void PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, cocos2d::Node* parent);
 	cocos2d::Rect AsRect(const cocos2d::ValueMap &properties)const;
 
 	std::vector<cocos2d::Rect> m_obstacles;

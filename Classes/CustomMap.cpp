@@ -30,7 +30,7 @@ bool CCustomMap::init(const std::string &tmxFile)
 }
 bool CCustomMap::LoadObstacles()
 {
-	TMXObjectGroup *group = TMXTiledMap::getObjectGroup(OBSTACLES_LAYER_NAME);
+	TMXObjectGroup* group = TMXTiledMap::getObjectGroup(OBSTACLES_LAYER_NAME);
 	try
 	{
 		for (Value object : group->getObjects())
@@ -46,7 +46,7 @@ bool CCustomMap::LoadObstacles()
 }
 bool CCustomMap::LoadUnits()
 {
-	TMXObjectGroup *group = TMXTiledMap::getObjectGroup(UNITS_LAYER_NAME);
+	TMXObjectGroup* group = TMXTiledMap::getObjectGroup(UNITS_LAYER_NAME);
 	try
 	{
 		for (Value object : group->getObjects())
@@ -71,14 +71,14 @@ bool CCustomMap::LoadUnits()
 }
 
 template <class T>
-void CCustomMap::PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, bool isAddToMap)
+void CCustomMap::PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, Node* parent)
 {
 	for (auto element : sourceVect)
 	{
 		destVect.push_back(element);
-		if (isAddToMap)
+		if (parent)
 		{
-			addChild(element);
+			parent->addChild(element);
 		}
 	}
 }
@@ -130,14 +130,22 @@ std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
 
 void CCustomMap::AddPlayerBullets(Bullets playerBullets)
 {
-	PushFromVectToVect(m_playerBullets, playerBullets);
+	PushFromVectToVect(m_playerBullets, playerBullets, this);
 }
-void CCustomMap::AddEnemy(CPuppet *enemy)
+void CCustomMap::AddEnemy(CPuppet* enemy)
 {
-	if (enemy)
+	if (!enemy)
 	{
-		m_enemies.push_back(enemy);
+		return;
 	}
+
+	m_enemies.push_back(enemy);
+	addChild(enemy);
+}
+
+void CCustomMap::AddPlayer(CPuppet* player)
+{
+	addChild(player);
 }
 
 Rect CCustomMap::AsRect(const ValueMap &properties) const
@@ -149,4 +157,19 @@ Rect CCustomMap::AsRect(const ValueMap &properties) const
 	rect.size.height = properties.at("height").asFloat();
 
 	return rect;
+}
+
+void CCustomMap::Pause(bool isPause)
+{
+	auto childrens = this->getChildren();
+	std::for_each(childrens.begin(), childrens.end(), [&](Node* child) {
+		if (isPause)
+		{
+			child->pause();
+		}
+		else
+		{
+			child->resume();
+		}
+	});
 }

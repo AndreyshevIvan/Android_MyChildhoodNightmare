@@ -34,7 +34,7 @@ private:
 	cocos2d::Size m_winSize;
 
 	cocos2d::Camera *m_camera = nullptr;
-	CCustomMap *m_levelFirst = nullptr;
+	CCustomMap *m_gameMap = nullptr;
 
 	cocos2d::RefPtr<CPlayer> m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
@@ -43,4 +43,6 @@ private:
 	std::vector<std::shared_ptr<CEnemyPuppeteer>> m_enemiesPuppeeters;
 
 	CUILayer *m_UILayer = nullptr;
+
+	bool m_isPause = false;
 };

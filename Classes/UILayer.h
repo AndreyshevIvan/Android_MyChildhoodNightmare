@@ -19,22 +19,35 @@ namespace UILayer
 			m_icon->setVisible(isVisible);
 			m_ammoCount->setVisible(isVisible);
 		}
-		void SetAmmoCount(int ammoCount)
+		void SetInfinity(bool isInfinity)
 		{
-			std::string ammoStr = std::to_string(ammoCount);
-			m_ammoCount->setString(ammoStr);
+			m_isInfinity = isInfinity;
+
+			if (m_isInfinity)
+			{
+				m_ammoCount->setString("");
+			}
 		}
 		void Update(int ammoCount)
 		{
 			SetVisible(true);
 			SetAmmoCount(ammoCount);
 		}
-
-		bool isInfinity = false;
-
 	private:
+		void SetAmmoCount(int ammoCount)
+		{
+			if (ammoCount < 0)
+			{
+				return;
+			}
+
+			std::string ammoStr = (m_isInfinity) ? "" : std::to_string(ammoCount);
+			m_ammoCount->setString(ammoStr);
+		}
+
 		GameSprite m_icon;
 		GameText m_ammoCount;
+		bool m_isInfinity = false;
 	};
 }
 
@@ -66,7 +79,7 @@ private:
 	void HightlightButtons();
 	void DeleteTouch(cocos2d::Touch *touch);
 
-	void Pause(bool isPause);
+	void Pause();
 	void cleanup() override;
 
 	std::shared_ptr<UILayer::WeaponBar> m_pistolBar;
@@ -91,4 +104,5 @@ private:
 	std::vector<cocos2d::Touch*> m_touches;
 	std::vector<GameSprite> m_buttons;
 
+	bool m_isPause = false;
 };

@@ -58,10 +58,8 @@ void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, Weapo
 	m_weapons[Weapons::SHOOTGUN].second = shootgunBar;
 	m_weapons[Weapons::AK].second = akBar;
 
-	pistolBar->isInfinity = m_weapons[Weapons::PISTOL].first->IsInfinity();
-
-	WeaponBar *currentBar = pistolBar;
-	m_currentWeaponBar = currentBar;
+	pistolBar->SetInfinity(true);
+	m_currentWeaponBar = pistolBar;
 	UpdateWeaponBar();
 }
 
