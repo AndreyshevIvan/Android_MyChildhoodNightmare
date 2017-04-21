@@ -15,13 +15,14 @@ class CWeapon
 public:
 	void update(float delta) override;
 	Bullets Fire(Direction direction) final;
-
-	int GetAmmoCount() override;
+	bool IsInfinity() override;
+	int GetAmmoCount() const override;
 
 protected:
 	cocos2d::Node *m_host;
 	cocos2d::RefPtr<CBullet> m_bullet;
 	float m_currColdown = 0;
+	bool m_isInfinity = false;
 
 	virtual Bullets CreateBullets(Direction direction);
 

@@ -39,8 +39,8 @@ void CPuppet::onExit()
 
 void CPuppet::update(float delta)
 {
-	m_runState = m_puppeteer->GetMoveState();
-	m_isJump = m_puppeteer->CheckJumpState();
+	m_runState = m_puppeteer->GetRunState();
+	m_isJump = m_puppeteer->GetJumpState();
 	m_isFire = m_puppeteer->GetFireState();
 
 	MoveHorizontal(delta);

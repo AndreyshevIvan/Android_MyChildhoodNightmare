@@ -13,8 +13,8 @@ public:
 	void update(float delta) override;
 	void UpdateBullets();
 
-	cocos2d::Vec2 GetHeroWorldPosition()const	;
-	std::vector<cocos2d::Vec2> GetEnemyWorldPositions()const;
+	cocos2d::Vec2 GetHeroWorldPosition() const;
+	std::vector<cocos2d::Vec2> GetEnemyWorldPositions() const;
 	
 	void AddPlayerBullets(Bullets bullet) override;
 	void AddEnemy(CPuppet *enemy) override;
@@ -24,6 +24,7 @@ public:
 private:
 	bool LoadObstacles();
 	bool LoadUnits();
+	template <class T> void PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, bool isAddToScene = true);
 	cocos2d::Rect AsRect(const cocos2d::ValueMap &properties)const;
 
 	std::vector<cocos2d::Rect> m_obstacles;

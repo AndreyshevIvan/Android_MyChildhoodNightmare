@@ -18,8 +18,8 @@ protected:
 	void Update(float delta) override;
 	void OnExit() override;
 
-	RunState GetMoveState() override;
-	bool CheckJumpState() override;
+	RunState GetRunState() override;
+	bool GetJumpState() override;
 	bool GetFireState() override;
 	bool GetSwitchWeaponState() override;
 

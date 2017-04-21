@@ -12,12 +12,12 @@ void CEnemyPuppeteer::SetPuppet(CPuppet *enemy)
 	}
 }
 
-RunState CEnemyPuppeteer::GetMoveState()
+RunState CEnemyPuppeteer::GetRunState()
 {
 	return RunState::NOT_RUN;
 }
 
-bool CEnemyPuppeteer::CheckJumpState()
+bool CEnemyPuppeteer::GetJumpState()
 {
 	return false;
 }

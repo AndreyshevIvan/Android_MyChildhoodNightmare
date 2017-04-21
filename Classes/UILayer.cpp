@@ -1,8 +1,11 @@
 #include "UILayer.h"
+#include "GameUI.h"
 #include "SimpleAudioEngine.h"
 #include <iostream>
+#include <string>
 
 USING_NS_CC;
+using namespace std;
 
 namespace
 {
@@ -71,44 +74,28 @@ void CUILayer::SetController(std::shared_ptr<CPlayerController> controller)
 {
 	m_playerController = controller;
 }
+
 void CUILayer::InitElements()
 {
-	auto winSize = Director::getInstance()->getVisibleSize();
-
-	auto createElement = [&](RefPtr<Sprite> &button, const std::string &pathToFile, Vec2 offset, bool isButton) {
-		button = make_node<Sprite>();
-		button->initWithFile(pathToFile);
-		button->setPosition(Vec2(winSize.width * offset.x, winSize.height * offset.y));
-		this->addChild(button);
-		if (isButton)
-			m_buttons.push_back(button);
+	m_buttons = {
+		m_buttonJump = GameUI::CreateSprite(JUMP_BUTTON_IMG, this, JUMP_BUTTON_OFFSET),
+		m_buttonFire = GameUI::CreateSprite(FIRE_BUTTON_IMG, this, FIRE_BUTTON_OFFSET),
+		m_buttonReload = GameUI::CreateSprite(RELOAD_BUTTON_IMG, this, RELOAD_BUTTON_OFFSET),
+		m_buttonLeft = GameUI::CreateSprite(LEFT_BUTTON_IMG, this, LEFT_BUTTON_OFFSET),
+		m_buttonRight = GameUI::CreateSprite(RIGHT_BUTTON_IMG, this, RIGHT_BUTTON_OFFSET),
+		m_buttonPause = GameUI::CreateSprite(PAUSE_BUTTON_IMG, this, PAUSE_BUTTON_OFFSET),
+		m_healthBar = GameUI::CreateSprite(HEALTH_BAR_IMG, this, HEALTH_BAR_OFFSET)
 	};
 
-	createElement(m_buttonJump, JUMP_BUTTON_IMG, JUMP_BUTTON_OFFSET, true);
-	createElement(m_buttonFire, FIRE_BUTTON_IMG, FIRE_BUTTON_OFFSET, true);
-	createElement(m_buttonReload, RELOAD_BUTTON_IMG, RELOAD_BUTTON_OFFSET, true);
-	createElement(m_buttonLeft, LEFT_BUTTON_IMG, LEFT_BUTTON_OFFSET, true);
-	createElement(m_buttonRight, RIGHT_BUTTON_IMG, RIGHT_BUTTON_OFFSET, true);
-	createElement(m_buttonPause, PAUSE_BUTTON_IMG, PAUSE_BUTTON_OFFSET, true);
-	createElement(m_healthBar, HEALTH_BAR_IMG, HEALTH_BAR_OFFSET, false);
-	createElement(m_weaponBarPistol, PISTOL_BAR_IMG, WEAPON_BAR_OFFSET, false);
-	createElement(m_weaponBarShootgun, SHOOTGUN_BAR_IMG, WEAPON_BAR_OFFSET, false);
-	createElement(m_weaponBarAK, AK_BAR_IMG, WEAPON_BAR_OFFSET, false);
+	m_playerHealth = GameUI::CreateMenuItem("", FONT, HEALTH_COUNT_SIZE, this, HEALTH_COUNT_OFFSET);
+	m_playerAmmo = GameUI::CreateMenuItem("", FONT, AMMO_COUNT_SIZE, this, AMMO_COUNT_OFFSET);
 
-	auto createText = [&](RefPtr<Label> &text, Vec2 offset, int fontSize) {
-		text = make_node<Label>();
-		text->initWithTTF("", FONT, fontSize);
-		text->setColor(Color3B::WHITE);
-		text->setPosition(Vec2(winSize.width * offset.x, winSize.height * offset.y));
-		this->addChild(text);
-	};
-
-	createText(m_playerHealth, HEALTH_COUNT_OFFSET, HEALTH_COUNT_SIZE);
-	createText(m_playerAmmo, AMMO_COUNT_OFFSET, AMMO_COUNT_SIZE);
-
-	m_pistolBar = std::make_shared<WeaponBar>(m_weaponBarPistol, m_playerAmmo);
-	m_shootgunBar = std::make_shared<WeaponBar>(m_weaponBarShootgun, m_playerAmmo);
-	m_akBar = std::make_shared<WeaponBar>(m_weaponBarAK, m_playerAmmo);
+	auto pistolBar = GameUI::CreateSprite(PISTOL_BAR_IMG, this, WEAPON_BAR_OFFSET);
+	auto shootgunBar = GameUI::CreateSprite(SHOOTGUN_BAR_IMG, this, WEAPON_BAR_OFFSET);
+	auto akBar = GameUI::CreateSprite(AK_BAR_IMG, this, WEAPON_BAR_OFFSET);
+	m_pistolBar = std::make_shared<UILayer::WeaponBar>(pistolBar, m_playerAmmo);
+	m_shootgunBar = std::make_shared<UILayer::WeaponBar>(shootgunBar, m_playerAmmo);
+	m_akBar = std::make_shared<UILayer::WeaponBar>(akBar, m_playerAmmo);
 }
 void CUILayer::InitListeners()
 {
@@ -136,16 +123,13 @@ void CUILayer::onTouchesMoved(const std::vector<Touch*> &touches, Event* event)
 }
 void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 {
+	(void)event;
 	for (auto touch : touches)
 	{
-		Vec2 point = touch->getLocation();
+		const Vec2 &point = touch->getLocation();
 		bool isPause = m_buttonPause->getBoundingBox().containsPoint(point);
 		DeleteTouch(touch);
-
-		if (isPause)
-		{
-			Pause();
-		}
+		Pause(isPause);
 	}
 }
 void CUILayer::DeleteTouch(Touch *touch)
@@ -162,7 +146,7 @@ void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 {
 	for (auto touch : touches)
 	{
-		Vec2 point = touch->getLocation();
+		const Vec2 &point = touch->getLocation();
 		bool isJump = m_buttonJump->getBoundingBox().containsPoint(point);
 		bool isReload = m_buttonReload->getBoundingBox().containsPoint(point);
 
@@ -178,13 +162,13 @@ void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
 }
 void CUILayer::CheckAlwaysTouchButtons()
 {
-	auto leftBox = m_buttonLeft->getBoundingBox();
-	auto rightBox = m_buttonRight->getBoundingBox();
-	auto fireBox = m_buttonFire->getBoundingBox();
+	const Rect &leftBox = m_buttonLeft->getBoundingBox();
+	const Rect &rightBox = m_buttonRight->getBoundingBox();
+	const Rect &fireBox = m_buttonFire->getBoundingBox();
 
 	for (auto touch : m_touches)
 	{
-		Vec2 point = touch->getLocation();
+		const Vec2 &point = touch->getLocation();
 
 		if (leftBox.containsPoint(point))
 		{
@@ -216,7 +200,7 @@ void CUILayer::HightlightButtons()
 
 	for (auto touch : m_touches)
 	{
-		Vec2 point = touch->getLocation();
+		const Vec2 &point = touch->getLocation();
 		for (auto button : m_buttons)
 		{
 			hightlight_if_touch(button, point);
@@ -224,33 +208,24 @@ void CUILayer::HightlightButtons()
 	}
 }
 
-WeaponBar *CUILayer::GetPistolWeaponBar()
+UILayer::WeaponBar *CUILayer::GetPistolWeaponBar()
 {
 	return m_pistolBar.get();
 }
-WeaponBar *CUILayer::GetShootgunWeaponBar()
+UILayer::WeaponBar *CUILayer::GetShootgunWeaponBar()
 {
 	return m_shootgunBar.get();
 }
-WeaponBar *CUILayer::GetAkWeaponBar()
+UILayer::WeaponBar *CUILayer::GetAkWeaponBar()
 {
 	return m_akBar.get();
 }
 
-void CUILayer::UpdateWeaponBar(WeaponBar *weaponBar, int ammoCount)
+void CUILayer::Pause(bool isPause)
 {
-	if (!weaponBar)
-	{
-		return;
-	}
+	onPause(isPause);
 
-	weaponBar->SetVisible(true);
-	weaponBar->SetAmmoCount(ammoCount);
-}
-
-void CUILayer::Pause()
-{
-	Director::getInstance()->popScene();
+	// open-close pause menu
 }
 
 cocos2d::RefPtr<cocos2d::Label> CUILayer::GetPlayerHealthBar()

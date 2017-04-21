@@ -20,6 +20,8 @@ public:
 private:
 	void InitCamera(cocos2d::Camera* camera);
 	void StartGame();
+	void PauseGame(bool isPause);
+	void ReturnToMenu();
 
 	void CreateLevel();
 	void CreateUI();

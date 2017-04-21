@@ -24,7 +24,7 @@ void CWeapon::SetHost(Node *host)
 {
 	m_host = host;
 }
-int CWeapon::GetAmmoCount()
+int CWeapon::GetAmmoCount() const
 {
 	return m_ammo;
 }
@@ -35,10 +35,14 @@ void CWeapon::update(float delta)
 		m_currColdown += delta;
 	}
 }
+bool CWeapon::IsInfinity()
+{
+	return m_isInfinity;
+}
 bool CWeapon::IsReady()
 {
 	bool isColdownEnd = (m_currColdown >= m_coldown);
-	bool isAmmoEnough = (m_ammo > 0);
+	bool isAmmoEnough = (m_isInfinity) ? true : (m_ammo > 0);
 
 	return isColdownEnd && isAmmoEnough;
 }
@@ -73,6 +77,7 @@ RefPtr<CPistol> CPistol::Create(Node *host)
 	weapon->SetBullet(pistolBullet);
 	weapon->SetColdown(PISTOL_COLDOWN);
 	weapon->SetHost(host);
+	weapon->m_isInfinity = true;
 	weapon->addChild(pistolBullet);
 	weapon->scheduleUpdate();
 

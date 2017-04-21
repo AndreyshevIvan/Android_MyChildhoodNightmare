@@ -20,7 +20,7 @@ public:
 	cocos2d::RefPtr<CBullet> CloneAndStart(const cocos2d::Vec2 &position, Direction dir, int demage = 0);
 	bool IsDistanceValid();
 
-	int GetDemage();
+	int GetDemage() const;
 
 	void onExit() override;
 

@@ -3,6 +3,7 @@
 #include <iostream>
 
 USING_NS_CC;
+using namespace UILayer;
 
 namespace
 {
@@ -43,34 +44,23 @@ void CPlayer::InitWeapons()
 	addChild(m_shootgun);
 	addChild(m_ak);
 
-	m_weapons.push_back(WeaponsContainer::value_type(m_pistol, nullptr));
-	m_weapons.push_back(WeaponsContainer::value_type(m_shootgun, nullptr));
-	m_weapons.push_back(WeaponsContainer::value_type(m_ak, nullptr));
+	m_weapons.resize(WEAPONS_COUNT);
+	m_weapons[Weapons::PISTOL] = std::make_pair(m_pistol, nullptr);
+	m_weapons[Weapons::SHOOTGUN] = std::make_pair(m_shootgun, nullptr);
+	m_weapons[Weapons::AK] = std::make_pair(m_ak, nullptr);
 
 	m_currentWeapon = m_pistol;
 }
 
 void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, WeaponBar *akBar)
 {
-	WeaponBar *currentBar = nullptr;
+	m_weapons[Weapons::PISTOL].second = pistolBar;
+	m_weapons[Weapons::SHOOTGUN].second = shootgunBar;
+	m_weapons[Weapons::AK].second = akBar;
 
-	for (auto& weapon : m_weapons)
-	{
-		if (weapon.first == m_pistol)
-		{
-			weapon.second = pistolBar;
-			currentBar = pistolBar;
-		}
-		if (weapon.first == m_shootgun)
-		{
-			weapon.second = shootgunBar;
-		}
-		if (weapon.first == m_ak)
-		{
-			weapon.second = akBar;
-		}
-	}
+	pistolBar->isInfinity = m_weapons[Weapons::PISTOL].first->IsInfinity();
 
+	WeaponBar *currentBar = pistolBar;
 	m_currentWeaponBar = currentBar;
 	UpdateWeaponBar();
 }
@@ -100,7 +90,8 @@ void CPlayer::UpdateWeaponBar()
 		return;
 	}
 
-	CUILayer::UpdateWeaponBar(m_currentWeaponBar, m_currentWeapon->GetAmmoCount());
+	const int ammoCount = m_currentWeapon->GetAmmoCount();
+	m_currentWeaponBar->Update(ammoCount);
 }
 
 void CPlayer::SwitchWeapon()
@@ -130,7 +121,9 @@ void CPlayer::SwitchWeapon()
 	}
 
 	if (lastBar)
+	{
 		lastBar->SetVisible(false);
+	}
 	m_currentWeaponBar = newBar;
 	UpdateWeaponBar();
 }

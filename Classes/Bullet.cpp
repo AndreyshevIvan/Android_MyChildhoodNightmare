@@ -95,7 +95,7 @@ void CBullet::SetDemage(int demage)
 	m_demage = demage;
 }
 
-int CBullet::GetDemage()
+int CBullet::GetDemage() const
 {
 	return m_demage;
 }

@@ -26,8 +26,8 @@ public:
 	void onExit() override;
 	void update(float delta) override;
 
-	cocos2d::Vec2 GetCenterInWorld()const;
-	cocos2d::Vec2 GetPosition()const;
+	cocos2d::Vec2 GetCenterInWorld() const;
+	cocos2d::Vec2 GetPosition() const;
 
 	void SetPuppeteer(IPuppeteer *puppeteer);
 

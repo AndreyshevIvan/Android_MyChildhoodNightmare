@@ -11,6 +11,7 @@ public:
 	virtual ~IPlayerWeapon() = default;
 
 	virtual Bullets Fire(Direction direction) = 0;
-	virtual int GetAmmoCount() = 0;
+	virtual int GetAmmoCount() const = 0;
+	virtual bool IsInfinity() = 0;
 
 };

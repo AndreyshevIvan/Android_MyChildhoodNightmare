@@ -1,29 +1,42 @@
 #include "cocos_custom.h"
 #include "PlayerController.h"
+#include <string>
 
-struct WeaponBar
+typedef std::function<void(bool isPause)> onPauseEvent;
+
+namespace UILayer
 {
-	WeaponBar(cocos2d::RefPtr<cocos2d::Sprite> icon, cocos2d::RefPtr<cocos2d::Label> ammo)
-		: m_icon(icon)
-		, m_ammoCount(ammo)
+	struct WeaponBar
 	{
-		SetVisible(false);
-	}
-	void SetVisible(bool isVisible)
-	{
-		m_icon->setVisible(isVisible);
-		m_ammoCount->setVisible(isVisible);
-	}
-	void SetAmmoCount(int ammoCount)
-	{
-		std::string ammoStr = std::to_string(ammoCount);
-		m_ammoCount->setString(ammoStr);
-	}
+		WeaponBar(GameSprite icon, GameText ammo)
+			: m_icon(icon)
+			, m_ammoCount(ammo)
+		{
+			SetVisible(false);
+		}
+		void SetVisible(bool isVisible)
+		{
+			m_icon->setVisible(isVisible);
+			m_ammoCount->setVisible(isVisible);
+		}
+		void SetAmmoCount(int ammoCount)
+		{
+			std::string ammoStr = std::to_string(ammoCount);
+			m_ammoCount->setString(ammoStr);
+		}
+		void Update(int ammoCount)
+		{
+			SetVisible(true);
+			SetAmmoCount(ammoCount);
+		}
 
-private:
-	cocos2d::RefPtr<cocos2d::Sprite> m_icon;
-	cocos2d::RefPtr<cocos2d::Label> m_ammoCount;
-};
+		bool isInfinity = false;
+
+	private:
+		GameSprite m_icon;
+		GameText m_ammoCount;
+	};
+}
 
 class CUILayer : public cocos2d::Layer
 {
@@ -32,17 +45,17 @@ public:
 	virtual bool init();
 	void update(float delta) override;
 
-	cocos2d::RefPtr<cocos2d::Label> GetPlayerHealthBar();
-	WeaponBar *GetPistolWeaponBar();
-	WeaponBar *GetShootgunWeaponBar();
-	WeaponBar *GetAkWeaponBar();
+	GameText GetPlayerHealthBar();
+	UILayer::WeaponBar *GetPistolWeaponBar();
+	UILayer::WeaponBar *GetShootgunWeaponBar();
+	UILayer::WeaponBar *GetAkWeaponBar();
 
-	static void UpdateWeaponBar(WeaponBar *weaponBar, int ammoCount);
+	onPauseEvent onPause;
 
 private:
 	void InitElements();
 	void InitListeners();
-	
+
 	void SetController(std::shared_ptr<CPlayerController> controller);
 
 	void onTouchesBegan(const std::vector<cocos2d::Touch*> &touches, cocos2d::Event* event);
@@ -53,33 +66,29 @@ private:
 	void HightlightButtons();
 	void DeleteTouch(cocos2d::Touch *touch);
 
-	void Pause();
-
+	void Pause(bool isPause);
 	void cleanup() override;
 
-	std::shared_ptr<WeaponBar> m_pistolBar;
-	std::shared_ptr<WeaponBar> m_shootgunBar;
-	std::shared_ptr<WeaponBar> m_akBar;
+	std::shared_ptr<UILayer::WeaponBar> m_pistolBar;
+	std::shared_ptr<UILayer::WeaponBar> m_shootgunBar;
+	std::shared_ptr<UILayer::WeaponBar> m_akBar;
 
 	std::shared_ptr<CPlayerController> m_playerController;
 
-	cocos2d::RefPtr<cocos2d::Sprite> m_healthBar;
-	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBar;
-	cocos2d::RefPtr<cocos2d::Sprite> m_boxBar;
-	cocos2d::RefPtr<cocos2d::Sprite> m_buttonFire;
-	cocos2d::RefPtr<cocos2d::Sprite> m_buttonJump;
-	cocos2d::RefPtr<cocos2d::Sprite> m_buttonReload;
-	cocos2d::RefPtr<cocos2d::Sprite> m_buttonLeft;
-	cocos2d::RefPtr<cocos2d::Sprite> m_buttonRight;
-	cocos2d::RefPtr<cocos2d::Sprite> m_buttonPause;
-	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBarAK;
-	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBarPistol;
-	cocos2d::RefPtr<cocos2d::Sprite> m_weaponBarShootgun;
-	cocos2d::RefPtr<cocos2d::Label> m_playerHealth;
-	cocos2d::RefPtr<cocos2d::Label> m_playerAmmo;
+	GameSprite m_healthBar;
+	GameSprite m_weaponBar;
+	GameSprite m_boxBar;
+	GameSprite m_buttonFire;
+	GameSprite m_buttonJump;
+	GameSprite m_buttonReload;
+	GameSprite m_buttonLeft;
+	GameSprite m_buttonRight;
+	GameSprite m_buttonPause;
+	GameText m_playerHealth;
+	GameText m_playerAmmo;
 
 	cocos2d::EventListenerTouchAllAtOnce* m_touchListener;
 	std::vector<cocos2d::Touch*> m_touches;
-	std::vector<cocos2d::RefPtr<cocos2d::Sprite>> m_buttons;
+	std::vector<GameSprite> m_buttons;
 
 };

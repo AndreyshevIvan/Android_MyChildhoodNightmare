@@ -3,9 +3,11 @@
 #include <iostream>
 
 USING_NS_CC;
+using namespace std;
 
 namespace
 {
+	const char FADE_SPRITE_IMG[] = "textures/fade_sprite.png";
 	const char BACKGROUND_IMG[] = "textures/menu_wrapper.png";
 	const char GAME_NAME_IMG[] = "textures/game_name.png";
 	const char NAME_BACK[] = "textures/name_back.png";
@@ -24,7 +26,9 @@ namespace
 	const Vec2 EXIT_BUTTON_OFFSET = Vec2(0.91f, 0.1f);
 	const Vec2 ITEMS_BACK_OFFSET = Vec2(0.5f, 0.36f);
 
-	const float ITEMS_SCALE_SPEED = 3;
+	const float BUTTONS_SCALE_TIME = 0.8f;
+	const float BUTTONS_SCALE_FACTOR = 1.6f;
+	const float SCENE_TRANSITION_TIME = 1.4f;
 }
 
 Scene* MenuScene::createScene()
@@ -54,36 +58,45 @@ bool MenuScene::init()
 
 void MenuScene::update(float delta)
 {
-	HightlightButton();
+
 }
 
 void MenuScene::InitElements()
 {
-	auto createSprite = [=](const std::string &path, Vec2 offset) {
+	auto winSize = Director::getInstance()->getWinSize();
+
+	/*
+	auto createSprite = [=](const string &path, Node* parent, Vec2 offset = Vec2(0.5, 0.5)) {
 		auto sprite = make_node<Sprite>();
 		sprite->initWithFile(path);
 		SetRelativePos(sprite, offset);
-		this->addChild(sprite);
-	};
+		parent->addChild(sprite);
+		return sprite;
+	};*/
 
-	createSprite(BACKGROUND_IMG, Vec2(0.5f, 0.5f));
-	createSprite(NAME_BACK, GAME_NAME_OFFSET);
-	createSprite(ITEMS_BACK, ITEMS_BACK_OFFSET);
-	createSprite(GAME_NAME_IMG, GAME_NAME_OFFSET);
-	createSprite(LEAVE_BACK, EXIT_BUTTON_OFFSET);
+	GameUI::CreateSprite(BACKGROUND_IMG, this, Vec2::ANCHOR_MIDDLE);
+	GameUI::CreateSprite(NAME_BACK, this, GAME_NAME_OFFSET);
+	GameUI::CreateSprite(ITEMS_BACK, this, ITEMS_BACK_OFFSET);
+	GameUI::CreateSprite(GAME_NAME_IMG, this, GAME_NAME_OFFSET);
+	GameUI::CreateSprite(LEAVE_BACK, this, EXIT_BUTTON_OFFSET);
 
-	auto createButton = [&](RefPtr<Label> &button, const std::string &name, Vec2 offset, int fontSize = FONT_SIZE) {
+	/*
+	auto createButton = [&](RefPtr<Label> &button, const string &name, Vec2 offset, int fontSize = FONT_SIZE) {
 		button = make_node<Label>();
 		button->initWithTTF(name, FONT, fontSize);
 		button->enableOutline(Color4B::BLACK, 1);
 		button->setColor(Color3B::WHITE);
 		SetRelativePos(button, offset);
 		this->addChild(button);
-	};
+	};*/
 
-	createButton(m_startButton, "Start", START_BUTTON_OFFSET, START_BUTTON_FONT_SIZE);
-	createButton(m_levelsButton, "Difficult", LEVELS_BUTTON_OFFSET);
-	createButton(m_exitButton, "Leave", EXIT_BUTTON_OFFSET, EXIT_FONT_SIZE);
+	m_startButton = GameUI::CreateMenuItem("Start", FONT, START_BUTTON_FONT_SIZE, this, START_BUTTON_OFFSET);
+	m_levelsButton = GameUI::CreateMenuItem("Difficult", FONT, START_BUTTON_FONT_SIZE, this, LEVELS_BUTTON_OFFSET);
+	m_exitButton = GameUI::CreateMenuItem("Leave", FONT, EXIT_FONT_SIZE, this, EXIT_BUTTON_OFFSET);
+
+	m_fadeSprite = GameUI::CreateSprite(FADE_SPRITE_IMG, this, Vec2::ANCHOR_MIDDLE);
+	m_fadeSprite->setContentSize(winSize);
+	m_fadeSprite->setOpacity(0);
 }
 
 void MenuScene::InitListeners()
@@ -98,95 +111,66 @@ void MenuScene::InitListeners()
 
 void MenuScene::onTouchMoved(Touch* touch, Event* event)
 {
-
 }
 
 bool MenuScene::onTouchBegan(Touch* touch, Event* event)
 {
-	if (m_touch == nullptr)
+	if (m_state != MenuState::NONE)
 	{
-		m_touch = touch;
+		return false;
 	}
+
+	const Vec2 touchPoint = touch->getLocation();
+	
+	auto start_event_if_touch = [&](RefPtr<Label> &button, std::function<void()> onTouch) {
+		if (!button->getBoundingBox().containsPoint(touchPoint))
+		{
+			return;
+		}
+
+		auto highLight = ScaleTo::create(BUTTONS_SCALE_TIME, BUTTONS_SCALE_FACTOR);
+		auto onTouchEvent = Sequence::create(CallFunc::create(onTouch), nullptr);
+		button->runAction(highLight);
+		runAction(onTouchEvent);
+		m_state = MenuState::WAIT_EVENT;
+	};
+
+	start_event_if_touch(m_startButton, CC_CALLBACK_0(MenuScene::GoToGame, this));
+	start_event_if_touch(m_exitButton, CC_CALLBACK_0(MenuScene::CloseApp, this));
 
 	return true;
 }
 
-void MenuScene::HightlightButton()
-{
-	if (m_touch == nullptr)
-	{
-		return;
-	}
-
-	float dt = Director::getInstance()->getDeltaTime();
-	Vec2 touchPoint = m_touch->getLocation();
-
-	auto highlight_if_touch = [&](RefPtr<Label> button) {
-		float scale = button->getScale();
-		if (button->getBoundingBox().containsPoint(touchPoint))
-		{
-			button->setScale(FONT_HIGHTLIGHT_SCALE);
-		}
-		else if (!button->getBoundingBox().containsPoint(touchPoint) && scale > 1)
-		{
-			button->setScale(scale - 1 * dt);
-		}
-	};
-
-	highlight_if_touch(m_startButton);
-	highlight_if_touch(m_levelsButton);
-	highlight_if_touch(m_exitButton);
-
-}
-
 void MenuScene::onTouchEnded(Touch* touch, Event* event)
 {
-	if (touch != m_touch)
-	{
-		return;
-	}
-
-	Vec2 point = touch->getPreviousLocation();
-	auto isTouchButton = [&](RefPtr<Label> button) {
-		return button->getBoundingBox().containsPoint(point);
-	};
-
-	if (isTouchButton(m_startButton))
-	{
-		GoToGame();
-	}
-	if (isTouchButton(m_levelsButton))
-	{
-
-	}
-	if (isTouchButton(m_exitButton))
-	{
-		CloseApp();
-	}
-
-	m_startButton->setScale(1);
-	m_levelsButton->setScale(1);
-	m_exitButton->setScale(1);
-	m_touch = nullptr;
 }
 
 void MenuScene::GoToGame()
 {
 	auto scene = GameScene::createScene();
-	Director::getInstance()->pushScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(SCENE_TRANSITION_TIME, scene));
 }
 
 void MenuScene::CloseApp()
 {
-	Director::getInstance()->end();
-}
+	const float fadeTime = SCENE_TRANSITION_TIME / 2;
 
-template<class T>
-void MenuScene::SetRelativePos(RefPtr<T> element, const Vec2 &offset)
-{
-	auto winSize = Director::getInstance()->getVisibleSize();
-	Vec2 position = Vec2(winSize.width * offset.x, winSize.height * offset.y);
-	element->setPosition(position);
+	auto exit = []() {
+		Director::getInstance()->end();
+	};
+	auto startFade = [&]() {
+		auto fadeAction = FadeIn::create(fadeTime);
+		m_fadeSprite->runAction(fadeAction);
+	};
+
+	auto exitEvents = Sequence::create(
+		CallFunc::create(startFade),
+		DelayTime::create(fadeTime),
+		CallFunc::create(exit),
+		nullptr
+	);
+
+	runAction(exitEvents);
 }
 
 void MenuScene::cleanup()

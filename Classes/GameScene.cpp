@@ -3,6 +3,7 @@
 
 USING_NS_CC;
 
+const int LAST_UPDATE_PRIORITY = 9999;
 const std::string FIRST_LEVEL_NAME = "tmx/level_1.tmx";
 
 Scene* GameScene::createScene()
@@ -27,7 +28,7 @@ bool GameScene::init()
 
 	StartGame();
 
-	scheduleUpdate();
+	scheduleUpdateWithPriority(LAST_UPDATE_PRIORITY);
 
 	return true;
 }
@@ -44,6 +45,14 @@ void GameScene::StartGame()
 	SpawnEnemies();
 	SpawnItems();
 	CreateUI();
+}
+void GameScene::PauseGame(bool isPause)
+{
+
+}
+void GameScene::ReturnToMenu()
+{
+
 }
 
 void GameScene::CreateLevel()
@@ -87,6 +96,7 @@ void GameScene::SpawnItems()
 void GameScene::CreateUI()
 {
 	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
+	m_UILayer->onPause = CC_CALLBACK_1(GameScene::PauseGame, this);
 
 	auto healthBar = m_UILayer->GetPlayerHealthBar();
 	auto pistolBar = m_UILayer->GetPistolWeaponBar();
@@ -105,7 +115,7 @@ void GameScene::update(float delta)
 }
 void GameScene::UpdateCamera()
 {
-	auto playerPosition = m_playerPuppeteer->GetPuppetPos();
+	const Vec2 &playerPosition = m_playerPuppeteer->GetPuppetPos();
 
 	m_camera->setPosition(playerPosition);
 	m_UILayer->setPosition(playerPosition - Vec2(m_winSize / 2));

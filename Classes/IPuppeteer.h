@@ -12,8 +12,8 @@ public:
 	virtual void Update(float delta) = 0;
 	virtual void OnExit() = 0;
 
-	virtual RunState GetMoveState() = 0;
-	virtual bool CheckJumpState() = 0;
+	virtual RunState GetRunState() = 0;
+	virtual bool GetJumpState() = 0;
 	virtual bool GetFireState() = 0;
 	virtual bool GetSwitchWeaponState() = 0;
 

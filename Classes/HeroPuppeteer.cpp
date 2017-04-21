@@ -18,12 +18,12 @@ void CHeroPuppeteer::SetController(CPlayerController *controller)
 	m_controller->init();
 }
 
-RunState CHeroPuppeteer::GetMoveState()
+RunState CHeroPuppeteer::GetRunState()
 {
 	return m_controller->GetRunState();
 }
 
-bool CHeroPuppeteer::CheckJumpState()
+bool CHeroPuppeteer::GetJumpState()
 {
 	return m_controller->GetJumpState();
 }

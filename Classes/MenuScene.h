@@ -1,5 +1,13 @@
 #include "cocos_custom.h"
+#include "GameUI.h"
 #include "GameScene.h"
+#include "DifficultScene.h"
+
+enum class MenuState
+{
+	NONE,
+	WAIT_EVENT,
+};
 
 class MenuScene : public cocos2d::Layer
 {
@@ -13,7 +21,6 @@ private:
 	void InitElements();
 	void InitListeners();
 
-	void HightlightButton();
 	void GoToGame();
 	void CloseApp();
 
@@ -23,14 +30,15 @@ private:
 
 	void update(float delta) override;
 
-	template<class T> void SetRelativePos(cocos2d::RefPtr<T> element, const cocos2d::Vec2 &offset);
-
 	void cleanup() override;
 
-	cocos2d::RefPtr<cocos2d::Label> m_startButton;
-	cocos2d::RefPtr<cocos2d::Label> m_levelsButton;
-	cocos2d::RefPtr<cocos2d::Label> m_exitButton;
+	GameSprite m_fadeSprite;
+	GameText m_startButton;
+	GameText m_levelsButton;
+	GameText m_exitButton;
 
 	cocos2d::EventListenerTouchOneByOne* m_touchListener;
 	cocos2d::Touch* m_touch = nullptr;
+
+	MenuState m_state = MenuState::NONE;
 };

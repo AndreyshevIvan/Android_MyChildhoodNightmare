@@ -4,6 +4,9 @@
 #include <memory>
 #include <functional>
 
+typedef cocos2d::RefPtr<cocos2d::Sprite> GameSprite;
+typedef cocos2d::RefPtr<cocos2d::Label> GameText;
+
 template <class T, class ...TArgs>
 cocos2d::RefPtr<T> make_node(TArgs&&... args)
 {

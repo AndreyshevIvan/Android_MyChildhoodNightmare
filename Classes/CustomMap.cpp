@@ -1,4 +1,4 @@
-#include "CustomMap.h"
+﻿#include "CustomMap.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -70,6 +70,19 @@ bool CCustomMap::LoadUnits()
 	return true;
 }
 
+template <class T>
+void CCustomMap::PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, bool isAddToMap)
+{
+	for (auto element : sourceVect)
+	{
+		destVect.push_back(element);
+		if (isAddToMap)
+		{
+			addChild(element);
+		}
+	}
+}
+
 void CCustomMap::update(float delta)
 {
 	UpdateBullets();
@@ -117,14 +130,7 @@ std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
 
 void CCustomMap::AddPlayerBullets(Bullets playerBullets)
 {
-	for (auto bullet : playerBullets)
-	{
-		if (bullet)
-		{
-			m_playerBullets.push_back(bullet);
-			addChild(bullet);
-		}
-	}
+	PushFromVectToVect(m_playerBullets, playerBullets);
 }
 void CCustomMap::AddEnemy(CPuppet *enemy)
 {
