@@ -27,7 +27,7 @@ public:
 private:
 	bool LoadObstacles();
 	bool LoadUnits();
-	template <class T> void PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, cocos2d::Node* parent);
+	template <class T> void TransferFromVect(std::vector<T> &destVect, std::vector<T> &sourceVect, cocos2d::Node* parent);
 	cocos2d::Rect AsRect(const cocos2d::ValueMap &properties)const;
 
 	std::vector<cocos2d::Rect> m_obstacles;

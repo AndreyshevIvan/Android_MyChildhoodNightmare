@@ -5,24 +5,38 @@
 using namespace std;
 USING_NS_CC;
 
-class GameUI
+namespace gameUI
 {
-public:
 	enum
 	{
 		MAX_OPACITY = 255,
 	};
 
-	static GameSprite CreateSprite(const string &pathToFile, Node* parent, Vec2 offset)
+	static const char BASE_FONT[] = "fonts/nightmarealley.ttf";
+
+	const int MENU_LARGE_FONT_SIZE = 120;
+	const int MENU_NORMAL_FONT_SIZE = 100;
+	const int MENU_SMALL_FONT_SIZE = 65;
+
+	static const float BUTTONS_SCALE_FACTOR = 1.6f;
+	static const float SCENE_TRANSITION_TIME = 1.1f;
+
+	static void SetRelativePosOnParent(Node* element, const Vec2 &offset, Node* parent);
+	static GameSprite CreateSprite(const string &spriteName, Node* parent, Vec2 offset);
+	static GameText CreateTextItem(const string &innerText, const string &font, int fontSize, Node* parent, Vec2 offset);
+	static bool DoIfTouch(const Rect &area, const vector<Touch*> &touches, function<void()> onTouch);
+
+	GameSprite CreateSprite(const string &spriteName, Node* parent, Vec2 offset)
 	{
 		auto winSize = Director::getInstance()->getWinSize();
 		GameSprite button = make_node<Sprite>();
-		button->initWithSpriteFrameName(pathToFile);
+		button->initWithSpriteFrameName(spriteName);
 		parent->addChild(button);
 		SetRelativePosOnParent(button, offset, parent);
 		return button;
 	}
-	static GameText CreateTextItem(const string &innerText, const string &font, int fontSize, Node* parent, Vec2 offset)
+
+	GameText CreateTextItem(const string &innerText, const string &font, int fontSize, Node* parent, Vec2 offset)
 	{
 		auto winSize = Director::getInstance()->getWinSize();
 		GameText text = make_node<Label>();
@@ -32,8 +46,8 @@ public:
 		SetRelativePosOnParent(text, offset, parent);
 		return text;
 	}
-private:
-	static void GameUI::SetRelativePosOnParent(Node* element, const Vec2 &offset, Node* parent)
+
+	void SetRelativePosOnParent(Node* element, const Vec2 &offset, Node* parent)
 	{
 		if (!element || !parent)
 		{
@@ -44,4 +58,15 @@ private:
 		const Vec2 &position = Vec2(parentSize.width * offset.x, parentSize.height * offset.y);
 		element->setPosition(position);
 	}
-};
+
+	bool DoIfTouch(const Rect &area, const vector<Touch*> &touches, function<void()> onTouch)
+	{
+		bool isTouch = std::any_of(touches.begin(), touches.end(), [&](Touch* touch) {
+			const Vec2 &point = touch->getLocation();
+			return area.containsPoint(point);
+		});
+
+		if (isTouch) onTouch();
+		return isTouch;
+	};
+}

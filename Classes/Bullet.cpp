@@ -5,8 +5,6 @@ USING_NS_CC;
 
 namespace
 {
-	const Size BULLET_SIZE = Size(1, 1);
-
 	const char PISTOL_BULLET_IMG[] = "pistol_bullet.png";
 	const char SHOOTGUN_BULLET_IMG[] = "shootgun_bullet.png";
 	const char AK_BULLET_IMG[] = "ak_bullet.png";
@@ -52,7 +50,6 @@ void CBullet::InitBody(const std::string &spritePath)
 {
 	m_body = make_node<Sprite>();
 	m_body->initWithSpriteFrameName(spritePath);
-	m_body->setContentSize(BULLET_SIZE);
 
 	addChild(m_body);
 }
@@ -64,7 +61,6 @@ RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir, int 
 	newBullet->m_body->initWithSpriteFrame(m_body->getSpriteFrame());
 	newBullet->addChild(newBullet->m_body);
 	newBullet->setPosition(position);
-	m_body->setContentSize(BULLET_SIZE);
 
 	float speed = (dir == Direction::RIGHT) ? m_speed : -m_speed;
 	newBullet->SetSpeed(speed);

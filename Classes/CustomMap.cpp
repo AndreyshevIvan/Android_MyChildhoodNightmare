@@ -71,7 +71,7 @@ bool CCustomMap::LoadUnits()
 }
 
 template <class T>
-void CCustomMap::PushFromVectToVect(std::vector<T> &destVect, std::vector<T> &sourceVect, Node* parent)
+void CCustomMap::TransferFromVect(std::vector<T> &destVect, std::vector<T> &sourceVect, Node* parent)
 {
 	for (auto element : sourceVect)
 	{
@@ -93,6 +93,7 @@ void CCustomMap::UpdateBullets()
 		bool isDead = (!CanStandOn(pBullet->getBoundingBox()) || !pBullet->IsDistanceValid());
 		if (isDead)
 		{
+			removeChild(pBullet);
 			pBullet->onExit();
 		}
 		return isDead;
@@ -130,7 +131,7 @@ std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
 
 void CCustomMap::AddPlayerBullets(Bullets playerBullets)
 {
-	PushFromVectToVect(m_playerBullets, playerBullets, this);
+	TransferFromVect(m_playerBullets, playerBullets, this);
 }
 void CCustomMap::AddEnemy(CPuppet* enemy)
 {

@@ -1,7 +1,6 @@
 #include "cocos_custom.h"
 #include "GameUI.h"
 #include "GameScene.h"
-#include "DifficultScene.h"
 
 enum class MenuState
 {
@@ -21,11 +20,11 @@ private:
 	void InitElements();
 	void InitListeners();
 
-	void GoToGame();
+	void SetGameScene();
+	void SetDifficulScene();
 	void CloseApp();
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
 	void update(float delta) override;

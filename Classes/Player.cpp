@@ -28,7 +28,7 @@ void CPlayer::InitPlayer()
 {
 	m_moveSpeed.x = PLAYER_VELOCITY;
 
-	m_puppetSprite = GameUI::CreateSprite(PLAYER_IMG, this, Vec2::ZERO);
+	m_puppetSprite = gameUI::CreateSprite(PLAYER_IMG, this, Vec2::ZERO);
 	setContentSize(m_puppetSprite->getContentSize());
 }
 

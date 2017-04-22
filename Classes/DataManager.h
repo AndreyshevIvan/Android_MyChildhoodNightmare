@@ -9,7 +9,7 @@ namespace DataKeys
 	const char DIFFICULT_KEY[] = "difficult_key";
 }
 
-enum struct Difficult
+enum Difficult
 {
 	EASY,
 	NORMAL,

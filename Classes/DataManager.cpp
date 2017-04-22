@@ -12,7 +12,7 @@ void CDataController::SetDifficult(Difficult difficult)
 Difficult CDataController::GetDifficult()
 {
 	auto memory = UserDefault::getInstance();
-	auto difficultNum = memory->getIntegerForKey(DIFFICULT_KEY, (int)Difficult::EASY);
+	auto difficultNum = memory->getIntegerForKey(DIFFICULT_KEY, Difficult::EASY);
 	Difficult difficult = Difficult(difficultNum);
 
 	return difficult;
