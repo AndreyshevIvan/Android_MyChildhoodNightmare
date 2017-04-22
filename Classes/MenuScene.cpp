@@ -7,12 +7,12 @@ using namespace std;
 
 namespace
 {
-	const char FADE_SPRITE_IMG[] = "textures/fade_sprite.png";
-	const char BACKGROUND_IMG[] = "textures/menu_wrapper.png";
-	const char GAME_NAME_IMG[] = "textures/game_name.png";
-	const char NAME_BACK[] = "textures/name_back.png";
-	const char ITEMS_BACK[] = "textures/items_back.png";
-	const char LEAVE_BACK[] = "textures/leave_back.png";
+	const char FADE_SPRITE_IMG[] = "fade_sprite.png";
+	const char BACKGROUND_IMG[] = "menu_wrapper.png";
+	const char GAME_NAME_IMG[] = "game_name.png";
+	const char NAME_BACK[] = "name_back.png";
+	const char ITEMS_BACK[] = "items_back.png";
+	const char LEAVE_BACK[] = "leave_back.png";
 	const char FONT[] = "fonts/nightmarealley.ttf";
 
 	const int START_BUTTON_FONT_SIZE = 120;

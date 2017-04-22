@@ -109,10 +109,11 @@ private:
 	GameText m_playerAmmo;
 	GameText m_restartButton;
 	GameText m_menuButton;
+	GameText m_continueButton;
 
 	cocos2d::EventListenerTouchAllAtOnce* m_touchListener;
 	std::vector<cocos2d::Touch*> m_touches;
-	std::vector<GameSprite> m_buttons;
+	std::vector<GameSprite> m_controllButtons;
 
 	bool m_isPause = false;
 };

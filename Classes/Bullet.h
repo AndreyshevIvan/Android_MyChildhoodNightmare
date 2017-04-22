@@ -31,7 +31,7 @@ private:
 	void SetSpeed(float speed);
 	void SetDemage(int demage);
 
-	cocos2d::RefPtr<cocos2d::Sprite> m_body;
+	GameSprite m_body;
 	float m_speed = 100;
 	float m_distance = 0;
 	int m_demage = 0;

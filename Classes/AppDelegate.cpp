@@ -6,6 +6,7 @@ USING_NS_CC;
 static const cocos2d::Size RESOLUTION = cocos2d::Size(1280, 720);
 static const cocos2d::Rect RESOLUTION_RECT = cocos2d::Rect(0, 0, RESOLUTION.width, RESOLUTION.height);
 static const std::string GAME_NAME = "MyChildhoodNightmares";
+static const std::string TEXTURES = "textures/textures.plist";
 
 AppDelegate::AppDelegate()
 {
@@ -48,6 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	register_all_packages();
 
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(TEXTURES);
 	auto scene = MenuScene::createScene();
 	director->runWithScene(scene);
 

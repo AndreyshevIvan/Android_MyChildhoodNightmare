@@ -8,11 +8,16 @@ USING_NS_CC;
 class GameUI
 {
 public:
+	enum
+	{
+		MAX_OPACITY = 255,
+	};
+
 	static GameSprite CreateSprite(const string &pathToFile, Node* parent, Vec2 offset)
 	{
 		auto winSize = Director::getInstance()->getWinSize();
 		GameSprite button = make_node<Sprite>();
-		button->initWithFile(pathToFile);
+		button->initWithSpriteFrameName(pathToFile);
 		parent->addChild(button);
 		SetRelativePosOnParent(button, offset, parent);
 		return button;

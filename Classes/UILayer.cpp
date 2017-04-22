@@ -6,19 +6,19 @@ using namespace std;
 
 namespace
 {
-	const char HEALTH_BAR_IMG[] = "textures/health_bar.png";
-	const char AK_BAR_IMG[] = "textures/ak_bar.png";
-	const char PISTOL_BAR_IMG[] = "textures/pistol_bar.png";
-	const char SHOOTGUN_BAR_IMG[] = "textures/shootgun_bar.png";
+	const char HEALTH_BAR_IMG[] = "health_bar.png";
+	const char AK_BAR_IMG[] = "ak_bar.png";
+	const char PISTOL_BAR_IMG[] = "pistol_bar.png";
+	const char SHOOTGUN_BAR_IMG[] = "shootgun_bar.png";
 
-	const char LEFT_BUTTON_IMG[] = "textures/left_button.png";
-	const char RIGHT_BUTTON_IMG[] = "textures/right_button.png";
-	const char JUMP_BUTTON_IMG[] = "textures/jump_button.png";
-	const char FIRE_BUTTON_IMG[] = "textures/fire_button.png";
-	const char RELOAD_BUTTON_IMG[] = "textures/reload_button.png";
-	const char PAUSE_BUTTON_IMG[] = "textures/pause.png";
-	const char PAUSE_MENU_IMG[] = "textures/pause_menu.png";
-	const char FADE_SPRITE_IMG[] = "textures/fade_sprite_90.png";
+	const char LEFT_BUTTON_IMG[] = "left_button.png";
+	const char RIGHT_BUTTON_IMG[] = "right_button.png";
+	const char JUMP_BUTTON_IMG[] = "jump_button.png";
+	const char FIRE_BUTTON_IMG[] = "fire_button.png";
+	const char RELOAD_BUTTON_IMG[] = "reload_button.png";
+	const char PAUSE_BUTTON_IMG[] = "pause.png";
+	const char PAUSE_MENU_IMG[] = "pause_menu.png";
+	const char FADE_SPRITE_IMG[] = "fade_sprite_90.png";
 
 	const Vec2 JUMP_BUTTON_OFFSET = Vec2(0.068f, 0.347f);
 	const Vec2 FIRE_BUTTON_OFFSET = Vec2(0.117f, 0.138f);
@@ -85,7 +85,7 @@ void CUILayer::SetController(std::shared_ptr<CPlayerController> controller)
 
 void CUILayer::InitElements()
 {
-	m_buttons = {
+	m_controllButtons = {
 		m_buttonJump = GameUI::CreateSprite(JUMP_BUTTON_IMG, this, JUMP_BUTTON_OFFSET),
 		m_buttonFire = GameUI::CreateSprite(FIRE_BUTTON_IMG, this, FIRE_BUTTON_OFFSET),
 		m_buttonReload = GameUI::CreateSprite(RELOAD_BUTTON_IMG, this, RELOAD_BUTTON_OFFSET),
@@ -107,14 +107,16 @@ void CUILayer::InitElements()
 	m_pauseMenu = GameUI::CreateSprite(PAUSE_MENU_IMG, this, Vec2::ANCHOR_MIDDLE);
 	m_restartButton = GameUI::CreateTextItem("Restart", FONT, PAUSE_MENU_ITEMS_SIZE, m_pauseMenu, Vec2::ANCHOR_MIDDLE);
 	m_menuButton = GameUI::CreateTextItem("Menu", FONT, PAUSE_MENU_ITEMS_SIZE, m_pauseMenu, Vec2::ANCHOR_MIDDLE);
+	m_continueButton = GameUI::CreateTextItem("Resume", FONT, PAUSE_MENU_ITEMS_SIZE, m_pauseMenu, Vec2::ANCHOR_MIDDLE);
 
 	auto winSize = Director::getInstance()->getWinSize();
 	m_fadeSprite->setContentSize(winSize);
-	m_fadeSprite->setOpacity(0);
 	m_pauseMenu->setPosition(Vec2(winSize / 2) + Vec2(0, winSize.height / 2));
+	m_fadeSprite->setOpacity(0);
 	m_pauseMenu->setOpacity(0);
 	m_restartButton->setOpacity(0);
 	m_menuButton->setOpacity(0);
+	m_continueButton->setOpacity(0);
 }
 void CUILayer::InitListeners()
 {
@@ -191,7 +193,7 @@ void CUILayer::HightlightButtons()
 		return;
 	}
 
-	for (auto button : m_buttons)
+	for (auto button : m_controllButtons)
 	{
 		button->setOpacity(UNTOUCH_OPACITY);
 	}
@@ -199,14 +201,14 @@ void CUILayer::HightlightButtons()
 	auto hightlight_if_touch = [&](RefPtr<Sprite> &button, const Vec2 &point) {
 		if (button->getBoundingBox().containsPoint(point))
 		{
-			button->setOpacity(255);
+			button->setOpacity(GameUI::MAX_OPACITY);
 		}
 	};
 
 	for (auto touch : m_touches)
 	{
 		const Vec2 &point = touch->getLocation();
-		for (auto button : m_buttons)
+		for (auto button : m_controllButtons)
 		{
 			hightlight_if_touch(button, point);
 		}
@@ -249,7 +251,7 @@ void CUILayer::Pause()
 	m_restartButton->runAction(fade->clone());
 	m_menuButton->runAction(fade->clone());
 	m_fadeSprite->runAction(fade->clone());
-	std::for_each(m_buttons.begin(), m_buttons.end(), [&](GameSprite &button) {
+	std::for_each(m_controllButtons.begin(), m_controllButtons.end(), [&](GameSprite &button) {
 		button->runAction(fade->clone());
 	});
 }

@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "IMapPhysics.h"
+#include "GameUI.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -12,7 +13,7 @@ namespace
 	const int PLAYER_HEALTH = 100;
 	const float PLAYER_VELOCITY = 200;
 
-	const std::string PLAYER_IMG = "textures/player.png";
+	const std::string PLAYER_IMG = "player.png";
 }
 
 void CPlayer::Spawn(const Vec2 &spawnPos)
@@ -27,11 +28,8 @@ void CPlayer::InitPlayer()
 {
 	m_moveSpeed.x = PLAYER_VELOCITY;
 
-	m_puppetSprite = Sprite::create();
-	m_puppetSprite->initWithFile(PLAYER_IMG);
+	m_puppetSprite = GameUI::CreateSprite(PLAYER_IMG, this, Vec2::ZERO);
 	setContentSize(m_puppetSprite->getContentSize());
-
-	addChild(m_puppetSprite);
 }
 
 void CPlayer::InitWeapons()
