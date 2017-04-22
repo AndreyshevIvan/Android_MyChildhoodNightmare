@@ -1,8 +1,5 @@
 #include "UILayer.h"
-#include "GameUI.h"
 #include "SimpleAudioEngine.h"
-#include <iostream>
-#include <string>
 
 USING_NS_CC;
 using namespace std;
@@ -20,6 +17,8 @@ namespace
 	const char FIRE_BUTTON_IMG[] = "textures/fire_button.png";
 	const char RELOAD_BUTTON_IMG[] = "textures/reload_button.png";
 	const char PAUSE_BUTTON_IMG[] = "textures/pause.png";
+	const char PAUSE_MENU_IMG[] = "textures/pause_menu.png";
+	const char FADE_SPRITE_IMG[] = "textures/fade_sprite_90.png";
 
 	const Vec2 JUMP_BUTTON_OFFSET = Vec2(0.068f, 0.347f);
 	const Vec2 FIRE_BUTTON_OFFSET = Vec2(0.117f, 0.138f);
@@ -30,13 +29,22 @@ namespace
 	const Vec2 HEALTH_BAR_OFFSET = Vec2(0.13f, 0.82f);
 	const Vec2 HEALTH_COUNT_OFFSET = Vec2(0.165f, 0.88f);
 	const Vec2 WEAPON_BAR_OFFSET = Vec2(0.09f, 0.72f);
-	const Vec2 AMMO_COUNT_OFFSET = Vec2(0.131f, 0.68f);
 
 	const float UNTOUCH_OPACITY = 150;
+	const float PAUSE_FADE_TIME = 0.4f;
+	const float PAUSE_EASE_RATE = 6;
 
 	const char FONT[] = "fonts/nightmarealley.ttf";
 	const int HEALTH_COUNT_SIZE = 80;
-	const int AMMO_COUNT_SIZE = 40;
+	const int PAUSE_MENU_ITEMS_SIZE = 30;
+
+	auto do_if_touch = [](Node* button, const vector<Touch*> &touches, function<void()> onTouch) {
+		auto buttonBox = button->getBoundingBox();
+		std::for_each(touches.begin(), touches.end(), [&](Touch* touch) {
+			const Vec2 &point = touch->getLocation();
+			if (buttonBox.containsPoint(point)) onTouch();
+		});
+	};
 }
 
 CUILayer *CUILayer::create(std::shared_ptr<CPlayerController> controller)
@@ -83,21 +91,30 @@ void CUILayer::InitElements()
 		m_buttonReload = GameUI::CreateSprite(RELOAD_BUTTON_IMG, this, RELOAD_BUTTON_OFFSET),
 		m_buttonLeft = GameUI::CreateSprite(LEFT_BUTTON_IMG, this, LEFT_BUTTON_OFFSET),
 		m_buttonRight = GameUI::CreateSprite(RIGHT_BUTTON_IMG, this, RIGHT_BUTTON_OFFSET),
-		m_buttonPause = GameUI::CreateSprite(PAUSE_BUTTON_IMG, this, PAUSE_BUTTON_OFFSET),
+		m_buttonPause = GameUI::CreateSprite(PAUSE_BUTTON_IMG, this, PAUSE_BUTTON_OFFSET)
 	};
-
-	m_healthBar = GameUI::CreateSprite(HEALTH_BAR_IMG, this, HEALTH_BAR_OFFSET);
 
 	auto pistolBar = GameUI::CreateSprite(PISTOL_BAR_IMG, this, WEAPON_BAR_OFFSET);
 	auto shootgunBar = GameUI::CreateSprite(SHOOTGUN_BAR_IMG, this, WEAPON_BAR_OFFSET);
 	auto akBar = GameUI::CreateSprite(AK_BAR_IMG, this, WEAPON_BAR_OFFSET);
+	m_pistolBar = std::make_shared<UILayer::WeaponBar>(pistolBar, this);
+	m_shootgunBar = std::make_shared<UILayer::WeaponBar>(shootgunBar, this);
+	m_akBar = std::make_shared<UILayer::WeaponBar>(akBar, this);
 
-	m_playerHealth = GameUI::CreateMenuItem("", FONT, HEALTH_COUNT_SIZE, this, HEALTH_COUNT_OFFSET);
-	m_playerAmmo = GameUI::CreateMenuItem("", FONT, AMMO_COUNT_SIZE, this, AMMO_COUNT_OFFSET);
+	m_healthBar = GameUI::CreateSprite(HEALTH_BAR_IMG, this, HEALTH_BAR_OFFSET);
+	m_playerHealth = GameUI::CreateTextItem("", FONT, HEALTH_COUNT_SIZE, this, HEALTH_COUNT_OFFSET);
+	m_fadeSprite = GameUI::CreateSprite(FADE_SPRITE_IMG, this, Vec2::ANCHOR_MIDDLE);
+	m_pauseMenu = GameUI::CreateSprite(PAUSE_MENU_IMG, this, Vec2::ANCHOR_MIDDLE);
+	m_restartButton = GameUI::CreateTextItem("Restart", FONT, PAUSE_MENU_ITEMS_SIZE, m_pauseMenu, Vec2::ANCHOR_MIDDLE);
+	m_menuButton = GameUI::CreateTextItem("Menu", FONT, PAUSE_MENU_ITEMS_SIZE, m_pauseMenu, Vec2::ANCHOR_MIDDLE);
 
-	m_pistolBar = std::make_shared<UILayer::WeaponBar>(pistolBar, m_playerAmmo);
-	m_shootgunBar = std::make_shared<UILayer::WeaponBar>(shootgunBar, m_playerAmmo);
-	m_akBar = std::make_shared<UILayer::WeaponBar>(akBar, m_playerAmmo);
+	auto winSize = Director::getInstance()->getWinSize();
+	m_fadeSprite->setContentSize(winSize);
+	m_fadeSprite->setOpacity(0);
+	m_pauseMenu->setPosition(Vec2(winSize / 2) + Vec2(0, winSize.height / 2));
+	m_pauseMenu->setOpacity(0);
+	m_restartButton->setOpacity(0);
+	m_menuButton->setOpacity(0);
 }
 void CUILayer::InitListeners()
 {
@@ -126,18 +143,7 @@ void CUILayer::onTouchesMoved(const std::vector<Touch*> &touches, Event* event)
 void CUILayer::onTouchesEnded(const std::vector<Touch*> &touches, Event* event)
 {
 	(void)event;
-	for (auto touch : touches)
-	{
-		const Vec2 &point = touch->getLocation();
-
-		bool isPause = m_buttonPause->getBoundingBox().containsPoint(point);
-		if (isPause)
-		{
-			Pause();
-		}
-
-		DeleteTouch(touch);
-	}
+	(void)touches;
 }
 void CUILayer::DeleteTouch(Touch *touch)
 {
@@ -149,56 +155,48 @@ void CUILayer::update(float delta)
 	CheckAlwaysTouchButtons();
 	HightlightButtons();
 }
-void CUILayer::CheckSingleTouchButtons(const std::vector<Touch*> &touches)
+void CUILayer::CheckSingleTouchButtons(const vector<Touch*> &touches)
 {
-	for (auto touch : touches)
+	if (m_isPause)
 	{
-		const Vec2 &point = touch->getLocation();
-		bool isJump = m_buttonJump->getBoundingBox().containsPoint(point);
-		bool isReload = m_buttonReload->getBoundingBox().containsPoint(point);
-
-		if (isJump)
-		{
-			m_playerController->Jump();
-		}
-		if (isReload)
-		{
-			m_playerController->Reload();
-		}
+		return;
 	}
+
+	auto jump = [&]() {m_playerController->Jump(); };
+	auto reload = [&]() {m_playerController->SwitchWeapon(); };
+
+	do_if_touch(m_buttonJump, touches, jump);
+	do_if_touch(m_buttonReload, touches, reload);
+	do_if_touch(m_buttonPause, touches, CC_CALLBACK_0(CUILayer::Pause, this));
 }
 void CUILayer::CheckAlwaysTouchButtons()
 {
-	const Rect &leftBox = m_buttonLeft->getBoundingBox();
-	const Rect &rightBox = m_buttonRight->getBoundingBox();
-	const Rect &fireBox = m_buttonFire->getBoundingBox();
-
-	for (auto touch : m_touches)
+	if (m_isPause)
 	{
-		const Vec2 &point = touch->getLocation();
-
-		if (leftBox.containsPoint(point))
-		{
-			m_playerController->MoveLeft();
-		}
-		if (rightBox.containsPoint(point))
-		{
-			m_playerController->MoveRight();
-		}
-		if (fireBox.containsPoint(point))
-		{
-			m_playerController->Fire();
-		}
+		return;
 	}
+
+	auto moveLeft = [&]() {m_playerController->MoveLeft(); };
+	auto moveRight = [&]() {m_playerController->MoveRight(); };
+	auto moveFire = [&]() {m_playerController->Fire(); };
+
+	do_if_touch(m_buttonLeft, m_touches, moveLeft);
+	do_if_touch(m_buttonRight, m_touches, moveRight);
+	do_if_touch(m_buttonFire, m_touches, moveFire);
 }
 void CUILayer::HightlightButtons()
 {
+	if (m_isPause)
+	{
+		return;
+	}
+
 	for (auto button : m_buttons)
 	{
 		button->setOpacity(UNTOUCH_OPACITY);
 	}
 
-	auto hightlight_if_touch = [&](RefPtr<Sprite> &button, Vec2 point) {
+	auto hightlight_if_touch = [&](RefPtr<Sprite> &button, const Vec2 &point) {
 		if (button->getBoundingBox().containsPoint(point))
 		{
 			button->setOpacity(255);
@@ -233,10 +231,30 @@ void CUILayer::Pause()
 	m_isPause = !m_isPause;
 	onPause(m_isPause);
 
-	// open-close pause menu
+	const Vec2 winCenter = Director::getInstance()->getWinSize() / 2;
+	const Vec2 menuPos = (m_isPause) ? winCenter : winCenter + Vec2(0, winCenter.y);
+	auto openAction = MoveTo::create(PAUSE_FADE_TIME, menuPos);
+	ActionEase* openActionWithEase = EaseIn::create(openAction, PAUSE_EASE_RATE);
+	FadeTo* fade = FadeOut::create(PAUSE_FADE_TIME);
+
+	if (m_isPause)
+	{
+		fade = FadeIn::create(PAUSE_FADE_TIME);
+		openActionWithEase = EaseOut::create(openAction, PAUSE_EASE_RATE);
+	}
+
+	m_pauseMenu->stopAllActions();
+	m_pauseMenu->runAction(openActionWithEase);
+	m_pauseMenu->runAction(fade->clone());
+	m_restartButton->runAction(fade->clone());
+	m_menuButton->runAction(fade->clone());
+	m_fadeSprite->runAction(fade->clone());
+	std::for_each(m_buttons.begin(), m_buttons.end(), [&](GameSprite &button) {
+		button->runAction(fade->clone());
+	});
 }
 
-cocos2d::RefPtr<cocos2d::Label> CUILayer::GetPlayerHealthBar()
+GameText CUILayer::GetPlayerHealthBar()
 {
 	return m_playerHealth;
 }

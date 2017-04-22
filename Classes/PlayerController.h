@@ -32,7 +32,7 @@ public:
 	void MoveRight();
 	void Jump();
 	void Fire();
-	void Reload();
+	void SwitchWeapon();
 
 private:
 	bool m_pressedJump = false;

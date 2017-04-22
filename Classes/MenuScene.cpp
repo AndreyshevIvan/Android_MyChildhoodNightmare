@@ -69,9 +69,9 @@ void MenuScene::InitElements()
 	GameUI::CreateSprite(GAME_NAME_IMG, this, GAME_NAME_OFFSET);
 	GameUI::CreateSprite(LEAVE_BACK, this, EXIT_BUTTON_OFFSET);
 
-	m_startButton = GameUI::CreateMenuItem("Start", FONT, START_BUTTON_FONT_SIZE, this, START_BUTTON_OFFSET);
-	m_levelsButton = GameUI::CreateMenuItem("Difficult", FONT, START_BUTTON_FONT_SIZE, this, LEVELS_BUTTON_OFFSET);
-	m_exitButton = GameUI::CreateMenuItem("Leave", FONT, EXIT_FONT_SIZE, this, EXIT_BUTTON_OFFSET);
+	m_startButton = GameUI::CreateTextItem("Start", FONT, START_BUTTON_FONT_SIZE, this, START_BUTTON_OFFSET);
+	m_levelsButton = GameUI::CreateTextItem("Difficult", FONT, START_BUTTON_FONT_SIZE, this, LEVELS_BUTTON_OFFSET);
+	m_exitButton = GameUI::CreateTextItem("Leave", FONT, EXIT_FONT_SIZE, this, EXIT_BUTTON_OFFSET);
 
 	auto winSize = Director::getInstance()->getWinSize();
 	m_fadeSprite = GameUI::CreateSprite(FADE_SPRITE_IMG, this, Vec2::ANCHOR_MIDDLE);
@@ -107,7 +107,6 @@ bool MenuScene::onTouchBegan(Touch* touch, Event* event)
 		{
 			return;
 		}
-
 		auto highLight = ScaleTo::create(SCENE_TRANSITION_TIME, BUTTONS_SCALE_FACTOR);
 		auto onTouchEvent = Sequence::create(CallFunc::create(onTouch), nullptr);
 		button->runAction(highLight);

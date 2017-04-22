@@ -1,17 +1,22 @@
 #include "cocos_custom.h"
 #include "PlayerController.h"
+#include "GameUI.h"
 #include <string>
 
 typedef std::function<void(bool isPause)> onPauseEvent;
 
 namespace UILayer
 {
+	const char FONT[] = "fonts/nightmarealley.ttf";
+	const cocos2d::Vec2 AMMO_COUNT_OFFSET = cocos2d::Vec2(0.131f, 0.68f);
+	const int AMMO_COUNT_SIZE = 40;
+
 	struct WeaponBar
 	{
-		WeaponBar(GameSprite icon, GameText ammo)
-			: m_icon(icon)
-			, m_ammoCount(ammo)
+		WeaponBar(GameSprite icon, cocos2d::Node* parent)
 		{
+			m_icon = icon;
+			m_ammoCount = GameUI::CreateTextItem("", FONT, AMMO_COUNT_SIZE, parent, AMMO_COUNT_OFFSET);
 			SetVisible(false);
 		}
 		void SetVisible(bool isVisible)
@@ -97,8 +102,13 @@ private:
 	GameSprite m_buttonLeft;
 	GameSprite m_buttonRight;
 	GameSprite m_buttonPause;
+	GameSprite m_pauseMenu;
+	GameSprite m_fadeSprite;
+
 	GameText m_playerHealth;
 	GameText m_playerAmmo;
+	GameText m_restartButton;
+	GameText m_menuButton;
 
 	cocos2d::EventListenerTouchAllAtOnce* m_touchListener;
 	std::vector<cocos2d::Touch*> m_touches;

@@ -4,19 +4,7 @@ USING_NS_CC;
 
 namespace
 {
-	std::string HealthToStr(int health)
-	{
-		std::string healthStr = "0";
 
-		if (health > 0)
-		{
-			std::stringstream sstr;
-			sstr << health;
-			healthStr = sstr.str();
-		}
-
-		return healthStr;
-	}
 }
 
 void CLivingBody::InitLivingBody(int maxHealth)
@@ -41,8 +29,7 @@ void CLivingBody::UpdateHealthBar()
 {
 	if (m_healthBar)
 	{
-		std::string health = HealthToStr(m_health);
-
+		std::string health = (m_health > 0) ? std::to_string(m_health) : "0";
 		m_healthBar->setString(health);
 	}
 }

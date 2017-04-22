@@ -56,7 +56,7 @@ void CPlayerController::Fire()
 {
 	m_isFire = true;
 }
-void CPlayerController::Reload()
+void CPlayerController::SwitchWeapon()
 {
 	m_isReload = true;
 }

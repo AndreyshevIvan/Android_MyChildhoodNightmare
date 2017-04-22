@@ -13,33 +13,30 @@ public:
 		auto winSize = Director::getInstance()->getWinSize();
 		GameSprite button = make_node<Sprite>();
 		button->initWithFile(pathToFile);
-		SetRelativePosOnWindow(button, offset);
-		AddChild(parent, button);
+		parent->addChild(button);
+		SetRelativePosOnParent(button, offset, parent);
 		return button;
 	}
-	static GameText CreateMenuItem(const string &innerText, const string &font, int fontSize, Node* parent, Vec2 offset)
+	static GameText CreateTextItem(const string &innerText, const string &font, int fontSize, Node* parent, Vec2 offset)
 	{
 		auto winSize = Director::getInstance()->getWinSize();
 		GameText text = make_node<Label>();
 		text->initWithTTF(innerText, font, fontSize);
 		text->setColor(Color3B::WHITE);
-		SetRelativePosOnWindow(text, offset);
-		AddChild(parent, text);
+		parent->addChild(text);
+		SetRelativePosOnParent(text, offset, parent);
 		return text;
 	}
 private:
-	static void AddChild(Node* parent, Node* child)
+	static void GameUI::SetRelativePosOnParent(Node* element, const Vec2 &offset, Node* parent)
 	{
-		if (parent && child)
+		if (!element || !parent)
 		{
-			parent->addChild(child);
+			return;
 		}
-	}
-	template<class T>
-	static void GameUI::SetRelativePosOnWindow(RefPtr<T> element, const Vec2 &offset)
-	{
-		auto winSize = Director::getInstance()->getVisibleSize();
-		const Vec2 &position = Vec2(winSize.width * offset.x, winSize.height * offset.y);
+
+		auto parentSize = parent->getContentSize();
+		const Vec2 &position = Vec2(parentSize.width * offset.x, parentSize.height * offset.y);
 		element->setPosition(position);
 	}
 };
