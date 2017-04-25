@@ -25,6 +25,8 @@ void AppDelegate::initGLContextAttrs()
 
 static int register_all_packages()
 {
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(TEXTURES);
+
 	return 0;
 }
 
@@ -49,7 +51,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	register_all_packages();
 
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(TEXTURES);
 	auto scene = MenuScene::createScene();
 	director->runWithScene(scene);
 

@@ -25,6 +25,7 @@ public:
 	void InitWeaponBars(UILayer::WeaponBar *pistolBar, UILayer::WeaponBar *shootgunBar, UILayer::WeaponBar *akBar);
 
 protected:
+	void InitAnims() override;
 	void PersonalUpdate(float delta) override;
 
 private:

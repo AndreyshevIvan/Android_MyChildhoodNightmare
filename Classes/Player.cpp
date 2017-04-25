@@ -8,12 +8,12 @@ using namespace UILayer;
 
 namespace
 {
-	const Size PLAYER_BODY_SIZE = Size(78, 108);
-
 	const int PLAYER_HEALTH = 100;
 	const float PLAYER_VELOCITY = 200;
 
-	const std::string PLAYER_IMG = "player.png";
+	const Size PLAYER_SIZE = Size(78, 108);
+	const string PLAYER_IMG = "player.png";
+	const string PLAYER_2_IMG = "player_2.png";
 }
 
 void CPlayer::Spawn(const Vec2 &spawnPos)
@@ -26,12 +26,13 @@ void CPlayer::Spawn(const Vec2 &spawnPos)
 
 void CPlayer::InitPlayer()
 {
+	InitAnims();
 	m_moveSpeed.x = PLAYER_VELOCITY;
-
-	m_puppetSprite = gameUI::CreateSprite(PLAYER_IMG, this, Vec2::ZERO);
-	setContentSize(m_puppetSprite->getContentSize());
+	m_puppetSprite = Sprite::create();
+	SetAnimation(m_animations.at(AnimType::JUMP));
+	setContentSize(PLAYER_SIZE);
+	addChild(m_puppetSprite);
 }
-
 void CPlayer::InitWeapons()
 {
 	m_pistol = CPistol::Create(this);
@@ -49,7 +50,6 @@ void CPlayer::InitWeapons()
 
 	m_currentWeapon = m_pistol;
 }
-
 void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, WeaponBar *akBar)
 {
 	m_weapons[Weapons::PISTOL].second = pistolBar;
@@ -59,6 +59,12 @@ void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, Weapo
 	pistolBar->SetInfinity(true);
 	m_currentWeaponBar = pistolBar;
 	UpdateWeaponBar();
+}
+void CPlayer::InitAnims()
+{
+	auto jump = make_pair(AnimType::JUMP, CAnimManager::CreateAnim(PLAYER_2_IMG, PLAYER_SIZE, 3));
+
+	m_animations.insert(jump);
 }
 
 void CPlayer::PersonalUpdate(float delta)
