@@ -1,7 +1,7 @@
 #include "DataManager.h"
 
 USING_NS_CC;
-using namespace DataKeys;
+using namespace gameData;
 
 void CDataController::SetDifficult(Difficult difficult)
 {

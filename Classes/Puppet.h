@@ -8,13 +8,13 @@
 
 namespace
 {
-	enum class AnimType
+	enum class PuppetAnimType
 	{
 		IDLE,
 		RUN,
 		JUMP,
-
-		PURSUITE,
+		DEMAGED,
+		KILL,
 	};
 
 	const float PUPPET_VELOCITY = 200.f;
@@ -50,12 +50,12 @@ private:
 	IPuppeteer *m_puppeteer = nullptr;
 
 protected:
-	virtual void InitAnims() {};
+	virtual void InitAnimations() {};
 	virtual void PersonalUpdate(float delta) {};
 	virtual void UpdateInterfaces() {};
 	virtual void Fire() {};
 
-	void SetAnimation(cocos2d::Animation* animation, bool isLoop = true);
+	void SetAnimation(AnimationPtr animation, bool isLoop = true);
 	bool IsNeedToSwitchWeapon();
 
 	cocos2d::Sprite *m_puppetSprite = nullptr;
@@ -70,7 +70,7 @@ protected:
 	JumpState m_jumpState;
 	bool m_isFire = false;
 	bool m_isJump = false;
-	std::map<AnimType, cocos2d::RefPtr<cocos2d::Animation>> m_animations;
+	std::map<PuppetAnimType, AnimationPtr> m_animations;
 };
 
 typedef cocos2d::RefPtr<CPuppet> CPuppetPtr;

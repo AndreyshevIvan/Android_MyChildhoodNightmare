@@ -16,7 +16,7 @@ namespace UILayer
 		WeaponBar(GameSprite icon, cocos2d::Node* parent)
 		{
 			m_icon = icon;
-			m_ammoCount = gameUI::CreateTextItem("", FONT, AMMO_COUNT_SIZE, parent, AMMO_COUNT_OFFSET);
+			m_ammoCount = gameUI::CreateText("", FONT, AMMO_COUNT_SIZE, parent, AMMO_COUNT_OFFSET);
 			SetVisible(false);
 		}
 		void SetVisible(bool isVisible)
@@ -107,7 +107,7 @@ private:
 	GameText m_playerAmmo;
 	GameText m_restartButton;
 	GameText m_menuButton;
-	GameText m_continueButton;
+	GameText m_resumeButton;
 
 	cocos2d::EventListenerTouchAllAtOnce* m_touchListener;
 	std::vector<cocos2d::Touch*> m_touches;

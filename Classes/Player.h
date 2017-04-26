@@ -21,15 +21,16 @@ typedef std::vector<std::pair<CWeapon*, UILayer::WeaponBar*>> WeaponsContainer;
 class CPlayer : public CPuppet
 {
 public:
+	void InitPlayer();
 	void Spawn(const cocos2d::Vec2 &spawnPos) override;
 	void InitWeaponBars(UILayer::WeaponBar *pistolBar, UILayer::WeaponBar *shootgunBar, UILayer::WeaponBar *akBar);
 
 protected:
-	void InitAnims() override;
+	void InitAnimations() override;
 	void PersonalUpdate(float delta) override;
 
 private:
-	void InitPlayer();
+	void InitBody();
 	void InitWeapons();
 
 	void Fire() override;

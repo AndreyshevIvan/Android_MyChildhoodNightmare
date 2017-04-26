@@ -1,10 +1,13 @@
 #include "GameScene.h"
+#include "DataManager.h"
 #include <iostream>
 
 USING_NS_CC;
 
-const int LAST_UPDATE_PRIORITY = 9999;
-const std::string FIRST_LEVEL_NAME = "tmx/level_1.tmx";
+namespace
+{
+	const int LAST_UPDATE_PRIORITY = 9999;
+}
 
 Scene* GameScene::createScene()
 {
@@ -25,26 +28,70 @@ bool GameScene::init()
 	}
 
 	m_winSize = Director::getInstance()->getVisibleSize();
+	const char* firstLevel = gameData::TEST_LEVEL_NAME;
 
-	StartGame();
+	CreateGameElements(firstLevel);
+	StartGame(firstLevel);
 
 	scheduleUpdateWithPriority(LAST_UPDATE_PRIORITY);
 
 	return true;
 }
-
-void GameScene::InitCamera(Camera* camera)
+void GameScene::InitCamera(cocos2d::Camera* camera)
 {
 	m_camera = camera;
+
+	UpdateCamera();
 }
 
-void GameScene::StartGame()
+void GameScene::CreateGameElements(const char* levelName)
 {
-	CreateLevel();
-	SpawnPlayer();
+	CreateLevel(levelName);
+	CreatePlayer();
+	CreateUI();
+}
+void GameScene::CreateLevel(const char* levelName)
+{
+	m_gameMap = make_node<CCustomMap>(levelName);
+	addChild(m_gameMap);
+}
+void GameScene::CreatePlayer()
+{
+	m_player = make_node<CPlayer>(m_gameMap);
+	m_player->InitPlayer();
+
+	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
+	m_playerPuppeteer->SetPuppet(m_player);
+	m_playerPuppeteer->SetController(new CPlayerController());
+
+	m_gameMap->AddPlayer(m_player);
+}
+void GameScene::CreateUI()
+{
+	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
+	m_UILayer->onPause = CC_CALLBACK_1(GameScene::PauseGame, this);
+
+	auto healthBar = m_UILayer->GetPlayerHealthBar();
+	auto pistolBar = m_UILayer->GetPistolWeaponBar();
+	auto shootgunBar = m_UILayer->GetShootgunWeaponBar();
+	auto akBar = m_UILayer->GetAkWeaponBar();
+
+	m_player->SetHealthBar(healthBar);
+	m_player->InitWeaponBars(pistolBar, shootgunBar, akBar);
+
+	addChild(m_UILayer);
+}
+
+void GameScene::StartGame(const char* newLevelName)
+{
+	if (m_gameMap->GetMapName() != newLevelName)
+	{
+		CreateLevel(newLevelName);
+	}
+
+	m_player->Spawn(m_gameMap->GetHeroWorldPosition());
 	SpawnEnemies();
 	SpawnItems();
-	CreateUI();
 }
 void GameScene::PauseGame(bool isPause)
 {
@@ -56,22 +103,6 @@ void GameScene::ReturnToMenu()
 
 }
 
-void GameScene::CreateLevel()
-{
-	m_gameMap = make_node<CCustomMap>(FIRST_LEVEL_NAME);
-	addChild(m_gameMap);
-}
-void GameScene::SpawnPlayer()
-{
-	m_player = make_node<CPlayer>(m_gameMap);
-	m_player->Spawn(m_gameMap->GetHeroWorldPosition());
-
-	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
-	m_playerPuppeteer->SetPuppet(m_player);
-	m_playerPuppeteer->SetController(new CPlayerController());
-
-	m_gameMap->AddPlayer(m_player);
-}
 void GameScene::SpawnEnemies()
 {
 	auto positions = m_gameMap->GetEnemyWorldPositions();
@@ -90,22 +121,6 @@ void GameScene::SpawnEnemies()
 }
 void GameScene::SpawnItems()
 {
-
-}
-void GameScene::CreateUI()
-{
-	m_UILayer = CUILayer::create(m_playerPuppeteer->GetController());
-	m_UILayer->onPause = CC_CALLBACK_1(GameScene::PauseGame, this);
-
-	auto healthBar = m_UILayer->GetPlayerHealthBar();
-	auto pistolBar = m_UILayer->GetPistolWeaponBar();
-	auto shootgunBar = m_UILayer->GetShootgunWeaponBar();
-	auto akBar = m_UILayer->GetAkWeaponBar();
-
-	m_player->SetHealthBar(healthBar);
-	m_player->InitWeaponBars(pistolBar, shootgunBar, akBar);
-
-	addChild(m_UILayer);
 }
 
 void GameScene::update(float delta)

@@ -19,13 +19,16 @@ public:
 
 private:
 	void InitCamera(cocos2d::Camera* camera);
-	void StartGame();
+
+	void StartGame(const char* newLevelName);
 	void PauseGame(bool isPause);
 	void ReturnToMenu();
 
-	void CreateLevel();
+	void CreateGameElements(const char* levelName);
+	void CreateLevel(const char* levelName);
+	void CreatePlayer();
 	void CreateUI();
-	void SpawnPlayer();
+
 	void SpawnEnemies();
 	void SpawnItems();
 

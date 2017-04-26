@@ -8,10 +8,12 @@ namespace
 	const float FRAME_DELAY = 0.1f;
 }
 
+typedef cocos2d::RefPtr<cocos2d::Animation> AnimationPtr;
+
 class CAnimManager : cocos2d::Object
 {
 public:
-	static cocos2d::RefPtr<cocos2d::Animation> CreateAnim(
+	static AnimationPtr CreateAnim(
 		const std::string &spriteName,
 		const cocos2d::Size &frameSize,
 		size_t framesCount,

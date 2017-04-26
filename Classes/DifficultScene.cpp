@@ -47,9 +47,9 @@ void DifficultScene::InitElements()
 	CreateSprite(TITLE_IMG, this, DIFFICULT_TITLE_OFFSET);
 
 	m_buttons = {
-		m_easyButton = CreateTextItem("Easy", BASE_FONT, MENU_LARGE_FONT_SIZE, this, EASY_ITEM_OFFSET),
-		m_normalButton = CreateTextItem("Normal", BASE_FONT, MENU_LARGE_FONT_SIZE, this, NORMAL_ITEM_OFFSET),
-		m_hardButton = CreateTextItem("Hard", BASE_FONT, MENU_LARGE_FONT_SIZE, this, HARD_ITEM_OFFSET)
+		m_easyButton = CreateText("Easy", FONT, MENU_LARGE_FONT_SIZE, this, EASY_ITEM_OFFSET),
+		m_normalButton = CreateText("Normal", FONT, MENU_LARGE_FONT_SIZE, this, NORMAL_ITEM_OFFSET),
+		m_hardButton = CreateText("Hard", FONT, MENU_LARGE_FONT_SIZE, this, HARD_ITEM_OFFSET)
 	};
 
 }
@@ -85,9 +85,9 @@ bool DifficultScene::onTouchBegan(Touch* touch, Event* event)
 		SetMenuScene();
 	};
 
-	DoIfTouch(m_easyButton->getBoundingBox(), { touch }, setEasy);
-	DoIfTouch(m_normalButton->getBoundingBox(), { touch }, setNormal);
-	DoIfTouch(m_hardButton->getBoundingBox(), { touch }, setHard);
+	DoIfTouch(m_easyButton, { touch }, setEasy);
+	DoIfTouch(m_normalButton, { touch }, setNormal);
+	DoIfTouch(m_hardButton, { touch }, setHard);
 
 	return true;
 }

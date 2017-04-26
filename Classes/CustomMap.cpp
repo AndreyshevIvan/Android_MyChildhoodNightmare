@@ -2,6 +2,7 @@
 #include <iostream>
 
 USING_NS_CC;
+using namespace std;
 
 namespace
 {
@@ -10,6 +11,15 @@ namespace
 	const char UNITS_LAYER_NAME[] = "units_positions";
 	const char PLAYER_SPAWN[] = "player_spawn";
 	const char ENEMY_SPAWN[] = "enemy_shadow_spawn";
+}
+
+template <typename T,class TClass>
+void transfer_elements(vector<TClass> &dstVect, const vector<TClass> &srcVect, T && transferEvent)
+{
+	std::for_each(srcVect.begin(), srcVect.end(), [&](TClass element) {
+		transferEvent(element);
+		dstVect.push_back(element);
+	});
 }
 
 template <class TContainer, class TPredicate>
@@ -25,8 +35,14 @@ void erase_if(TContainer &container, TPredicate && predicate)
 
 bool CCustomMap::init(const std::string &tmxFile)
 {
+	m_mapName = tmxFile;
 	scheduleUpdate();
-	return initWithTMXFile(tmxFile) && LoadObstacles() && LoadUnits();
+	bool isLoad = (
+		initWithTMXFile(tmxFile) &&
+		LoadObstacles() &&
+		LoadUnits());
+
+	return isLoad;
 }
 bool CCustomMap::LoadObstacles()
 {
@@ -70,19 +86,6 @@ bool CCustomMap::LoadUnits()
 	return true;
 }
 
-template <class T>
-void CCustomMap::TransferFromVect(std::vector<T> &destVect, std::vector<T> &sourceVect, Node* parent)
-{
-	for (auto element : sourceVect)
-	{
-		destVect.push_back(element);
-		if (parent)
-		{
-			parent->addChild(element);
-		}
-	}
-}
-
 void CCustomMap::update(float delta)
 {
 	UpdateBullets();
@@ -115,6 +118,10 @@ bool CCustomMap::CanStandOn(const Rect &body)
 	return !std::any_of(m_obstacles.begin(), m_obstacles.end(), isIntersects);
 }
 
+std::string CCustomMap::GetMapName() const
+{
+	return m_mapName;
+}
 Vec2 CCustomMap::GetHeroWorldPosition() const
 {
 	return convertToWorldSpace(m_heroPosition);
@@ -131,7 +138,11 @@ std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
 
 void CCustomMap::AddPlayerBullets(Bullets playerBullets)
 {
-	TransferFromVect(m_playerBullets, playerBullets, this);
+	auto add_to_child = [&](Node* child) {
+		addChild(child);
+	};
+
+	transfer_elements(m_playerBullets, playerBullets, add_to_child);
 }
 void CCustomMap::AddEnemy(CPuppet* enemy)
 {

@@ -15,7 +15,6 @@ namespace
 	const char NAME_BACK[] = "name_back.png";
 	const char ITEMS_BACK[] = "items_back.png";
 	const char LEAVE_BACK[] = "leave_back.png";
-	const char FONT[] = "fonts/nightmarealley.ttf";
 
 	const float FONT_HIGHTLIGHT_SCALE = 1.2f;
 
@@ -64,9 +63,9 @@ void MenuScene::InitElements()
 	CreateSprite(GAME_NAME_IMG, this, GAME_NAME_OFFSET);
 	CreateSprite(LEAVE_BACK, this, EXIT_BUTTON_OFFSET);
 
-	m_startButton = CreateTextItem("Start", FONT, MENU_LARGE_FONT_SIZE, this, START_BUTTON_OFFSET);
-	m_levelsButton = CreateTextItem("Difficult", FONT, MENU_LARGE_FONT_SIZE, this, LEVELS_BUTTON_OFFSET);
-	m_exitButton = CreateTextItem("Leave", FONT, MENU_SMALL_FONT_SIZE, this, EXIT_BUTTON_OFFSET);
+	m_startButton = CreateText("Start", FONT, MENU_LARGE_FONT_SIZE, this, START_BUTTON_OFFSET);
+	m_levelsButton = CreateText("Difficult", FONT, MENU_LARGE_FONT_SIZE, this, LEVELS_BUTTON_OFFSET);
+	m_exitButton = CreateText("Leave", FONT, MENU_SMALL_FONT_SIZE, this, EXIT_BUTTON_OFFSET);
 
 	auto winSize = Director::getInstance()->getWinSize();
 	m_fadeSprite = CreateSprite(FADE_SPRITE_IMG, this, Vec2::ANCHOR_MIDDLE);
@@ -108,9 +107,9 @@ bool MenuScene::onTouchBegan(Touch* touch, Event* event)
 		CloseApp();
 	};
 
-	DoIfTouch(m_startButton->getBoundingBox(), { touch }, start);
-	DoIfTouch(m_levelsButton ->getBoundingBox(), { touch }, chooseLevel);
-	DoIfTouch(m_exitButton->getBoundingBox(), { touch }, exitGame);
+	DoIfTouch(m_startButton, { touch }, start);
+	DoIfTouch(m_levelsButton, { touch }, chooseLevel);
+	DoIfTouch(m_exitButton, { touch }, exitGame);
 
 	return true;
 }

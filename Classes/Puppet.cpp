@@ -142,7 +142,7 @@ bool CPuppet::IsNeedToSwitchWeapon()
 	return m_puppeteer->GetSwitchWeaponState();
 }
 
-void CPuppet::SetAnimation(Animation* animation, bool isLoop)
+void CPuppet::SetAnimation(AnimationPtr animation, bool isLoop)
 {
 	ActionInterval* runningAnimation = Animate::create(animation);
 	if (isLoop)

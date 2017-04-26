@@ -16,31 +16,31 @@ namespace
 	const float BULLET_DISTANCE = 400;
 }
 
-RefPtr<CBullet> CBullet::Create()
+cocos2d::RefPtr<CBullet> CBullet::Create()
 {
-	RefPtr<CBullet> bullet = make_node<CBullet>();
+	cocos2d::RefPtr<CBullet> bullet = make_node<CBullet>();
 	bullet->setVisible(false);
 	return bullet;
 }
 
-RefPtr<CBullet> CBullet::CreatePistolBullet()
+cocos2d::RefPtr<CBullet> CBullet::CreatePistolBullet()
 {
-	RefPtr<CBullet> bullet = CBullet::Create();
+	cocos2d::RefPtr<CBullet> bullet = CBullet::Create();
 	bullet->InitBody(PISTOL_BULLET_IMG);
 	bullet->SetSpeed(PISTOL_BULLET_SPEED);
 
 	return bullet;
 }
-RefPtr<CBullet> CBullet::CreateShootgunBullet()
+cocos2d::RefPtr<CBullet> CBullet::CreateShootgunBullet()
 {
-	RefPtr<CBullet> bullet = CBullet::Create();
+	cocos2d::RefPtr<CBullet> bullet = CBullet::Create();
 	bullet->InitBody(SHOOTGUN_BULLET_IMG);
 	bullet->SetSpeed(SHOOTGUN_BULLET_SPEED);
 	return bullet;
 }
-RefPtr<CBullet> CBullet::CreateAKBullet()
+cocos2d::RefPtr<CBullet> CBullet::CreateAKBullet()
 {
-	RefPtr<CBullet> bullet = CBullet::Create();
+	cocos2d::RefPtr<CBullet> bullet = CBullet::Create();
 	bullet->InitBody(AK_BULLET_IMG);
 	bullet->SetSpeed(AK_BULLET_SPEED);
 	return bullet;
@@ -54,7 +54,7 @@ void CBullet::InitBody(const std::string &spritePath)
 	addChild(m_body);
 }
 
-RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir, int demage)
+cocos2d::RefPtr<CBullet> CBullet::CloneAndStart(const Vec2 &position, Direction dir, int demage)
 {
 	auto newBullet = CBullet::Create();
 	newBullet->m_body = make_node<Sprite>();

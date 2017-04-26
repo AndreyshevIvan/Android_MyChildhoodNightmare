@@ -4,13 +4,13 @@
 USING_NS_CC;
 using namespace std;
 
-cocos2d::RefPtr<Animation> CAnimManager::CreateAnim(
+AnimationPtr CAnimManager::CreateAnim(
 	const string &spriteName,
 	const Size &frameSize,
 	size_t framesCount,
 	float frameDelay)
 {
-	cocos2d::RefPtr<Animation> animation(new (std::nothrow) Animation);
+	AnimationPtr animation(new (std::nothrow) Animation);
 	if (!animation)
 	{
 		CC_SAFE_RELEASE(animation);
@@ -18,10 +18,10 @@ cocos2d::RefPtr<Animation> CAnimManager::CreateAnim(
 	}
 
 	Vector<SpriteFrame*> animationFrames(framesCount);
-	auto cache = SpriteFrameCache::getInstance();
-	auto texture = cache->getSpriteFrameByName(spriteName)->getTexture();
-	auto spriteRect = cache->getSpriteFrameByName(spriteName)->getRect();
-	Rect frameRect(spriteRect.origin.x, spriteRect.origin.y, frameSize.width, frameSize.height);
+	auto sprite = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteName);
+	auto texture = sprite->getTexture();
+	auto spriteRect = sprite->getRect();
+	Rect frameRect(spriteRect.origin, frameSize);
 
 	for (size_t i = 0; i < framesCount; i++)
 	{

@@ -12,24 +12,27 @@ namespace
 	const float PLAYER_VELOCITY = 200;
 
 	const Size PLAYER_SIZE = Size(78, 108);
-	const string PLAYER_IMG = "player.png";
-	const string PLAYER_2_IMG = "player_2.png";
-}
-
-void CPlayer::Spawn(const Vec2 &spawnPos)
-{
-	InitLivingBody(PLAYER_HEALTH);
-	InitPlayer();
-	InitWeapons();
-	setPosition(spawnPos);
+	const string PLAYER_JUMP = "player_2.png";
 }
 
 void CPlayer::InitPlayer()
 {
-	InitAnims();
+	InitLivingBody(PLAYER_HEALTH);
+	InitAnimations();
+	InitBody();
+	InitWeapons();
+}
+
+void CPlayer::Spawn(const Vec2 &spawnPos)
+{
+	setPosition(spawnPos);
+}
+
+void CPlayer::InitBody()
+{
 	m_moveSpeed.x = PLAYER_VELOCITY;
 	m_puppetSprite = Sprite::create();
-	SetAnimation(m_animations.at(AnimType::JUMP));
+	SetAnimation(m_animations.at(PuppetAnimType::JUMP));
 	setContentSize(PLAYER_SIZE);
 	addChild(m_puppetSprite);
 }
@@ -60,11 +63,11 @@ void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, Weapo
 	m_currentWeaponBar = pistolBar;
 	UpdateWeaponBar();
 }
-void CPlayer::InitAnims()
+void CPlayer::InitAnimations()
 {
-	auto jump = make_pair(AnimType::JUMP, CAnimManager::CreateAnim(PLAYER_2_IMG, PLAYER_SIZE, 3));
+	auto jumpAnim = CAnimManager::CreateAnim(PLAYER_JUMP, PLAYER_SIZE, 3);
 
-	m_animations.insert(jump);
+	m_animations.insert(make_pair(PuppetAnimType::JUMP, jumpAnim));
 }
 
 void CPlayer::PersonalUpdate(float delta)
