@@ -105,7 +105,7 @@ void GameScene::ReturnToMenu()
 
 void GameScene::SpawnEnemies()
 {
-	auto positions = m_gameMap->GetEnemyWorldPositions();
+	auto positions = m_gameMap->GetUnitsWorldPositions(GameUnit::SHADOW);
 
 	for (auto pos : positions)
 	{

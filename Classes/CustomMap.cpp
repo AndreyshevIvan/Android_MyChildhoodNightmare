@@ -8,7 +8,7 @@ namespace
 {
 	const char OBSTACLES_LAYER_NAME[] = "obstacles";
 
-	const char UNITS_LAYER_NAME[] = "units_positions";
+	const char SHADOW_LAYER_NAME[] = "shadow_spawns";
 	const char PLAYER_SPAWN[] = "player_spawn";
 	const char ENEMY_SPAWN[] = "enemy_shadow_spawn";
 }
@@ -62,28 +62,43 @@ bool CCustomMap::LoadObstacles()
 }
 bool CCustomMap::LoadUnits()
 {
-	TMXObjectGroup* group = TMXTiledMap::getObjectGroup(UNITS_LAYER_NAME);
+	TMXObjectGroup* playerLayer = TMXTiledMap::getObjectGroup(PLAYER_SPAWN);
+	TMXObjectGroup* shadowLayer = TMXTiledMap::getObjectGroup(SHADOW_LAYER_NAME);
+
 	try
 	{
-		for (Value object : group->getObjects())
-		{
-			ValueMap map = object.asValueMap();
-			Rect rect = AsRect(map);
-			if (ENEMY_SPAWN == map.at("type").asString())
-			{
-				m_enemyPositions.push_back(rect.origin);
-			}
-			if (PLAYER_SPAWN == map.at("type").asString())
-			{
-				m_heroPosition = rect.origin;
-			}
-		}
+		m_heroSpawnCoord = LoadSingleCoordinate(playerLayer);
+		m_shadowCoords = LoadAllCoordinates(shadowLayer);
 	}
 	catch (const std::exception &)
 	{
 		return false;
 	}
+
+	m_unitsCoords.insert(std::make_pair(GameUnit::SHADOW, m_shadowCoords));
+
 	return true;
+}
+std::vector<cocos2d::Vec2> CCustomMap::LoadAllCoordinates(TMXObjectGroup* group)
+{
+	std::vector<cocos2d::Vec2> coordinates;
+
+	for (Value object : group->getObjects())
+	{
+		ValueMap map = object.asValueMap();
+		Rect rect = AsRect(map);
+		coordinates.push_back(rect.origin);
+	}
+
+	return coordinates;
+}
+cocos2d::Vec2 CCustomMap::LoadSingleCoordinate(TMXObjectGroup* group) const
+{
+	auto objects = group->getObjects();
+	const ValueMap map = objects.begin()->asValueMap();
+	const Rect rect = AsRect(map);
+
+	return rect.origin;
 }
 
 void CCustomMap::update(float delta)
@@ -124,11 +139,16 @@ std::string CCustomMap::GetMapName() const
 }
 Vec2 CCustomMap::GetHeroWorldPosition() const
 {
-	return convertToWorldSpace(m_heroPosition);
+	return convertToWorldSpace(m_heroSpawnCoord);
 }
-std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
+std::vector<Vec2> CCustomMap::GetUnitsWorldPositions(GameUnit unitType) const
 {
-	std::vector<Vec2> positions(m_enemyPositions);
+	if (unitType == GameUnit::PLAYER)
+	{
+		return { GetHeroWorldPosition() };
+	}
+
+	std::vector<Vec2> positions = m_unitsCoords.at(unitType);
 	for (Vec2 & pos : positions)
 	{
 		pos = convertToWorldSpace(pos);
