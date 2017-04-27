@@ -8,6 +8,7 @@ namespace
 {
 	const char OBSTACLES_LAYER_NAME[] = "obstacles";
 
+	const char LEVELS_DOORS_LAYER[] = "level_doors";
 	const char SHADOW_LAYER_NAME[] = "shadow_spawns";
 	const char PLAYER_SPAWN[] = "player_spawn";
 	const char ENEMY_SPAWN[] = "enemy_shadow_spawn";
@@ -35,7 +36,7 @@ void erase_if(TContainer &container, TPredicate && predicate)
 
 bool CCustomMap::init(const std::string &tmxFile)
 {
-	m_mapName = tmxFile;
+	m_name = tmxFile;
 	scheduleUpdate();
 	bool isLoad = (
 		initWithTMXFile(tmxFile) &&
@@ -79,9 +80,14 @@ bool CCustomMap::LoadUnits()
 
 	return true;
 }
-std::vector<cocos2d::Vec2> CCustomMap::LoadAllCoordinates(TMXObjectGroup* group)
+Coordinates CCustomMap::LoadAllCoordinates(TMXObjectGroup* group)
 {
-	std::vector<cocos2d::Vec2> coordinates;
+	if (!group)
+	{
+		return {};
+	}
+
+	Coordinates coordinates;
 
 	for (Value object : group->getObjects())
 	{
@@ -94,6 +100,11 @@ std::vector<cocos2d::Vec2> CCustomMap::LoadAllCoordinates(TMXObjectGroup* group)
 }
 cocos2d::Vec2 CCustomMap::LoadSingleCoordinate(TMXObjectGroup* group) const
 {
+	if (!group)
+	{
+		return Vec2::ZERO;
+	}
+
 	auto objects = group->getObjects();
 	const ValueMap map = objects.begin()->asValueMap();
 	const Rect rect = AsRect(map);
@@ -117,7 +128,7 @@ void CCustomMap::UpdateBullets()
 		return isDead;
 	};
 
-	auto updateBullets = [&](std::vector<RefPtr<CBullet>> &bullets) {
+	auto updateBullets = [&](CBulletsPack &bullets) {
 		erase_if(bullets, bulletErasePredicate);
 	};
 
@@ -135,13 +146,13 @@ bool CCustomMap::CanStandOn(const Rect &body)
 
 std::string CCustomMap::GetMapName() const
 {
-	return m_mapName;
+	return m_name;
 }
 Vec2 CCustomMap::GetHeroWorldPosition() const
 {
 	return convertToWorldSpace(m_heroSpawnCoord);
 }
-std::vector<Vec2> CCustomMap::GetUnitsWorldPositions(GameUnit unitType) const
+Coordinates CCustomMap::GetUnitsWorldPositions(GameUnit unitType) const
 {
 	if (unitType == GameUnit::PLAYER)
 	{
@@ -156,7 +167,7 @@ std::vector<Vec2> CCustomMap::GetUnitsWorldPositions(GameUnit unitType) const
 	return positions;
 }
 
-void CCustomMap::AddPlayerBullets(Bullets playerBullets)
+void CCustomMap::AddPlayerBullets(CBulletsPack playerBullets)
 {
 	auto add_to_child = [&](Node* child) {
 		addChild(child);
@@ -164,7 +175,7 @@ void CCustomMap::AddPlayerBullets(Bullets playerBullets)
 
 	transfer_elements(m_playerBullets, playerBullets, add_to_child);
 }
-void CCustomMap::AddEnemy(CPuppet* enemy)
+void CCustomMap::AddEnemy(CPuppetPtr enemy)
 {
 	if (!enemy)
 	{
@@ -175,7 +186,7 @@ void CCustomMap::AddEnemy(CPuppet* enemy)
 	addChild(enemy);
 }
 
-void CCustomMap::AddPlayer(CPuppet* player)
+void CCustomMap::AddPlayer(CPuppetPtr player)
 {
 	addChild(player);
 }

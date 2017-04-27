@@ -11,7 +11,7 @@ namespace
 	const int PLAYER_HEALTH = 100;
 	const float PLAYER_VELOCITY = 200;
 
-	const Size PLAYER_SIZE = Size(78, 108);
+	const Size PLAYER_SIZE = Size(53, 75);
 	const string PLAYER_JUMP = "player_2.png";
 }
 

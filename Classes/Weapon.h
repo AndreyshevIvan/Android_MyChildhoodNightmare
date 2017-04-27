@@ -14,19 +14,19 @@ class CWeapon
 {
 public:
 	void update(float delta) override;
-	Bullets Fire(Direction direction) final;
+	CBulletsPack Fire(Direction direction) final;
 	bool IsInfinity() override;
 	int GetAmmoCount() const override;
 
 protected:
 	cocos2d::Node *m_host;
-	cocos2d::RefPtr<CBullet> m_bullet;
+	CBulletPtr m_bullet;
 	float m_currColdown = 0;
 	bool m_isInfinity = false;
 
-	virtual Bullets CreateBullets(Direction direction);
+	virtual CBulletsPack CreateBullets(Direction direction);
 
-	void SetBullet(cocos2d::RefPtr<CBullet> bullet);
+	void SetBullet(CBulletPtr bullet);
 	void SetColdown(float coldown);
 	void SetHost(cocos2d::Node *host);
 
@@ -48,7 +48,7 @@ class CShootgun : public CWeapon
 {
 public:
 	static cocos2d::RefPtr<CShootgun> Create(cocos2d::Node *host);
-	Bullets CreateBullets(Direction direction) override;
+	CBulletsPack CreateBullets(Direction direction) override;
 };
 
 class CAkWeapon : public CWeapon

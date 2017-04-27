@@ -12,7 +12,7 @@ namespace
 	const Vec2 SHOOTGUN_BULLET_OFFSET = Vec2(0, 20);
 }
 
-void CWeapon::SetBullet(RefPtr<CBullet> bullet)
+void CWeapon::SetBullet(CBulletPtr bullet)
 {
 	m_bullet = bullet;
 }
@@ -46,17 +46,17 @@ bool CWeapon::IsReady()
 
 	return isColdownEnd && isAmmoEnough;
 }
-Bullets CWeapon::CreateBullets(Direction direction)
+CBulletsPack CWeapon::CreateBullets(Direction direction)
 {
-	Bullets bullets;
+	CBulletsPack bullets;
 	auto bullet = m_bullet->CloneAndStart(m_host->getPosition(), direction);
 	bullets.push_back(bullet);
 
 	return bullets;
 }
-Bullets CWeapon::Fire(Direction direction)
+CBulletsPack CWeapon::Fire(Direction direction)
 {
-	Bullets bullets;
+	CBulletsPack bullets;
 	if (!IsReady())
 	{
 		return bullets;
@@ -72,7 +72,7 @@ Bullets CWeapon::Fire(Direction direction)
 RefPtr<CPistol> CPistol::Create(Node *host)
 {
 	RefPtr<CPistol> weapon = make_node<CPistol>();
-	RefPtr<CBullet> pistolBullet = CBullet::CreatePistolBullet();
+	CBulletPtr pistolBullet = CBullet::CreatePistolBullet();
 
 	weapon->SetBullet(pistolBullet);
 	weapon->SetColdown(PISTOL_COLDOWN);
@@ -87,7 +87,7 @@ RefPtr<CPistol> CPistol::Create(Node *host)
 RefPtr<CShootgun> CShootgun::Create(Node *host)
 {
 	RefPtr<CShootgun> weapon = make_node<CShootgun>();
-	RefPtr<CBullet> shootgunBullet = CBullet::CreateShootgunBullet();
+	CBulletPtr shootgunBullet = CBullet::CreateShootgunBullet();
 
 	weapon->SetBullet(shootgunBullet);
 	weapon->SetColdown(SHOOTGUN_COLDOWN);
@@ -97,9 +97,9 @@ RefPtr<CShootgun> CShootgun::Create(Node *host)
 
 	return weapon;
 }
-Bullets CShootgun::CreateBullets(Direction direction)
+CBulletsPack CShootgun::CreateBullets(Direction direction)
 {
-	Bullets bullets;
+	CBulletsPack bullets;
 	Vec2 topPos = m_host->getPosition() + SHOOTGUN_BULLET_OFFSET;
 	Vec2 bottomPos = m_host->getPosition() - SHOOTGUN_BULLET_OFFSET;
 
@@ -118,7 +118,7 @@ Bullets CShootgun::CreateBullets(Direction direction)
 RefPtr<CAkWeapon> CAkWeapon::Create(Node *host)
 {
 	RefPtr<CAkWeapon> weapon = make_node<CAkWeapon>();
-	RefPtr<CBullet> akBullet = CBullet::CreateAKBullet();
+	CBulletPtr akBullet = CBullet::CreateAKBullet();
 
 	weapon->SetBullet(akBullet);
 	weapon->SetColdown(AK_COLDOWN);

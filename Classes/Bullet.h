@@ -37,3 +37,5 @@ private:
 	int m_demage = 0;
 
 };
+
+typedef cocos2d::RefPtr<CBullet> CBulletPtr;

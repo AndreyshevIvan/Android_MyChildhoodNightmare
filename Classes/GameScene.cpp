@@ -28,7 +28,7 @@ bool GameScene::init()
 	}
 
 	m_winSize = Director::getInstance()->getVisibleSize();
-	const char* firstLevel = gameData::TEST_LEVEL_NAME;
+	const char* firstLevel = gameData::FIRST_LEVEL_NAME;
 
 	CreateGameElements(firstLevel);
 	StartGame(firstLevel);
@@ -64,7 +64,7 @@ void GameScene::CreatePlayer()
 	m_playerPuppeteer->SetPuppet(m_player);
 	m_playerPuppeteer->SetController(new CPlayerController());
 
-	m_gameMap->AddPlayer(m_player);
+	m_gameMap->AddPlayer(m_player.get());
 }
 void GameScene::CreateUI()
 {
@@ -112,7 +112,7 @@ void GameScene::SpawnEnemies()
 		auto enemy = make_node<CEnemy>(m_gameMap);
 		m_enemies.push_back(enemy);
 		enemy->Spawn(pos);
-		m_gameMap->AddEnemy(enemy);
+		m_gameMap->AddEnemy(enemy.get());
 
 		auto enemyPuppeteer = std::make_shared<CEnemyPuppeteer>();
 		enemyPuppeteer->SetPuppet(enemy);
