@@ -16,6 +16,8 @@ namespace
 		{ GameUnit::GHOST, "ghosts" },
 		{ GameUnit::SPIDER, "spiders" }
 	};
+
+	const int ENTITIES_Z_ORDER = 100;
 }
 
 template <typename T,class TClass>
@@ -204,7 +206,7 @@ Coordinates CCustomMap::GetUnitsSpawnPositions(GameUnit unitType) const
 void CCustomMap::AddPlayerBullets(CBulletsPack playerBullets)
 {
 	auto add_to_child = [&](Node* child) {
-		addChild(child);
+		addChild(child, ENTITIES_Z_ORDER);
 	};
 
 	transfer_elements(m_playerBullets, playerBullets, add_to_child);
@@ -217,12 +219,12 @@ void CCustomMap::AddEnemy(CPuppetPtr enemy)
 	}
 
 	m_enemies.push_back(enemy);
-	addChild(enemy);
+	addChild(enemy, ENTITIES_Z_ORDER);
 }
 
 void CCustomMap::AddPlayer(CPuppetPtr player)
 {
-	addChild(player);
+	addChild(player, ENTITIES_Z_ORDER);
 }
 
 Rect CCustomMap::AsRect(const ValueMap &properties) const

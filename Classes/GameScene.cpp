@@ -7,7 +7,7 @@ USING_NS_CC;
 namespace
 {
 	const int LAST_UPDATE_PRIORITY = 9999;
-	const int MAP_Z_ORDER = 0;
+	const int MAP_Z_ORDER = -1;
 
 	const std::string FIRST_LEVEL_DOOR = "level_1_end";
 }
@@ -37,7 +37,7 @@ bool GameScene::init()
 	}
 
 	m_winSize = Director::getInstance()->getVisibleSize();
-	const char* firstLevel = gameData::TEST_LEVEL_NAME;
+	const char* firstLevel = gameData::SECOND_LEVEL_NAME;
 
 	CreateGameElements(firstLevel);
 	StartGame(firstLevel);
@@ -54,9 +54,9 @@ void GameScene::InitCamera(cocos2d::Camera* camera)
 }
 void GameScene::InitDoorActions()
 {
-	auto firstLevelDoor = make_door([&]() {StartGame(gameData::SECOND_LEVEL_NAME); });
+	auto firstLevelDoorEvent = make_door([&]() {StartGame(gameData::SECOND_LEVEL_NAME); });
 
-	m_doorActions.insert(std::make_pair(FIRST_LEVEL_DOOR, firstLevelDoor));
+	m_doorActions.insert(std::make_pair(FIRST_LEVEL_DOOR, firstLevelDoorEvent));
 }
 
 void GameScene::CreateGameElements(const char* levelName)
@@ -102,10 +102,17 @@ void GameScene::StartGame(const char* newLevelName)
 {
 	if (m_gameMap->GetMapName() != newLevelName)
 	{
+		//removeChild(m_gameMap);
 		CreateLevel(newLevelName);
 	}
 
-	m_player->Spawn(m_gameMap->GetHeroSpawnPosition());
+	auto position = m_gameMap->GetHeroSpawnPosition();
+	std::cout << "Start position: " << position.x;
+	std::cout << " " << position.y << endl;
+	m_player->Spawn(position);
+	position = m_player->GetCenterInWorld();
+	std::cout << "Center after spawn: " << position.x;
+	std::cout << " " << position.y << endl;
 	SpawnEnemies();
 	SpawnItems();
 }
@@ -125,8 +132,8 @@ void GameScene::SpawnEnemies()
 	for (auto pos : positions)
 	{
 		auto enemy = make_node<CEnemy>(m_gameMap);
-		enemy->Spawn(pos);
 		m_gameMap->AddEnemy(enemy.get());
+		enemy->Spawn(pos);
 
 		auto enemyPuppeteer = std::make_shared<CEnemyPuppeteer>();
 		enemyPuppeteer->SetPuppet(enemy);

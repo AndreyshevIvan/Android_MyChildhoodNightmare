@@ -29,15 +29,13 @@ class CEntitiesContainer
 public:
 
 protected:
-	/*
-	void cleanup()
+	void CleanEntities()
 	{
 		m_obstacles.clear();
 		m_doors.clear();
 		clear_entities(m_enemies);
 		clear_entities(m_playerBullets);
 	}
-	*/
 
 	std::vector<cocos2d::Rect> m_obstacles;
 	std::vector<LevelDoor> m_doors;

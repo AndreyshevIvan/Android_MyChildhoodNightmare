@@ -14,6 +14,7 @@ namespace
 	const float AK_BULLET_SPEED = 700;
 
 	const float BULLET_DISTANCE = 400;
+	const float CRITICAL_DELTA_TIME = 0.05;
 }
 
 cocos2d::RefPtr<CBullet> CBullet::Create()
@@ -78,6 +79,8 @@ bool CBullet::IsDistanceValid()
 
 void CBullet::update(float delta)
 {
+	delta = (delta > CRITICAL_DELTA_TIME) ? 0.f : delta;
+
 	auto position = getPosition();
 	auto movement = Vec2(m_speed * delta, 0);
 

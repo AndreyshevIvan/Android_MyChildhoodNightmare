@@ -9,6 +9,7 @@ namespace
 {
 	const float FLYING_SLOWDOWN = 1;
 	const float G = 900;
+	const float CRITICAL_DELTA_TIME = 0.05;
 }
 
 bool CPuppet::init(IMapPhysics *mapPhysic)
@@ -39,6 +40,8 @@ void CPuppet::onExit()
 
 void CPuppet::update(float delta)
 {
+	delta = (delta > CRITICAL_DELTA_TIME) ? 0.f : delta;
+
 	m_runState = m_puppeteer->GetRunState();
 	m_isJump = m_puppeteer->GetJumpState();
 	m_isFire = m_puppeteer->GetFireState();
@@ -59,11 +62,11 @@ void CPuppet::MoveHorizontal(float elapsedTime)
 		movement = (m_runState == RunState::RUN_LEFT) ? -movement : movement;
 		UpdateDirection(movement.x);
 
-		setPosition(getPosition() + movement);
+		setPosition(GetCenterInWorld() + movement);
 
 		if (!m_mapPhysics->CanStandOn(GetRectInWorld()))
 		{
-			setPosition(getPosition() - movement);
+			setPosition(GetCenterInWorld() - movement);
 		}
 	}
 }
@@ -77,7 +80,7 @@ void CPuppet::MoveVertical(float elapsedTime)
 
 	m_moveSpeed.y = m_moveSpeed.y + G * elapsedTime;
 	const Vec2 movement = Vec2(0, m_moveSpeed.y * elapsedTime);
-	const Vec2 position = getPosition();
+	const Vec2 position = GetCenterInWorld();
 	setPosition(position - movement);
 
 	if (!m_mapPhysics->CanStandOn(GetRectInWorld()))
@@ -107,7 +110,10 @@ void CPuppet::UpdateDirection(float movement)
 Vec2 CPuppet::GetCenterInWorld() const
 {
 	Vec2 localCenter(0, 0);
-	return convertToWorldSpace(localCenter);
+	auto position = convertToWorldSpace(localCenter);
+	std::cout << "Center in Puppet: " << position.x;
+	std::cout << " " << position.y << std::endl;
+	return position;
 }
 
 Vec2 CPuppet::GetPosition() const

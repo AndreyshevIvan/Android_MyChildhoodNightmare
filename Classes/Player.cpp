@@ -72,6 +72,9 @@ void CPlayer::InitAnimations()
 
 void CPlayer::PersonalUpdate(float delta)
 {
+	auto position = GetCenterInWorld();
+	std::cout << "Center in Player: " << position.x;
+	std::cout << " " << position.y << endl;
 	CheckDoorsContact();
 	SwitchWeapon();
 	Fire();
