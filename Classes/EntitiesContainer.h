@@ -15,27 +15,33 @@ typedef std::pair<cocos2d::Rect, std::string> LevelDoor;
 typedef std::vector<cocos2d::Vec2> Coordinates;
 typedef std::map<GameUnit, Coordinates> UnitsCoords;
 
+template <class TContainer>
+void clear_entities(TContainer &container)
+{
+	std::for_each(begin(container), end(container), [&](auto &element) {
+		element->onExit();
+	});
+	container.clear();
+}
+
 class CEntitiesContainer
 {
 public:
 
 protected:
+	/*
+	void cleanup()
+	{
+		m_obstacles.clear();
+		m_doors.clear();
+		clear_entities(m_enemies);
+		clear_entities(m_playerBullets);
+	}
+	*/
+
 	std::vector<cocos2d::Rect> m_obstacles;
 	std::vector<LevelDoor> m_doors;
 	CBulletsPack m_playerBullets;
 	std::vector<CPuppetPtr> m_enemies;
-
-	UnitsCoords m_unitsCoords;
-	Coordinates m_shadowCoords;
-	Coordinates m_clownCoords;
-	Coordinates m_spiderCoords;
-	Coordinates m_ghostCoords;
-	cocos2d::Vec2 m_heroSpawnCoord;
-
-	Coordinates m_healthCoords;
-	Coordinates m_akAmmoCoords;
-	Coordinates m_shootgunAmmoCoords;
-	Coordinates m_giftCoords;
-	Coordinates m_boxCoords;
 
 };

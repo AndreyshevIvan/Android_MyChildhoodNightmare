@@ -124,7 +124,7 @@ Rect CPuppet::GetRectInWorld() const
 	return rect;
 }
 
-void CPuppet::SetPuppeteer(IPuppeteer *puppeteer)
+void CPuppet::SetPuppeteer(IPuppeteer* puppeteer)
 {
 	if (m_puppeteer && isRunning())
 	{

@@ -7,11 +7,15 @@ using namespace std;
 namespace
 {
 	const char OBSTACLES_LAYER_NAME[] = "obstacles";
+	const char LEVELS_DOORS_LAYER[] = "doors";
 
-	const char LEVELS_DOORS_LAYER[] = "level_doors";
-	const char SHADOW_LAYER_NAME[] = "shadow_spawns";
-	const char PLAYER_SPAWN[] = "player_spawn";
-	const char ENEMY_SPAWN[] = "enemy_shadow_spawn";
+	const std::map<GameUnit, std::string> UNITS_LAYERS = {
+		{ GameUnit::PLAYER, "player" },
+		{ GameUnit::SHADOW, "shadows" },
+		{ GameUnit::CLOWN, "clowns" },
+		{ GameUnit::GHOST, "ghosts" },
+		{ GameUnit::SPIDER, "spiders" }
+	};
 }
 
 template <typename T,class TClass>
@@ -41,7 +45,7 @@ bool CCustomMap::init(const std::string &tmxFile)
 	bool isLoad = (
 		initWithTMXFile(tmxFile) &&
 		LoadObstacles() &&
-		LoadUnits());
+		LoadDoors());
 
 	return isLoad;
 }
@@ -61,26 +65,29 @@ bool CCustomMap::LoadObstacles()
 	}
 	return true;
 }
-bool CCustomMap::LoadUnits()
+bool CCustomMap::LoadDoors()
 {
-	TMXObjectGroup* playerLayer = TMXTiledMap::getObjectGroup(PLAYER_SPAWN);
-	TMXObjectGroup* shadowLayer = TMXTiledMap::getObjectGroup(SHADOW_LAYER_NAME);
+	TMXObjectGroup* group = TMXTiledMap::getObjectGroup(LEVELS_DOORS_LAYER);
+	if (!group)
+	{
+		return true;
+	}
 
 	try
 	{
-		m_heroSpawnCoord = LoadSingleCoordinate(playerLayer);
-		m_shadowCoords = LoadAllCoordinates(shadowLayer);
+		for (Value object : group->getObjects())
+		{
+			auto door = AsDoor(object.asValueMap());
+			m_doors.push_back(door);
+		}
 	}
 	catch (const std::exception &)
 	{
 		return false;
 	}
-
-	m_unitsCoords.insert(std::make_pair(GameUnit::SHADOW, m_shadowCoords));
-
 	return true;
 }
-Coordinates CCustomMap::LoadAllCoordinates(TMXObjectGroup* group)
+Coordinates CCustomMap::LoadAllCoordinates(TMXObjectGroup* group) const
 {
 	if (!group)
 	{
@@ -144,27 +151,54 @@ bool CCustomMap::CanStandOn(const Rect &body)
 	return !std::any_of(m_obstacles.begin(), m_obstacles.end(), isIntersects);
 }
 
+bool CCustomMap::GetCollideDoorKey(const cocos2d::Rect &body, std::string &doorKey)
+{
+	bool isIntersectsWithDoor = false;
+
+	for (auto levelDoor : m_doors)
+	{
+		if (levelDoor.first.intersectsRect(body))
+		{
+			isIntersectsWithDoor = true;
+			doorKey = levelDoor.second;
+			return true;
+		}
+	}
+
+	return false;
+}
 std::string CCustomMap::GetMapName() const
 {
 	return m_name;
 }
-Vec2 CCustomMap::GetHeroWorldPosition() const
+Vec2 CCustomMap::GetHeroSpawnPosition() const
 {
-	return convertToWorldSpace(m_heroSpawnCoord);
-}
-Coordinates CCustomMap::GetUnitsWorldPositions(GameUnit unitType) const
-{
-	if (unitType == GameUnit::PLAYER)
+	TMXObjectGroup* playerLayer = TMXTiledMap::getObjectGroup(UNITS_LAYERS.at(GameUnit::PLAYER));
+	Vec2 heroSpawn = Vec2::ZERO;
+
+	if (playerLayer)
 	{
-		return { GetHeroWorldPosition() };
+		heroSpawn = LoadSingleCoordinate(playerLayer);
 	}
 
-	std::vector<Vec2> positions = m_unitsCoords.at(unitType);
-	for (Vec2 & pos : positions)
+	return convertToWorldSpace(heroSpawn);
+}
+Coordinates CCustomMap::GetUnitsSpawnPositions(GameUnit unitType) const
+{
+	TMXObjectGroup* unitLayer = TMXTiledMap::getObjectGroup(UNITS_LAYERS.at(unitType));
+	if (!unitLayer)
 	{
-		pos = convertToWorldSpace(pos);
+		return {};
 	}
-	return positions;
+
+	Coordinates coordinates = {};
+
+	try
+	{
+		coordinates = LoadAllCoordinates(unitLayer);
+	}
+	catch (const std::exception &) {}
+	return coordinates;
 }
 
 void CCustomMap::AddPlayerBullets(CBulletsPack playerBullets)
@@ -200,6 +234,13 @@ Rect CCustomMap::AsRect(const ValueMap &properties) const
 	rect.size.height = properties.at("height").asFloat();
 
 	return rect;
+}
+LevelDoor CCustomMap::AsDoor(const cocos2d::ValueMap &properties) const
+{
+	Rect rect = AsRect(properties);
+	string key = properties.at("name").asString();
+
+	return LevelDoor(rect, key);
 }
 
 void CCustomMap::Pause(bool isPause)

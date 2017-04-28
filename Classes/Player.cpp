@@ -72,10 +72,20 @@ void CPlayer::InitAnimations()
 
 void CPlayer::PersonalUpdate(float delta)
 {
+	CheckDoorsContact();
 	SwitchWeapon();
 	Fire();
 }
 
+void CPlayer::CheckDoorsContact()
+{
+	string doorKey;
+
+	if (m_mapPhysics->GetCollideDoorKey(GetRectInWorld(), doorKey))
+	{
+		onDoorContact(doorKey);
+	}
+}
 void CPlayer::Fire()
 {
 	if (!m_isFire)

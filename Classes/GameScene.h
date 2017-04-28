@@ -4,9 +4,11 @@
 #include "CustomMap.h"
 #include "Player.h"
 #include "Enemy.h"
-
 #include "HeroPuppeteer.h"
 #include "EnemyPuppeteer.h"
+
+typedef std::pair<std::function<void()>, bool> DoorData;
+typedef std::map<std::string, DoorData> DoorActionMap;
 
 class GameScene : public cocos2d::Layer
 {
@@ -19,6 +21,7 @@ public:
 
 private:
 	void InitCamera(cocos2d::Camera* camera);
+	void InitDoorActions();
 
 	void StartGame(const char* newLevelName);
 	void PauseGame(bool isPause);
@@ -34,16 +37,17 @@ private:
 
 	void UpdateCamera();
 
+	void OnDoorContact(const std::string &doorKey);
+
 	cocos2d::Size m_winSize;
 
 	cocos2d::Camera *m_camera = nullptr;
 	CCustomMap *m_gameMap = nullptr;
+	DoorActionMap m_doorActions;
 
 	cocos2d::RefPtr<CPlayer> m_player = nullptr;
 	CHeroPuppeteerPtr m_playerPuppeteer = nullptr;
-
-	std::vector<cocos2d::RefPtr<CEnemy>> m_enemies;
-	std::vector<std::shared_ptr<CEnemyPuppeteer>> m_enemiesPuppeeters;
+	std::vector<std::shared_ptr<CEnemyPuppeteer>> m_enemiesPuppeteers;
 
 	CUILayer *m_UILayer = nullptr;
 

@@ -39,15 +39,14 @@ public:
 	cocos2d::Vec2 GetCenterInWorld() const;
 	cocos2d::Vec2 GetPosition() const;
 
-	void SetPuppeteer(IPuppeteer *puppeteer);
+	void SetPuppeteer(IPuppeteer* puppeteer);
 
 private:
-	cocos2d::Rect GetRectInWorld() const;
 	void MoveHorizontal(float delta);
 	void MoveVertical(float delta);
 	void UpdateDirection(float movement);
 
-	IPuppeteer *m_puppeteer = nullptr;
+	IPuppeteer* m_puppeteer = nullptr;
 
 protected:
 	virtual void InitAnimations() {};
@@ -55,6 +54,7 @@ protected:
 	virtual void UpdateInterfaces() {};
 	virtual void Fire() {};
 
+	cocos2d::Rect GetRectInWorld() const;
 	void SetAnimation(AnimationPtr animation, bool isLoop = true);
 	bool IsNeedToSwitchWeapon();
 

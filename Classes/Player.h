@@ -25,6 +25,8 @@ public:
 	void Spawn(const cocos2d::Vec2 &spawnPos) override;
 	void InitWeaponBars(UILayer::WeaponBar *pistolBar, UILayer::WeaponBar *shootgunBar, UILayer::WeaponBar *akBar);
 
+	std::function<void(const std::string &doorKey)> onDoorContact;
+
 protected:
 	void InitAnimations() override;
 	void PersonalUpdate(float delta) override;
@@ -35,6 +37,7 @@ private:
 
 	void Fire() override;
 	void SwitchWeapon();
+	void CheckDoorsContact();
 	void UpdateWeaponBar();
 
 	UILayer::WeaponBar *m_currentWeaponBar;

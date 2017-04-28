@@ -22,7 +22,7 @@
   <object id="26" x="96" y="608" width="96" height="192"/>
   <object id="27" x="544" y="704" width="96" height="96"/>
  </objectgroup>
- <objectgroup name="shadow_spawns">
+ <objectgroup name="shadows">
   <object id="30" name="enemy_shadow_spawn" type="enemy_shadow_spawn" x="936" y="544" width="32" height="32"/>
   <object id="35" name="enemy_shadow_spawn" type="enemy_shadow_spawn" x="1162" y="446" width="32" height="32"/>
   <object id="36" name="enemy_shadow_spawn" type="enemy_shadow_spawn" x="606" y="370" width="32" height="32"/>
@@ -30,7 +30,7 @@
   <object id="38" name="enemy_shadow_spawn" type="enemy_shadow_spawn" x="292" y="234" width="32" height="32"/>
   <object id="39" name="enemy_shadow_spawn" type="enemy_shadow_spawn" x="222" y="442" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="player_spawn">
+ <objectgroup name="player">
   <object id="34" name="player_spawn" type="player_spawn" x="360" y="558" width="32" height="32"/>
  </objectgroup>
 </map>

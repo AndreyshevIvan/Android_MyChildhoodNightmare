@@ -7,6 +7,14 @@ USING_NS_CC;
 namespace
 {
 	const int LAST_UPDATE_PRIORITY = 9999;
+	const int MAP_Z_ORDER = 0;
+
+	const std::string FIRST_LEVEL_DOOR = "level_1_end";
+}
+
+DoorData make_door(std::function<void()> && callFunc, bool isOnce = false)
+{
+	return std::make_pair(callFunc, isOnce);
 }
 
 Scene* GameScene::createScene()
@@ -15,6 +23,7 @@ Scene* GameScene::createScene()
 
 	auto layer = GameScene::create();
 	layer->InitCamera(scene->getDefaultCamera());
+	layer->InitDoorActions();
 	scene->addChild(layer);
 
 	return scene;
@@ -28,7 +37,7 @@ bool GameScene::init()
 	}
 
 	m_winSize = Director::getInstance()->getVisibleSize();
-	const char* firstLevel = gameData::FIRST_LEVEL_NAME;
+	const char* firstLevel = gameData::TEST_LEVEL_NAME;
 
 	CreateGameElements(firstLevel);
 	StartGame(firstLevel);
@@ -43,6 +52,12 @@ void GameScene::InitCamera(cocos2d::Camera* camera)
 
 	UpdateCamera();
 }
+void GameScene::InitDoorActions()
+{
+	auto firstLevelDoor = make_door([&]() {StartGame(gameData::SECOND_LEVEL_NAME); });
+
+	m_doorActions.insert(std::make_pair(FIRST_LEVEL_DOOR, firstLevelDoor));
+}
 
 void GameScene::CreateGameElements(const char* levelName)
 {
@@ -53,12 +68,13 @@ void GameScene::CreateGameElements(const char* levelName)
 void GameScene::CreateLevel(const char* levelName)
 {
 	m_gameMap = make_node<CCustomMap>(levelName);
-	addChild(m_gameMap);
+	addChild(m_gameMap, MAP_Z_ORDER);
 }
 void GameScene::CreatePlayer()
 {
 	m_player = make_node<CPlayer>(m_gameMap);
 	m_player->InitPlayer();
+	m_player->onDoorContact = CC_CALLBACK_1(GameScene::OnDoorContact, this);
 
 	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
 	m_playerPuppeteer->SetPuppet(m_player);
@@ -89,7 +105,7 @@ void GameScene::StartGame(const char* newLevelName)
 		CreateLevel(newLevelName);
 	}
 
-	m_player->Spawn(m_gameMap->GetHeroWorldPosition());
+	m_player->Spawn(m_gameMap->GetHeroSpawnPosition());
 	SpawnEnemies();
 	SpawnItems();
 }
@@ -100,23 +116,21 @@ void GameScene::PauseGame(bool isPause)
 }
 void GameScene::ReturnToMenu()
 {
-
 }
 
 void GameScene::SpawnEnemies()
 {
-	auto positions = m_gameMap->GetUnitsWorldPositions(GameUnit::SHADOW);
+	auto positions = m_gameMap->GetUnitsSpawnPositions(GameUnit::SHADOW);
 
 	for (auto pos : positions)
 	{
 		auto enemy = make_node<CEnemy>(m_gameMap);
-		m_enemies.push_back(enemy);
 		enemy->Spawn(pos);
 		m_gameMap->AddEnemy(enemy.get());
 
 		auto enemyPuppeteer = std::make_shared<CEnemyPuppeteer>();
 		enemyPuppeteer->SetPuppet(enemy);
-		m_enemiesPuppeeters.push_back(enemyPuppeteer);
+		m_enemiesPuppeteers.push_back(enemyPuppeteer);
 	}
 }
 void GameScene::SpawnItems()
@@ -133,4 +147,18 @@ void GameScene::UpdateCamera()
 
 	m_camera->setPosition(playerPosition);
 	m_UILayer->setPosition(playerPosition - m_winSize / 2);
+}
+
+void GameScene::OnDoorContact(const std::string &doorKey)
+{
+	auto actionRecord = m_doorActions.find(doorKey);
+	if (actionRecord == m_doorActions.end())
+	{
+		return;
+	}
+
+	auto isOnce = actionRecord->second.second;
+	actionRecord->second.first();
+
+	if (isOnce) m_doorActions.erase(actionRecord);
 }

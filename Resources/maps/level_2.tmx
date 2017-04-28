@@ -61853,7 +61853,7 @@
   <object id="969" name="enemy_shadow_spawn" x="4391.67" y="1110" width="46" height="44"/>
   <object id="970" name="enemy_clown_spawn" x="4865" y="992.667" width="46" height="44"/>
  </objectgroup>
- <objectgroup name="player_spawn">
+ <objectgroup name="player">
   <object id="954" name="player_spawn" x="321.333" y="1031.33" width="56" height="36"/>
  </objectgroup>
  <objectgroup name="items_spawns">

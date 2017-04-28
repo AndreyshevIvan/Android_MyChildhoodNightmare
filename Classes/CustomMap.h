@@ -14,9 +14,10 @@ public:
 
 	void update(float delta) override;
 
+	bool GetCollideDoorKey(const cocos2d::Rect &body, std::string &doorKey) override;
 	std::string GetMapName() const;
-	cocos2d::Vec2 GetHeroWorldPosition() const;
-	Coordinates GetUnitsWorldPositions(GameUnit unitType) const;
+	cocos2d::Vec2 GetHeroSpawnPosition() const;
+	Coordinates GetUnitsSpawnPositions(GameUnit unitType) const;
 
 	void AddPlayerBullets(CBulletsPack bullet) override;
 	void AddEnemy(CPuppetPtr enemy) override;
@@ -30,10 +31,12 @@ private:
 	void UpdateItems() {};
 
 	bool LoadObstacles();
-	bool LoadUnits();
-	Coordinates LoadAllCoordinates(cocos2d::TMXObjectGroup* group);
+	bool LoadDoors();
+	Coordinates LoadAllCoordinates(cocos2d::TMXObjectGroup* group) const;
 	cocos2d::Vec2 LoadSingleCoordinate(cocos2d::TMXObjectGroup* group) const;
+
 	cocos2d::Rect AsRect(const cocos2d::ValueMap &properties) const;
+	LevelDoor AsDoor(const cocos2d::ValueMap &properties) const;
 
 	std::string m_name;
 };

@@ -8227,10 +8227,10 @@
   <object id="27" name="solid" x="1603" y="835" width="69.9997" height="60.6667"/>
   <object id="28" name="solid" x="1634.33" y="863" width="69.9997" height="60.6667"/>
  </objectgroup>
- <objectgroup name="player_spawn">
+ <objectgroup name="player">
   <object id="6" name="player_spawn" x="474.667" y="591" width="28" height="28"/>
  </objectgroup>
- <objectgroup name="level">
-  <object id="36" name="next_level" x="1591.34" y="884.663" width="86.6667" height="170.5"/>
+ <objectgroup name="doors">
+  <object id="36" name="level_1_end" x="981.34" y="530.663" width="86.6667" height="170.5"/>
  </objectgroup>
 </map>

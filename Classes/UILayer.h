@@ -62,6 +62,7 @@ public:
 	static CUILayer *create(std::shared_ptr<CPlayerController> controller);
 	virtual bool init();
 	void update(float delta) override;
+	void Pause();
 
 	GameText GetPlayerHealthBar();
 	UILayer::WeaponBar *GetPistolWeaponBar();
@@ -82,7 +83,6 @@ private:
 	void HightlightButtons();
 	void DeleteTouch(cocos2d::Touch *touch);
 
-	void Pause();
 	void cleanup() override;
 
 	std::shared_ptr<UILayer::WeaponBar> m_pistolBar;
