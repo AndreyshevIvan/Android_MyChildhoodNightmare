@@ -15,7 +15,7 @@ namespace
 bool CPuppet::init(IMapPhysics *mapPhysic)
 {
 	m_mapPhysics = mapPhysic;
-	return Node::init();
+	return Node::init() && PersonalInit();
 }
 
 void CPuppet::onEnter()
@@ -48,6 +48,7 @@ void CPuppet::update(float delta)
 
 	MoveHorizontal(delta);
 	MoveVertical(delta);
+	UpdateSpritesDirection();
 	PersonalUpdate(delta);
 	UpdateInterfaces();
 
@@ -106,14 +107,24 @@ void CPuppet::UpdateDirection(float movement)
 		m_direction = Direction::RIGHT;
 	}
 }
+void CPuppet::UpdateSpritesDirection()
+{
+	auto update_scale = [&](RefPtr<Sprite> sprite) {
+		auto scale = sprite->getScaleX();
+		if ((m_direction == Direction::LEFT && scale > 0) ||
+			(m_direction == Direction::RIGHT && scale < 0))
+		{
+			sprite->setScaleX(-1 * scale);
+		}
+	};
+
+	std::for_each(m_dirDependentSprites.begin(), m_dirDependentSprites.end(), update_scale);
+}
 
 Vec2 CPuppet::GetCenterInWorld() const
 {
 	Vec2 localCenter(0, 0);
-	auto position = convertToWorldSpace(localCenter);
-	std::cout << "Center in Puppet: " << position.x;
-	std::cout << " " << position.y << std::endl;
-	return position;
+	return convertToWorldSpace(localCenter);
 }
 
 Vec2 CPuppet::GetPosition() const
@@ -157,4 +168,9 @@ void CPuppet::SetAnimation(AnimationPtr animation, bool isLoop)
 	}
 	m_puppetSprite->stopAllActions();
 	m_puppetSprite->runAction(runningAnimation);
+}
+
+void CPuppet::AddScaleDependentSprite(cocos2d::RefPtr<cocos2d::Sprite> sprite)
+{
+	m_dirDependentSprites.insert(sprite);
 }

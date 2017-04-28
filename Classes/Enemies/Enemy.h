@@ -6,15 +6,20 @@
 class CEnemy : public CPuppet
 {
 public:
-	virtual void InitTactics() {};
 	void Spawn(const cocos2d::Vec2 &position) override;
 
 protected:
-	void PersonalUpdate(float delta) override;
+	bool PersonalInit() override;
+	virtual bool InitTactics() { return true; };
 
+	void PersonalUpdate(float delta) override;
+	virtual void UpdateWorldInfo(float delta) {};
+	virtual void ChooseTactic() {};
+	virtual void DoTactic(float delta) {};
+
+private:
 	std::function<void()> *m_tactic;
 	std::function<void()> m_idle;
 	std::function<void()> m_pursuite;
 
-	int dsa;
 };

@@ -20,10 +20,10 @@ namespace
 	const int ENTITIES_Z_ORDER = 100;
 }
 
-template <typename T,class TClass>
-void transfer_elements(vector<TClass> &dstVect, const vector<TClass> &srcVect, T && transferEvent)
+template <typename T,class TContainer>
+void transfer_elements(TContainer &dstVect, const TContainer &srcVect, T && transferEvent)
 {
-	std::for_each(srcVect.begin(), srcVect.end(), [&](TClass element) {
+	std::for_each(begin(srcVect), end(srcVect), [&](auto &element) {
 		transferEvent(element);
 		dstVect.push_back(element);
 	});

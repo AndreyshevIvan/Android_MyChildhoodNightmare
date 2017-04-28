@@ -45,21 +45,27 @@ private:
 	void MoveHorizontal(float delta);
 	void MoveVertical(float delta);
 	void UpdateDirection(float movement);
+	void UpdateSpritesDirection();
 
 	IPuppeteer* m_puppeteer = nullptr;
+	std::set<cocos2d::RefPtr<cocos2d::Sprite>> m_dirDependentSprites;
 
 protected:
-	virtual void InitAnimations() {};
+	virtual bool PersonalInit() { return true; };
+	virtual bool InitBody() { return true; };
+	virtual bool InitAnimations() { return true; };
+
 	virtual void PersonalUpdate(float delta) {};
 	virtual void UpdateInterfaces() {};
 	virtual void Fire() {};
 
 	cocos2d::Rect GetRectInWorld() const;
 	void SetAnimation(AnimationPtr animation, bool isLoop = true);
+	void AddScaleDependentSprite(cocos2d::RefPtr<cocos2d::Sprite> sprite);
 	bool IsNeedToSwitchWeapon();
 
-	cocos2d::Sprite *m_puppetSprite = nullptr;
-	IMapPhysics *m_mapPhysics;
+	cocos2d::Sprite* m_puppetSprite = nullptr;
+	IMapPhysics* m_mapPhysics;
 
 	cocos2d::Vec2 m_moveSpeed = cocos2d::Vec2(PUPPET_VELOCITY, 0);
 	float m_jumpSpeed = PUPPET_JUMP_VELOCITY;

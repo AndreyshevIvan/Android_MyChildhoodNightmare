@@ -1,4 +1,4 @@
-#include "Enemy.h"
+#include "Enemies/EnemyShadow.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -9,23 +9,33 @@ namespace
 	const std::string ENEMY_IMG = "enemy.png";
 }
 
-void CEnemy::Spawn(const Vec2 &position)
+bool CEnemyShadow::InitBody()
 {
 	InitLivingBody(ENEMY_HEALTH);
-	InitEnemy();
-	setPosition(position);
-}
 
-void CEnemy::InitEnemy()
-{
 	m_puppetSprite = make_node<Sprite>();
 	m_puppetSprite->initWithSpriteFrameName(ENEMY_IMG);
 	setContentSize(m_puppetSprite->getContentSize());
 
 	addChild(m_puppetSprite);
+
+	return true;
 }
 
-void CEnemy::PersonalUpdate(float delta)
+bool CEnemyShadow::InitTactics()
+{
+	return true;
+}
+
+void CEnemyShadow::UpdateWorldInfo(float delta)
+{
+
+}
+void CEnemyShadow::ChooseTactic()
+{
+
+}
+void CEnemyShadow::DoTactic(float delta)
 {
 
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cocos_custom.h"
-#include "Weapons/IPlayerWeapon.h"
+#include "IPlayerWeapon.h"
 
 namespace
 {

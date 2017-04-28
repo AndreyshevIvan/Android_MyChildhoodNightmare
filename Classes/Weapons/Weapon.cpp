@@ -1,4 +1,4 @@
-#include "Weapons/Weapon.h"
+#include "Weapon.h"
 #include <iostream>
 
 USING_NS_CC;

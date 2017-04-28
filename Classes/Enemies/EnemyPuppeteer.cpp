@@ -1,4 +1,4 @@
-#include "EnemyPuppeteer.h"
+#include "Enemies/EnemyPuppeteer.h"
 #include <iostream>
 
 USING_NS_CC;

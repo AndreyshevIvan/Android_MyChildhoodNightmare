@@ -3,9 +3,9 @@
 #include "cocos_custom.h"
 #include "CustomMap.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "Enemies/EnemyShadow.h"
+#include "Enemies/EnemyPuppeteer.h"
 #include "HeroPuppeteer.h"
-#include "EnemyPuppeteer.h"
 
 typedef std::pair<std::function<void()>, bool> DoorData;
 typedef std::map<std::string, DoorData> DoorActionMap;

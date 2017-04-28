@@ -73,7 +73,6 @@ void GameScene::CreateLevel(const char* levelName)
 void GameScene::CreatePlayer()
 {
 	m_player = make_node<CPlayer>(m_gameMap);
-	m_player->InitPlayer();
 	m_player->onDoorContact = CC_CALLBACK_1(GameScene::OnDoorContact, this);
 
 	m_playerPuppeteer = std::make_unique<CHeroPuppeteer>();
@@ -106,13 +105,7 @@ void GameScene::StartGame(const char* newLevelName)
 		CreateLevel(newLevelName);
 	}
 
-	auto position = m_gameMap->GetHeroSpawnPosition();
-	std::cout << "Start position: " << position.x;
-	std::cout << " " << position.y << endl;
-	m_player->Spawn(position);
-	position = m_player->GetCenterInWorld();
-	std::cout << "Center after spawn: " << position.x;
-	std::cout << " " << position.y << endl;
+	m_player->Spawn(m_gameMap->GetHeroSpawnPosition());
 	SpawnEnemies();
 	SpawnItems();
 }
@@ -131,7 +124,7 @@ void GameScene::SpawnEnemies()
 
 	for (auto pos : positions)
 	{
-		auto enemy = make_node<CEnemy>(m_gameMap);
+		auto enemy = make_node<CEnemyShadow>(m_gameMap);
 		m_gameMap->AddEnemy(enemy.get());
 		enemy->Spawn(pos);
 

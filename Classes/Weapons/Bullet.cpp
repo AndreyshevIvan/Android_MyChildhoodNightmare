@@ -1,4 +1,4 @@
-#include "Weapons/Bullet.h"
+#include "Bullet.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -14,7 +14,7 @@ namespace
 	const float AK_BULLET_SPEED = 700;
 
 	const float BULLET_DISTANCE = 400;
-	const float CRITICAL_DELTA_TIME = 0.05f;
+	const float CRITICAL_DELTA_TIME = 0.05;
 }
 
 cocos2d::RefPtr<CBullet> CBullet::Create()

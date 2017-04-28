@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cocos_custom.h"
-#include "Bullet.h"
+#include "Weapons/Bullet.h"
 #include "Puppet.h"
 
 class IMapPhysics

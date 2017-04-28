@@ -12,15 +12,14 @@ namespace
 	const float PLAYER_VELOCITY = 200;
 
 	const Size PLAYER_SIZE = Size(53, 75);
-	const string PLAYER_JUMP = "player_2.png";
+	const string PLAYER_JUMP = "player.png";
 }
 
-void CPlayer::InitPlayer()
+bool CPlayer::PersonalInit()
 {
 	InitLivingBody(PLAYER_HEALTH);
-	InitAnimations();
-	InitBody();
-	InitWeapons();
+
+	return (InitAnimations() && InitBody() && InitWeapons());
 }
 
 void CPlayer::Spawn(const Vec2 &spawnPos)
@@ -28,19 +27,26 @@ void CPlayer::Spawn(const Vec2 &spawnPos)
 	setPosition(spawnPos);
 }
 
-void CPlayer::InitBody()
+bool CPlayer::InitBody()
 {
 	m_moveSpeed.x = PLAYER_VELOCITY;
 	m_puppetSprite = Sprite::create();
 	SetAnimation(m_animations.at(PuppetAnimType::JUMP));
 	setContentSize(PLAYER_SIZE);
+
+	AddScaleDependentSprite(m_puppetSprite);
 	addChild(m_puppetSprite);
+
+	return true;
 }
-void CPlayer::InitWeapons()
+bool CPlayer::InitWeapons()
 {
-	m_pistol = CPistol::Create(this);
-	m_shootgun = CShootgun::Create(this);
-	m_ak = CAkWeapon::Create(this);
+	if (!(m_pistol = CPistol::Create(this)) ||
+		!(m_shootgun = CShootgun::Create(this)) ||
+		!(m_ak = CAkWeapon::Create(this)))
+	{
+		return false;
+	}
 
 	addChild(m_pistol);
 	addChild(m_shootgun);
@@ -52,6 +58,8 @@ void CPlayer::InitWeapons()
 	m_weapons[Weapons::AK] = std::make_pair(m_ak, nullptr);
 
 	m_currentWeapon = m_pistol;
+
+	return true;
 }
 void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, WeaponBar *akBar)
 {
@@ -63,18 +71,28 @@ void CPlayer::InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, Weapo
 	m_currentWeaponBar = pistolBar;
 	UpdateWeaponBar();
 }
-void CPlayer::InitAnimations()
+bool CPlayer::InitAnimations()
 {
-	auto jumpAnim = CAnimManager::CreateAnim(PLAYER_JUMP, PLAYER_SIZE, 3);
+	try
+	{
+		auto jumpAnim = CAnimManager::CreateAnim(PLAYER_JUMP, PLAYER_SIZE, 6);
+		if (!jumpAnim)
+		{
+			return false;
+		}
 
-	m_animations.insert(make_pair(PuppetAnimType::JUMP, jumpAnim));
+		m_animations.insert(make_pair(PuppetAnimType::JUMP, jumpAnim));
+	}
+	catch (const std::exception &)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void CPlayer::PersonalUpdate(float delta)
 {
-	auto position = GetCenterInWorld();
-	std::cout << "Center in Player: " << position.x;
-	std::cout << " " << position.y << endl;
 	CheckDoorsContact();
 	SwitchWeapon();
 	Fire();

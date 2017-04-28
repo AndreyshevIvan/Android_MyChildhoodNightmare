@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cocos_custom.h"
-#include "Weapons/Bullet.h"
+#include "Bullet.h"
 
 typedef std::vector<CBulletPtr> CBulletsPack;
 
