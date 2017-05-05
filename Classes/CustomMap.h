@@ -15,7 +15,8 @@ public:
 	void update(float delta) override;
 
 	bool GetCollideDoorKey(const cocos2d::Rect &body, std::string &doorKey) override;
-	std::string GetMapName() const;
+	std::string GetName() const;
+	cocos2d::Size GetPixelSize() const;
 	cocos2d::Vec2 GetHeroSpawnPosition() const;
 	Coordinates GetUnitsSpawnPositions(GameUnit unitType) const;
 
@@ -39,4 +40,5 @@ private:
 	LevelDoor AsDoor(const cocos2d::ValueMap &properties) const;
 
 	std::string m_name;
+	cocos2d::Size m_pixelSize;
 };

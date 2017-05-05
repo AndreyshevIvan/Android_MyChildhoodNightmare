@@ -7,7 +7,6 @@ typedef std::function<void(bool isPause)> onPauseEvent;
 
 namespace UILayer
 {
-	const char FONT[] = "fonts/nightmarealley.ttf";
 	const cocos2d::Vec2 AMMO_COUNT_OFFSET = cocos2d::Vec2(0.131f, 0.68f);
 	const int AMMO_COUNT_SIZE = 40;
 
@@ -16,7 +15,7 @@ namespace UILayer
 		WeaponBar(GameSprite icon, cocos2d::Node* parent)
 		{
 			m_icon = icon;
-			m_ammoCount = gameUI::CreateText("", FONT, AMMO_COUNT_SIZE, parent, AMMO_COUNT_OFFSET);
+			m_ammoCount = gameUI::CreateText("", gameUI::FONT, AMMO_COUNT_SIZE, parent, AMMO_COUNT_OFFSET);
 			SetVisible(false);
 		}
 		void SetVisible(bool isVisible)

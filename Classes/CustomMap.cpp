@@ -42,12 +42,16 @@ void erase_if(TContainer &container, TPredicate && predicate)
 
 bool CCustomMap::init(const std::string &tmxFile)
 {
-	m_name = tmxFile;
-	scheduleUpdate();
 	bool isLoad = (
 		initWithTMXFile(tmxFile) &&
 		LoadObstacles() &&
 		LoadDoors());
+
+	m_name = tmxFile;
+	auto mapWidth = _tileSize.width * _mapSize.width;
+	auto mapHeight = _tileSize.height * _mapSize.height;
+	m_pixelSize = cocos2d::Size(mapWidth, mapHeight);
+	scheduleUpdate();
 
 	return isLoad;
 }
@@ -169,9 +173,13 @@ bool CCustomMap::GetCollideDoorKey(const cocos2d::Rect &body, std::string &doorK
 
 	return false;
 }
-std::string CCustomMap::GetMapName() const
+std::string CCustomMap::GetName() const
 {
 	return m_name;
+}
+cocos2d::Size CCustomMap::GetPixelSize() const
+{
+	return m_pixelSize;
 }
 Vec2 CCustomMap::GetHeroSpawnPosition() const
 {

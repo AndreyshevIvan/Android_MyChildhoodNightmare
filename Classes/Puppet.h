@@ -45,10 +45,10 @@ private:
 	void MoveHorizontal(float delta);
 	void MoveVertical(float delta);
 	void UpdateDirection(float movement);
-	void UpdateSpritesDirection();
+	void UpdateDirectionalSprites();
 
 	IPuppeteer* m_puppeteer = nullptr;
-	std::set<cocos2d::RefPtr<cocos2d::Sprite>> m_dirDependentSprites;
+	std::set<cocos2d::RefPtr<cocos2d::Sprite>> m_directionalSprites;
 
 protected:
 	virtual bool PersonalInit() { return true; };

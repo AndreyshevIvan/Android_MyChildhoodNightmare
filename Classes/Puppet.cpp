@@ -48,7 +48,7 @@ void CPuppet::update(float delta)
 
 	MoveHorizontal(delta);
 	MoveVertical(delta);
-	UpdateSpritesDirection();
+	UpdateDirectionalSprites();
 	PersonalUpdate(delta);
 	UpdateInterfaces();
 
@@ -107,7 +107,7 @@ void CPuppet::UpdateDirection(float movement)
 		m_direction = Direction::RIGHT;
 	}
 }
-void CPuppet::UpdateSpritesDirection()
+void CPuppet::UpdateDirectionalSprites()
 {
 	auto update_scale = [&](RefPtr<Sprite> sprite) {
 		auto scale = sprite->getScaleX();
@@ -118,7 +118,7 @@ void CPuppet::UpdateSpritesDirection()
 		}
 	};
 
-	std::for_each(m_dirDependentSprites.begin(), m_dirDependentSprites.end(), update_scale);
+	std::for_each(m_directionalSprites.begin(), m_directionalSprites.end(), update_scale);
 }
 
 Vec2 CPuppet::GetCenterInWorld() const
@@ -172,5 +172,5 @@ void CPuppet::SetAnimation(AnimationPtr animation, bool isLoop)
 
 void CPuppet::AddScaleDependentSprite(cocos2d::RefPtr<cocos2d::Sprite> sprite)
 {
-	m_dirDependentSprites.insert(sprite);
+	m_directionalSprites.insert(sprite);
 }

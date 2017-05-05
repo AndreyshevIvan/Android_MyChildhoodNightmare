@@ -4,6 +4,8 @@
 #include "cocos_custom.h"
 #include "UILayer.h"
 
+using namespace UILayer;
+
 namespace
 {
 	enum Weapons
@@ -13,16 +15,16 @@ namespace
 		AK,
 	};
 
-	const int WEAPONS_COUNT = (int)Weapons::AK + 1;
+	const int WEAPONS_COUNT = Weapons::AK + 1;
 }
 
-typedef std::vector<std::pair<CWeapon*, UILayer::WeaponBar*>> WeaponsContainer;
+typedef std::vector<std::pair<CWeapon*, WeaponBar*>> WeaponsContainer;
 
 class CPlayer : public CPuppet
 {
 public:
 	void Spawn(const cocos2d::Vec2 &spawnPos) override;
-	void InitWeaponBars(UILayer::WeaponBar *pistolBar, UILayer::WeaponBar *shootgunBar, UILayer::WeaponBar *akBar);
+	void InitWeaponBars(WeaponBar *pistolBar, WeaponBar *shootgunBar, WeaponBar *akBar);
 
 	std::function<void(const std::string &doorKey)> onDoorContact;
 
@@ -41,7 +43,7 @@ private:
 	void CheckDoorsContact();
 	void UpdateWeaponBar();
 
-	UILayer::WeaponBar *m_currentWeaponBar;
+	WeaponBar *m_currentWeaponBar;
 	IPlayerWeapon *m_currentWeapon = nullptr;
 	cocos2d::RefPtr<CWeapon> m_pistol = nullptr;
 	cocos2d::RefPtr<CWeapon> m_shootgun = nullptr;

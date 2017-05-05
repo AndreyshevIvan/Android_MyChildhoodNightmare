@@ -3,6 +3,15 @@
 #include "cocos_custom.h"
 #include "Puppet.h"
 
+namespace
+{
+	enum class EnemyActivity
+	{
+		IDLE,
+		PURSUITE,
+	};
+}
+
 class CEnemy : public CPuppet
 {
 public:
@@ -16,5 +25,11 @@ protected:
 	std::function<void()> m_idle;
 	std::function<void()> m_pursuite;
 
-	int dsa;
+	EnemyActivity m_activity;
+	cocos2d::Rect m_targetArea;
+	cocos2d::Point m_handMiddleLeft;
+	cocos2d::Point m_handMiddleRight;
+	cocos2d::Point m_handBottomLeft;
+	cocos2d::Point m_handBottomRight;
+
 };

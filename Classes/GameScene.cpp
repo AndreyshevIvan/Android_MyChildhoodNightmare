@@ -22,9 +22,9 @@ Scene* GameScene::createScene()
 	auto scene = Scene::create();
 
 	auto layer = GameScene::create();
-	layer->InitCamera(scene->getDefaultCamera());
 	layer->InitDoorActions();
 	scene->addChild(layer);
+	layer->InitCamera(scene->getDefaultCamera());
 
 	return scene;
 }
@@ -37,7 +37,7 @@ bool GameScene::init()
 	}
 
 	m_winSize = Director::getInstance()->getVisibleSize();
-	const char* firstLevel = gameData::SECOND_LEVEL_NAME;
+	auto firstLevel = gameData::SECOND_LEVEL_NAME;
 
 	CreateGameElements(firstLevel);
 	StartGame(firstLevel);
@@ -48,9 +48,11 @@ bool GameScene::init()
 }
 void GameScene::InitCamera(cocos2d::Camera* camera)
 {
-	m_camera = camera;
+	using namespace cocos2d::experimental;
 
-	UpdateCamera();
+	m_camera = camera;
+	auto viewPort = Viewport(0, 0, m_winSize.width, m_winSize.height);
+	m_camera->setDefaultViewport(viewPort);
 }
 void GameScene::InitDoorActions()
 {
@@ -99,7 +101,7 @@ void GameScene::CreateUI()
 
 void GameScene::StartGame(const char* newLevelName)
 {
-	if (m_gameMap->GetMapName() != newLevelName)
+	if (m_gameMap->GetName() != newLevelName)
 	{
 		//removeChild(m_gameMap);
 		CreateLevel(newLevelName);
@@ -143,10 +145,33 @@ void GameScene::update(float delta)
 }
 void GameScene::UpdateCamera()
 {
-	const Vec2 &playerPosition = m_playerPuppeteer->GetPuppetPos();
+	Vec2 cameraCenter = m_playerPuppeteer->GetPuppetPos();
+	const Vec2 &halfCameraSize = m_winSize / 2;
+	const Size &mapSize = m_gameMap->GetPixelSize();
+	m_camera->setPosition(cameraCenter);
 
-	m_camera->setPosition(playerPosition);
-	m_UILayer->setPosition(playerPosition - m_winSize / 2);
+	if (cameraCenter.x - halfCameraSize.x < 0)
+	{
+		m_camera->setPosition(halfCameraSize.x, cameraCenter.y);
+		cameraCenter = m_camera->getPosition();
+	}
+	if (cameraCenter.x + halfCameraSize.x > mapSize.width)
+	{
+		m_camera->setPosition(mapSize.width - halfCameraSize.x, cameraCenter.y);
+		cameraCenter = m_camera->getPosition();
+	}
+	if (cameraCenter.y - halfCameraSize.y < 0)
+	{
+		m_camera->setPosition(cameraCenter.x, halfCameraSize.y);
+		cameraCenter = m_camera->getPosition();
+	}
+	if (cameraCenter.y + halfCameraSize.y > mapSize.height)
+	{
+		m_camera->setPosition(cameraCenter.x, mapSize.height - halfCameraSize.y);
+		cameraCenter = m_camera->getPosition();
+	}
+
+	m_UILayer->setPosition(cameraCenter - m_winSize / 2);
 }
 
 void GameScene::OnDoorContact(const std::string &doorKey)
