@@ -8,18 +8,19 @@
 
 namespace
 {
-	enum class PuppetAnimType
-	{
-		IDLE,
-		RUN,
-		JUMP,
-		DEMAGED,
-		KILL,
-	};
-
 	const float PUPPET_VELOCITY = 200.f;
 	const float PUPPET_JUMP_VELOCITY = -500.f;
 }
+
+enum class PuppetAnimType
+{
+	NONE,
+	IDLE,
+	RUN,
+	JUMP,
+	DEMAGED,
+	KILL,
+};
 
 class IPuppeteer;
 class IMapPhysics;
@@ -60,7 +61,7 @@ protected:
 	virtual void Fire() {};
 
 	cocos2d::Rect GetRectInWorld() const;
-	void SetAnimation(AnimationPtr animation, bool isLoop = true);
+	void SetAnimation(cocos2d::Sprite* sprite, PuppetAnimType anim, bool isLoop);
 	void AddScaleDependentSprite(cocos2d::RefPtr<cocos2d::Sprite> sprite);
 	bool IsNeedToSwitchWeapon();
 
@@ -77,6 +78,7 @@ protected:
 	bool m_isFire = false;
 	bool m_isJump = false;
 	std::map<PuppetAnimType, AnimationPtr> m_animations;
+	PuppetAnimType m_currentAnim = PuppetAnimType::NONE;
 };
 
 typedef cocos2d::RefPtr<CPuppet> CPuppetPtr;

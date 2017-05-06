@@ -52,7 +52,7 @@ void GameScene::InitCamera(cocos2d::Camera* camera)
 
 	m_camera = camera;
 	auto viewPort = Viewport(0, 0, m_winSize.width, m_winSize.height);
-	m_camera->setDefaultViewport(viewPort);
+	m_camera->setViewport(viewPort);
 }
 void GameScene::InitDoorActions()
 {
@@ -148,29 +148,25 @@ void GameScene::UpdateCamera()
 	Vec2 cameraCenter = m_playerPuppeteer->GetPuppetPos();
 	const Vec2 &halfCameraSize = m_winSize / 2;
 	const Size &mapSize = m_gameMap->GetPixelSize();
-	m_camera->setPosition(cameraCenter);
 
 	if (cameraCenter.x - halfCameraSize.x < 0)
 	{
-		m_camera->setPosition(halfCameraSize.x, cameraCenter.y);
-		cameraCenter = m_camera->getPosition();
+		cameraCenter = Vec2(halfCameraSize.x, cameraCenter.y);
 	}
 	if (cameraCenter.x + halfCameraSize.x > mapSize.width)
 	{
-		m_camera->setPosition(mapSize.width - halfCameraSize.x, cameraCenter.y);
-		cameraCenter = m_camera->getPosition();
+		cameraCenter = Vec2(mapSize.width - halfCameraSize.x, cameraCenter.y);
 	}
 	if (cameraCenter.y - halfCameraSize.y < 0)
 	{
-		m_camera->setPosition(cameraCenter.x, halfCameraSize.y);
-		cameraCenter = m_camera->getPosition();
+		cameraCenter = Vec2(cameraCenter.x, halfCameraSize.y);
 	}
 	if (cameraCenter.y + halfCameraSize.y > mapSize.height)
 	{
-		m_camera->setPosition(cameraCenter.x, mapSize.height - halfCameraSize.y);
-		cameraCenter = m_camera->getPosition();
+		cameraCenter = Vec2(cameraCenter.x, mapSize.height - halfCameraSize.y);
 	}
 
+	m_camera->setPosition(cameraCenter);
 	m_UILayer->setPosition(cameraCenter - m_winSize / 2);
 }
 

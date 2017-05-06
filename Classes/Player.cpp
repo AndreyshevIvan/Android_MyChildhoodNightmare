@@ -12,7 +12,9 @@ namespace
 	const float PLAYER_VELOCITY = 200;
 
 	const Size PLAYER_SIZE = Size(53, 75);
-	const string PLAYER_JUMP = "player.png";
+	const string PLAYER_RUN = "player_run.png";
+	const string PLAYER_IDLE = "player_idle.png";
+	const string PLAYER_JUMP = "player_jump.png";
 }
 
 bool CPlayer::PersonalInit()
@@ -31,7 +33,6 @@ bool CPlayer::InitBody()
 {
 	m_moveSpeed.x = PLAYER_VELOCITY;
 	m_puppetSprite = Sprite::create();
-	SetAnimation(m_animations.at(PuppetAnimType::JUMP));
 	setContentSize(PLAYER_SIZE);
 
 	AddScaleDependentSprite(m_puppetSprite);
@@ -75,12 +76,16 @@ bool CPlayer::InitAnimations()
 {
 	try
 	{
+		auto runAnim = CAnimManager::CreateAnim(PLAYER_RUN, PLAYER_SIZE, 6);
+		auto idleAnim = CAnimManager::CreateAnim(PLAYER_IDLE, PLAYER_SIZE, 6);
 		auto jumpAnim = CAnimManager::CreateAnim(PLAYER_JUMP, PLAYER_SIZE, 6);
-		if (!jumpAnim)
+		if (!runAnim || !idleAnim || !jumpAnim)
 		{
 			return false;
 		}
 
+		m_animations.insert(make_pair(PuppetAnimType::RUN, runAnim));
+		m_animations.insert(make_pair(PuppetAnimType::IDLE, idleAnim));
 		m_animations.insert(make_pair(PuppetAnimType::JUMP, jumpAnim));
 	}
 	catch (const std::exception &)

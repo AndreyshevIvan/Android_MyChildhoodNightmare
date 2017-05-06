@@ -9,7 +9,7 @@ namespace
 {
 	const float FLYING_SLOWDOWN = 1;
 	const float G = 900;
-	const float CRITICAL_DELTA_TIME = 0.05;
+	const float CRITICAL_DELTA_TIME = 0.05f;
 }
 
 bool CPuppet::init(IMapPhysics *mapPhysic)
@@ -69,6 +69,14 @@ void CPuppet::MoveHorizontal(float elapsedTime)
 		{
 			setPosition(GetCenterInWorld() - movement);
 		}
+		if (m_jumpState != JumpState::FLY)
+		{
+			SetAnimation(m_puppetSprite, PuppetAnimType::RUN, true);
+		}
+	}
+	else if (m_jumpState == JumpState::ON_GROUND)
+	{
+		SetAnimation(m_puppetSprite, PuppetAnimType::IDLE, true);
 	}
 }
 
@@ -92,6 +100,7 @@ void CPuppet::MoveVertical(float elapsedTime)
 	}
 	else
 	{
+		SetAnimation(m_puppetSprite, PuppetAnimType::JUMP, true);
 		m_jumpState = JumpState::FLY;
 	}
 }
@@ -159,15 +168,22 @@ bool CPuppet::IsNeedToSwitchWeapon()
 	return m_puppeteer->GetSwitchWeaponState();
 }
 
-void CPuppet::SetAnimation(AnimationPtr animation, bool isLoop)
+void CPuppet::SetAnimation(cocos2d::Sprite* sprite, PuppetAnimType anim, bool isLoop)
 {
-	ActionInterval* runningAnimation = Animate::create(animation);
+	auto animation = m_animations.find(anim);
+	if (animation == m_animations.end() || m_currentAnim == anim)
+	{
+		return;
+	}
+
+	ActionInterval* runningAnimation = Animate::create(animation->second);
 	if (isLoop)
 	{
 		runningAnimation = RepeatForever::create(runningAnimation);
 	}
-	m_puppetSprite->stopAllActions();
-	m_puppetSprite->runAction(runningAnimation);
+	sprite->stopAllActions();
+	sprite->runAction(runningAnimation);
+	m_currentAnim = anim;
 }
 
 void CPuppet::AddScaleDependentSprite(cocos2d::RefPtr<cocos2d::Sprite> sprite)
