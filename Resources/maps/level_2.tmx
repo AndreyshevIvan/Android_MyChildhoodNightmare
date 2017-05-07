@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="220" height="70" tilewidth="32" tileheight="32" nextobjectid="1008">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="220" height="70" tilewidth="32" tileheight="32" nextobjectid="1011">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="400" columns="20">
   <image source="tileset.png" width="640" height="640"/>
  </tileset>
@@ -61619,7 +61619,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="obstacles" visible="0">
+ <objectgroup name="obstacles">
   <object id="334" name="solid" x="5.99667" y="1155.33" width="1939.67" height="99.3337"/>
   <object id="336" name="solid" x="1909.33" y="1218.33" width="103.333" height="99.3337"/>
   <object id="337" name="solid" x="1936.33" y="1281.33" width="103.333" height="99.3337"/>
@@ -61639,7 +61639,7 @@
   <object id="356" name="solid" x="1508" y="1942.83" width="56.333" height="69.8337"/>
   <object id="358" name="solid" x="437.33" y="1876.83" width="103.333" height="70.3337"/>
   <object id="359" name="solid" x="403.33" y="1909.83" width="103.333" height="70.3337"/>
-  <object id="360" name="solid" x="370.33" y="1981.83" width="103.333" height="135.334"/>
+  <object id="360" name="solid" x="312.33" y="1973.83" width="165.333" height="147.334"/>
   <object id="361" name="solid" x="404.33" y="2115.83" width="234" height="70.3337"/>
   <object id="364" name="solid" x="770.67" y="2081.4" width="58.9997" height="96.5483"/>
   <object id="365" name="solid" x="929.33" y="2081.51" width="60.333" height="93.0004"/>
@@ -61780,7 +61780,6 @@
   <object id="929" name="solid" x="1316.84" y="738.5" width="51.6667" height="24.334"/>
   <object id="930" name="solid" x="960.335" y="675" width="60.6633" height="27.3333"/>
   <object id="931" name="solid" x="961.335" y="834" width="60.6633" height="27.3333"/>
-  <object id="937" name="solid" x="578.167" y="725.167" width="55.6664" height="51"/>
   <object id="946" name="solid" x="610.833" y="1025.17" width="55.6664" height="140.333"/>
   <object id="947" name="solid" x="657.5" y="1061.17" width="72.9997" height="119"/>
   <object id="948" name="solid" x="577.5" y="1090.5" width="55.6664" height="51"/>
@@ -61844,7 +61843,7 @@
   <object id="970" name="enemy_clown_spawn" x="4865" y="992.667" width="46" height="44"/>
  </objectgroup>
  <objectgroup name="player">
-  <object id="954" name="player_spawn" x="313.333" y="997.33" width="56" height="36"/>
+  <object id="954" name="player_spawn" x="316" y="998" width="90.6667" height="70.6667"/>
  </objectgroup>
  <objectgroup name="items_spawns" visible="0">
   <object id="804" name="item_box_spawn" x="582.5" y="2019" width="38.6667" height="46.6667"/>

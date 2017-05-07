@@ -25,6 +25,7 @@ public:
 	void AddPlayer(CPuppetPtr player) override;
 
 	bool CanStandOn(const cocos2d::Rect &body) override;
+	bool CanStandOn(const cocos2d::Point &point) override;
 
 private:
 	void UpdateBullets();

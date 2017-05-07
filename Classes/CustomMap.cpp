@@ -157,6 +157,15 @@ bool CCustomMap::CanStandOn(const Rect &body)
 	return !std::any_of(m_obstacles.begin(), m_obstacles.end(), isIntersects);
 }
 
+bool CCustomMap::CanStandOn(const cocos2d::Point &point)
+{
+	auto isIntersects = [=](const Rect &rect) {
+		return rect.containsPoint(point);
+	};
+
+	return !std::any_of(m_obstacles.begin(), m_obstacles.end(), isIntersects);
+}
+
 bool CCustomMap::GetCollideDoorKey(const cocos2d::Rect &body, std::string &doorKey)
 {
 	bool isIntersectsWithDoor = false;

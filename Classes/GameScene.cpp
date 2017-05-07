@@ -133,6 +133,7 @@ void GameScene::SpawnEnemies()
 		auto enemyPuppeteer = std::make_shared<CEnemyPuppeteer>();
 		enemyPuppeteer->SetPuppet(enemy);
 		m_enemiesPuppeteers.push_back(enemyPuppeteer);
+		break;
 	}
 }
 void GameScene::SpawnItems()

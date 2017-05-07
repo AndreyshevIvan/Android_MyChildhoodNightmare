@@ -10,6 +10,8 @@ namespace
 	const float FLYING_SLOWDOWN = 1;
 	const float G = 900;
 	const float CRITICAL_DELTA_TIME = 0.05f;
+	const float CRITICAL_JUMP_SPEED = 600;
+	const float SPEED_PER_DEMAGE = 180;
 }
 
 bool CPuppet::init(IMapPhysics *mapPhysic)
@@ -94,6 +96,10 @@ void CPuppet::MoveVertical(float elapsedTime)
 
 	if (!m_mapPhysics->CanStandOn(GetRectInWorld()))
 	{
+		if (m_moveSpeed.y > CRITICAL_JUMP_SPEED)
+		{
+			SetDemage(static_cast<int>(m_moveSpeed.y / SPEED_PER_DEMAGE));
+		}
 		setPosition(position);
 		m_moveSpeed.y = 0;
 		m_jumpState = JumpState::ON_GROUND;
@@ -127,7 +133,10 @@ void CPuppet::UpdateDirectionalSprites()
 		}
 	};
 
-	std::for_each(m_directionalSprites.begin(), m_directionalSprites.end(), update_scale);
+	for (auto &sprite : m_directionalSprites)
+	{
+		update_scale(sprite);
+	}
 }
 
 Vec2 CPuppet::GetCenterInWorld() const
@@ -168,7 +177,7 @@ bool CPuppet::IsNeedToSwitchWeapon()
 	return m_puppeteer->GetSwitchWeaponState();
 }
 
-void CPuppet::SetAnimation(cocos2d::Sprite* sprite, PuppetAnimType anim, bool isLoop)
+void CPuppet::SetAnimation(Sprite* sprite, PuppetAnimType anim, bool isLoop)
 {
 	auto animation = m_animations.find(anim);
 	if (animation == m_animations.end() || m_currentAnim == anim)
